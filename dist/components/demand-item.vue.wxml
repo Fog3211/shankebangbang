@@ -1,0 +1,15 @@
+<template name="2805232c">
+  <view class="_ul data-v-385bf290 demand-item" bindtap="handleProxy" hover-class="weui-cell_active" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+    <view class="_li data-v-385bf290 header"><label class="_span data-v-385bf290 iconfont icon-02 radio"></label> <label class="_span data-v-385bf290 title">{{data.title}}</label> <label class="_span data-v-385bf290 time">{{data.time}}</label></view>
+    <view class="_li data-v-385bf290 describe">
+      <view class="_pre data-v-385bf290 detail"> {{data.detail}}
+      </view>
+      <view class="_div data-v-385bf290 pay-box">
+        <view class="_div data-v-385bf290 pay">￥{{data.pay}}</view>
+      </view>
+    </view>
+    <view class="_li data-v-385bf290 footer">
+      <view class="_div data-v-385bf290 tag-box"><label wx:key="index" key="{{index}}" class="_span data-v-385bf290 tag" wx:for="{{data.tag}}" wx:for-index="index" wx:for-item="item">#{{item}}</label></view> <label class="_span data-v-385bf290 iconfont icon-more more"></label> <label class="_span data-v-385bf290 visit">浏览·{{data.visit_count}}</label>
+    </view>
+  </view>
+</template>

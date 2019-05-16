@@ -1,0 +1,33 @@
+<import src="/components/demand-item.vue.wxml" /><template name="220f213c">
+  <view class="_div data-v-e2f442c6 mine-page">
+    <view class="_div data-v-e2f442c6 header">
+      <image src="{{account.avatar}}" alt="avatar" class="_img data-v-e2f442c6 avatar"></image>
+      <view class="_div data-v-e2f442c6 account-box">
+        <view class="_p data-v-e2f442c6 name">{{account.name}}</view>
+        <view class="_p data-v-e2f442c6 school">{{account.school}}</view> <label class="_span data-v-e2f442c6 iconfont icon-iconfontjiantou2 right-icon"></label>
+      </view> <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_button data-v-e2f442c6">登录</button> <button bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_button data-v-e2f442c6">测试</button>
+    </view>
+    <view class="_div data-v-e2f442c6 weui-tab">
+      <view class="_div data-v-e2f442c6 weui-navbar">
+        <block wx:key="index" key="{{index}}" wx:for="{{tabs}}" wx:for-index="index" wx:for-item="item">
+          <view id="{{index}}" class="_div data-v-e2f442c6 weui-navbar__item {{[active_index == index ? 'weui-bar__item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'2_'+index}}" data-comkey="{{$k}}">
+            <view class="_div data-v-e2f442c6 weui-navbar__title nav-title">{{item}}</view>
+          </view> <label class="_span data-v-e2f442c6 nav-cut" hidden="{{!(index===0)}}">|</label>
+        </block>
+        <view class="_div data-v-e2f442c6 weui-navbar__slider {{navbarSliderClass}}"></view>
+      </view>
+      <view class="_div data-v-e2f442c6 weui-tab__panel">
+        <view class="_div data-v-e2f442c6 weui-tab__content" hidden="{{active_index !== 0}}">
+          <view class="_ul data-v-e2f442c6 list-content">
+            <view wx:key="index" key="{{index}}" wx:for="{{data1}}" wx:for-index="index" wx:for-item="item" class="_li data-v-e2f442c6"><template data="{{...$root[$kk+'0_'+index], $root}}" is="2805232c"></template></view>
+          </view>
+        </view>
+        <view class="_div data-v-e2f442c6 weui-tab__content" hidden="{{active_index !== 1}}">
+          <view class="_ul data-v-e2f442c6 list-content">
+            <view wx:key="index" key="{{index}}" wx:for="{{data2}}" wx:for-index="index" wx:for-item="item" class="_li data-v-e2f442c6"><template data="{{...$root[$kk+'1_'+index], $root}}" is="2805232c"></template></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

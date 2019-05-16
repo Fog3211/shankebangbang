@@ -1,0 +1,53 @@
+@import "../../common/vendor.wxss";
+
+.mine-page .header.data-v-e2f442c6 {
+  position: relative;
+  padding: 20rpx;
+  border: 2rpx solid #d9d9d9;
+  display: flex;
+}
+.mine-page .header .avatar.data-v-e2f442c6 {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin: 0 20rpx;
+  vertical-align: middle;
+}
+.mine-page .header .account-box.data-v-e2f442c6 {
+  padding-top: 30rpx;
+}
+.mine-page .header .account-box .name.data-v-e2f442c6 {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.mine-page .header .account-box .school.data-v-e2f442c6 {
+  font-size: 28rpx;
+}
+.mine-page .header .account-box .right-icon.data-v-e2f442c6 {
+  position: absolute;
+  right: 20rpx;
+  top: 70rpx;
+  font-size: 40rpx;
+}
+.mine-page .weui-tab .nav-title.data-v-e2f442c6 {
+  font-size: 36rpx;
+}
+.mine-page .weui-tab .weui-tab__content.data-v-e2f442c6 {
+  padding-top: 120rpx;
+  text-align: center;
+}
+.mine-page .weui-tab .weui-navbar__slider_0.data-v-e2f442c6 {
+  left: 80rpx;
+  transform: translateX(0);
+}
+.mine-page .weui-tab .weui-navbar__slider_1.data-v-e2f442c6 {
+  left: 80rpx;
+  transform: translateX(384rpx);
+}
+.mine-page .weui-tab .nav-cut.data-v-e2f442c6 {
+  color: #4dba8c;
+  line-height: 106rpx;
+}
+.mine-page .weui-tab .list-content.data-v-e2f442c6 {
+  margin-top: -100rpx;
+}

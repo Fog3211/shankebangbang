@@ -1,0 +1,93 @@
+@import "../../../common/vendor.wxss";
+
+.detail-demand.data-v-731e6395 {
+  padding-top: 20rpx;
+}
+.detail-demand .header.data-v-731e6395 {
+  position: relative;
+  height: 80rpx;
+}
+.detail-demand .header .radio.data-v-731e6395 {
+  font-size: 56rpx;
+  position: absolute;
+  left: 20rpx;
+  color: #efb274;
+}
+.detail-demand .header .title.data-v-731e6395 {
+  text-align: left;
+  display: inline-block;
+  width: 520rpx;
+  margin: 0 100rpx;
+  line-height: 80rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: bold;
+}
+.detail-demand .tag-box.data-v-731e6395 {
+  text-align: left;
+  width: 90%;
+  margin: 20rpx auto;
+  border-bottom: 2rpx solid #ccc;
+}
+.detail-demand .tag-box .tag.data-v-731e6395 {
+  display: inline;
+  margin: 0 30rpx;
+  font-size: 30rpx;
+  color: #4dba8c;
+}
+.detail-demand .description.data-v-731e6395 {
+  width: 90%;
+  margin: 20rpx auto;
+  text-indent: 2em;
+  font-size: 32rpx;
+  color: #838282;
+}
+.detail-demand .img-box.data-v-731e6395 {
+  margin: 20rpx auto;
+  padding: 20rpx 40rpx;
+}
+.detail-demand .footer.data-v-731e6395 {
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  color: #7c7575;
+}
+.detail-demand .footer .avatar.data-v-731e6395 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.detail-demand .footer .name.data-v-731e6395 {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 80rpx;
+  margin: 0 20rpx;
+}
+.detail-demand .footer .time.data-v-731e6395 {
+  line-height: 80rpx;
+}
+.detail-demand .footer .visit.data-v-731e6395 {
+  float: right;
+  line-height: 80rpx;
+}
+.detail-demand .btn-box.data-v-731e6395 {
+  width: 70%;
+  margin: 80rpx auto;
+  font-weight: bold;
+  display: flex;
+  text-align: center;
+}
+.detail-demand .btn-box .btn.data-v-731e6395 {
+  display: inline-block;
+  padding: 10rpx 60rpx;
+  margin: auto 10rpx;
+  color: #ddda36;
+  background-color: #4dba8c;
+  letter-spacing: 4rpx;
+  border-radius: 30rpx 0 0 30rpx;
+}
+.detail-demand .btn-box .apply-btn.data-v-731e6395 {
+  border-radius: 0 30rpx 30rpx 0;
+  color: #fff;
+}

@@ -1,0 +1,11 @@
+<import src="/components/demand-item.vue.wxml" /><template name="40911320">
+  <view class="_div data-v-52ab4659 hot-page">
+    <view class="_div data-v-52ab4659 header"><label class="_span data-v-52ab4659 iconfont icon-huo hot-icon"></label>
+      <view class="_p data-v-52ab4659 title">热门话题</view>
+    </view>
+    <view class="_div data-v-52ab4659 tag-box"><label class="_span data-v-52ab4659 tag">#生活用品</label> <label class="_span data-v-52ab4659 tag">#学习用品</label> <label class="_span data-v-52ab4659 tag">#办公用品</label></view>
+    <view class="_ul data-v-52ab4659 list-content">
+      <view wx:key="index" key="{{index}}" wx:for="{{hot_list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-52ab4659"><template data="{{...$root[$kk+'0_'+index], $root}}" is="2805232c"></template></view>
+    </view>
+  </view>
+</template>
