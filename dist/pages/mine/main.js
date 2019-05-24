@@ -136,12 +136,16 @@ if (false) {(function () {
   components: {
     "demand-item": __WEBPACK_IMPORTED_MODULE_1__components_demand_item__["a" /* default */]
   },
+  mounted: function mounted() {
+    this.getSetting();
+  },
   data: function data() {
     return {
+      login_btn_show: true,
       account: {
         name: "未登录",
         avatar: "/static/images/avatar/1.jpg",
-        school: ""
+        school: "请先授权登录"
       },
       tabs: ["已发布", "已帮助"],
       active_index: 0,
@@ -199,29 +203,28 @@ if (false) {(function () {
           if (res.authSetting["scope.userInfo"]) {
             wx.getUserInfo({
               success: function success(res) {
-                console.log("111");
-                // console.log(res.userInfo);
-                // set触发对象更新
-                // Vue.set(this.account, "name", res.userInfo.nickName);
-                // Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
-                //用户已经授权过
-                console.log("用户已经授权过");
+                // 已授权获取头像
+                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(_this.account, "name", res.userInfo.nickName);
+                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(_this.account, "avatar", res.userInfo.avatarUrl);
+                // 隐藏登录按钮
+                _this.login_btn_show = false;
               }
             });
           } else {
-            // console.log("用户还未授权过");
-            wx.getUserInfo({
-              success: function success(res) {
-                // console.log(res.userInfo);
-                // set触发对象更新
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(_this.account, "name", res.userInfo.nickName);
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(_this.account, "avatar", res.userInfo.avatarUrl);
-                console.log("用户还未授权过");
-              }
-            });
+            // 未授权
+            _this.login_btn_show = true;
           }
         }
       });
+    },
+    editionCheck: function editionCheck() {
+      // click事件先触发
+      // 判断小程序的API，回调，参数，组件等是否在当前版本可用。  为false 提醒用户升级微信版本
+      if (wx.canIUse("button.open-type.getUserInfo")) {
+        // 用户版本可用
+      } else {
+          // console.log("请升级微信版本");
+        }
     },
     test: function test() {
       var _this2 = this;
@@ -253,7 +256,18 @@ if (false) {(function () {
           }
         }
       });
-    }
+    },
+    bindGetUserInfo: function bindGetUserInfo(e) {
+      // console.log(e.mp.detail.rawData)
+      if (e.mp.detail.rawData) {
+        //用户按了允许授权按钮
+        this.getSetting();
+      } else {
+        //用户按了拒绝按钮
+        return;
+      }
+    },
+    changeAccount: function changeAccount() {}
   }
 });
 
@@ -280,25 +294,26 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "name"
   }, [_vm._v(_vm._s(_vm.account.name))]), _c('p', {
     staticClass: "school"
-  }, [_vm._v(_vm._s(_vm.account.school))]), _vm._v(" "), _c('span', {
-    staticClass: "iconfont icon-iconfontjiantou2 right-icon"
-  })], 1), _vm._v(" "), _c('button', {
+  }, [_vm._v(_vm._s(_vm.account.school))]), _vm._v(" "), (!_vm.login_btn_show) ? _c('span', {
+    staticClass: "iconfont icon-iconfontjiantou2 right-icon",
     attrs: {
-      "open-type": "getUserInfo",
-      "bindgetuserinfo": "bindGetUserInfo",
       "eventid": '0'
     },
     on: {
-      "click": _vm.getSetting
+      "click": _vm.changeAccount
     }
-  }, [_vm._v("登录")]), _vm._v(" "), _c('button', {
+  }) : _vm._e()], 1), _vm._v(" "), (_vm.login_btn_show) ? _c('button', {
+    staticClass: "login-btn",
     attrs: {
+      "type": "primary",
+      "open-type": "getUserInfo",
       "eventid": '1'
     },
     on: {
-      "click": _vm.test
+      "getuserinfo": _vm.bindGetUserInfo,
+      "click": _vm.editionCheck
     }
-  }, [_vm._v("测试")])], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("登录")]) : _vm._e()], 1), _vm._v(" "), _c('div', {
     staticClass: "weui-tab"
   }, [_c('div', {
     staticClass: "weui-navbar"

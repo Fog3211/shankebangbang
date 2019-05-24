@@ -64,6 +64,8 @@
             </block>
         </div>
       </div>
+      所需人数sumOfneed
+      需求类型：isNeed
     </div>
      <button class="push-btn" @click="handlePush">发布</button>
      <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>
@@ -246,11 +248,12 @@ export default {
     transform: translate(-50%, -50%);
     background: #fff;
   }
-  /* 标签，赏金 */
+  /* 标签，赏金，联系方式 */
   .box {
     margin-top: 20px;
     .tag,
-    .pay {
+    .pay,
+    .contact {
       color: #4dba8c;
       font-size: 18px;
       margin-left: 5px;

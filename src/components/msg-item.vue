@@ -22,7 +22,7 @@ export default {
     msg_data: {
       type: Object,
       default: {
-        id: 0,
+        itemId: 0,
         name: "",
         avatar: "",
         msg_type: "",
@@ -32,7 +32,10 @@ export default {
   },
   methods: {
     handleMsgDeatil() {
-      wx.navigateTo({ url: "/pages/detail/message/ordinary-message/main" });
+      wx.navigateTo({
+        url:
+          "/pages/detail/message/ordinary-message/main?id=" + this.msg_data.id
+      });
     },
     handleOffMsgDeatil() {
       wx.navigateTo({ url: "/pages/detail/message/official-message/main" });

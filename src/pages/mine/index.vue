@@ -5,11 +5,11 @@
       <div class="account-box">
         <p class="name">{{account.name}}</span>
         <p class="school">{{account.school}}</p>
-        <span class="iconfont icon-iconfontjiantou2 right-icon"></span>
+        <span class="iconfont icon-iconfontjiantou2 right-icon" @click="changeAccount" v-if="!login_btn_show"></span>
       </div>
-      <button open-type="getUserInfo"
-        bindgetuserinfo="bindGetUserInfo" @click="getSetting">登录</button>
-      <button @click="test">测试</button>
+        <button type="primary" open-type="getUserInfo"
+        @getuserinfo="bindGetUserInfo" @click="editionCheck" v-if="login_btn_show" class="login-btn">登录</button>   
+      <!-- <button @click="test">测试</button> -->
     </div>
     <div class="weui-tab">
       <div class="weui-navbar">
@@ -48,12 +48,16 @@ export default {
   components: {
     "demand-item": DemandItem
   },
+  mounted() {
+    this.getSetting();
+  },
   data() {
     return {
+      login_btn_show: true,
       account: {
         name: "未登录",
         avatar: "/static/images/avatar/1.jpg",
-        school: ""
+        school: "请先授权登录"
       },
       tabs: ["已发布", "已帮助"],
       active_index: 0,
@@ -118,29 +122,28 @@ export default {
           if (res.authSetting["scope.userInfo"]) {
             wx.getUserInfo({
               success: res => {
-                console.log("111");
-                // console.log(res.userInfo);
-                // set触发对象更新
-                // Vue.set(this.account, "name", res.userInfo.nickName);
-                // Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
-                //用户已经授权过
-                console.log("用户已经授权过");
+                // 已授权获取头像
+                Vue.set(this.account, "name", res.userInfo.nickName);
+                Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
+                // 隐藏登录按钮
+                this.login_btn_show = false;
               }
             });
           } else {
-            // console.log("用户还未授权过");
-            wx.getUserInfo({
-              success: res => {
-                // console.log(res.userInfo);
-                // set触发对象更新
-                Vue.set(this.account, "name", res.userInfo.nickName);
-                Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
-                console.log("用户还未授权过");
-              }
-            });
+            // 未授权
+            this.login_btn_show = true;
           }
         }
       });
+    },
+    editionCheck() {
+      // click事件先触发
+      // 判断小程序的API，回调，参数，组件等是否在当前版本可用。  为false 提醒用户升级微信版本
+      if (wx.canIUse("button.open-type.getUserInfo")) {
+        // 用户版本可用
+      } else {
+        // console.log("请升级微信版本");
+      }
     },
     test() {
       wx.login({
@@ -170,7 +173,18 @@ export default {
           }
         }
       });
-    }
+    },
+    bindGetUserInfo(e) {
+      // console.log(e.mp.detail.rawData)
+      if (e.mp.detail.rawData) {
+        //用户按了允许授权按钮
+        this.getSetting();
+      } else {
+        //用户按了拒绝按钮
+        return;
+      }
+    },
+    changeAccount() {}
   }
 };
 </script>
@@ -203,6 +217,16 @@ export default {
         right: 10px;
         top: 35px;
         font-size: 20px;
+      }
+    }
+    .login-btn {
+      background-color: #4dba8c;
+      height: 60px;
+      line-height: 60px;
+      margin-top: 5px;
+      letter-spacing: 2px;
+      &:active {
+        background-color: #41a77b;
       }
     }
   }

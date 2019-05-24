@@ -4,8 +4,8 @@
       <image src="{{account.avatar}}" alt="avatar" class="_img data-v-e2f442c6 avatar"></image>
       <view class="_div data-v-e2f442c6 account-box">
         <view class="_p data-v-e2f442c6 name">{{account.name}}</view>
-        <view class="_p data-v-e2f442c6 school">{{account.school}}</view> <label class="_span data-v-e2f442c6 iconfont icon-iconfontjiantou2 right-icon"></label>
-      </view> <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_button data-v-e2f442c6">登录</button> <button bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_button data-v-e2f442c6">测试</button>
+        <view class="_p data-v-e2f442c6 school">{{account.school}}</view> <label class="_span data-v-e2f442c6 iconfont icon-iconfontjiantou2 right-icon" bindtap="handleProxy" wx:if="{{!login_btn_show}}" data-eventid="{{'0'}}" data-comkey="{{$k}}"></label>
+      </view> <button type="primary" open-type="getUserInfo" bindgetuserinfo="handleProxy" bindtap="handleProxy" wx:if="{{login_btn_show}}" class="_button data-v-e2f442c6 login-btn" data-eventid="{{'1'}}" data-comkey="{{$k}}">登录</button>
     </view>
     <view class="_div data-v-e2f442c6 weui-tab">
       <view class="_div data-v-e2f442c6 weui-navbar">

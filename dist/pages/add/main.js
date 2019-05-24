@@ -157,6 +157,8 @@ if (false) {(function () {
 //
 //
 //
+//
+//
 
 
 
@@ -747,7 +749,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_vm._v(_vm._s(item))]), _vm._v(" "), _c('div', {
       staticClass: "pay-text"
     }, [_vm._v("校园币")])])])
-  }))], 1)]), _vm._v(" "), _c('button', {
+  }))], 1), _vm._v("\n    所需人数sumOfneed\n    需求类型：isNeed\n  ")]), _vm._v(" "), _c('button', {
     staticClass: "push-btn",
     attrs: {
       "eventid": '10'

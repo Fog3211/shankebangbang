@@ -2,3 +2,5 @@
 <import src="/components/msg-item.vue.wxml" />
 <import src="/modules/mpvue-weui/src/input/index.vue.wxml" />
 <import src="/modules/mpvue-weui/src/toast/index.vue.wxml" />
+<import src="/modules/mpvue-weui/src/button/index.vue.wxml" />
+<import src="/components/demand-item.vue.wxml" /><template name="data-v-e2f442c6-default-0">登录</template>

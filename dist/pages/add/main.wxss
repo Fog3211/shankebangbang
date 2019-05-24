@@ -43,7 +43,8 @@
   margin-top: 40rpx;
 }
 .add-page .box .tag.data-v-2a28d1ad,
-.add-page .box .pay.data-v-2a28d1ad {
+.add-page .box .pay.data-v-2a28d1ad,
+.add-page .box .contact.data-v-2a28d1ad {
   color: #4dba8c;
   font-size: 36rpx;
   margin-left: 10rpx;

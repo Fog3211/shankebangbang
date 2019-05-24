@@ -172,7 +172,7 @@ if (false) {(function () {
     msg_data: {
       type: Object,
       default: {
-        id: 0,
+        itemId: 0,
         name: "",
         avatar: "",
         msg_type: "",
@@ -182,7 +182,9 @@ if (false) {(function () {
   },
   methods: {
     handleMsgDeatil: function handleMsgDeatil() {
-      wx.navigateTo({ url: "/pages/detail/message/ordinary-message/main" });
+      wx.navigateTo({
+        url: "/pages/detail/message/ordinary-message/main?id=" + this.msg_data.id
+      });
     },
     handleOffMsgDeatil: function handleOffMsgDeatil() {
       wx.navigateTo({ url: "/pages/detail/message/official-message/main" });

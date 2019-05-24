@@ -93,8 +93,38 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      data: {}
+      data: {
+        id: -1,
+        name: "",
+        time: "",
+        msg: ""
+
+      }
     };
+  },
+  mounted: function mounted() {
+    this.id = this.$root.$mp.query.id;
+    this.data = {};
+    // console.log(this.id)
+    // wx.request({
+    //   url: "http://62.234.59.173/",
+    //   method: "GET",
+    //   header: {
+    //     "content-type": "application/json"
+    //   },
+    //   success: res => {
+    //     if (res.statusCode == 200) {
+    //       this.msg_list = res.data;
+    //       // console.log(res.data);
+    //     } else {
+    //       this.toast = {
+    //         toastType: "error",
+    //         showToast: true,
+    //         content: "获取数据错误，请重试"
+    //       };
+    //     }
+    //   }
+    // });
   }
 });
 
@@ -107,7 +137,7 @@ if (false) {(function () {
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "ordinary-message"
-  }, [_vm._v("\n  互动消息123\n")])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
