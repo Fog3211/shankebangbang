@@ -4,7 +4,7 @@
       <img :src="account.avatar" alt="avatar" class="avatar">
       <div class="account-box">
         <p class="name">{{account.name}}</span>
-        <p class="school">{{account.school}}</p>
+        <p class="is-login">{{account.is_login}}</p>
         <span class="iconfont icon-iconfontjiantou2 right-icon" @click="changeAccount" v-if="!login_btn_show"></span>
       </div>
         <button type="primary" open-type="getUserInfo"
@@ -57,7 +57,7 @@ export default {
       account: {
         name: "未登录",
         avatar: "/static/images/avatar/1.jpg",
-        school: "请先授权登录"
+        is_login: "请先授权登录"
       },
       tabs: ["已发布", "已帮助"],
       active_index: 0,
@@ -122,9 +122,11 @@ export default {
           if (res.authSetting["scope.userInfo"]) {
             wx.getUserInfo({
               success: res => {
+                console.log(res.userInfo)
                 // 已授权获取头像
                 Vue.set(this.account, "name", res.userInfo.nickName);
                 Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
+                Vue.set(this.account, "is_login", "已登录");
                 // 隐藏登录按钮
                 this.login_btn_show = false;
               }
@@ -209,7 +211,7 @@ export default {
         font-size: 16px;
         font-weight: bold;
       }
-      .school {
+      .is-login {
         font-size: 14px;
       }
       .right-icon {

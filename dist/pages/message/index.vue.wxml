@@ -1,7 +1,0 @@
-<import src="/components/msg-item.vue.wxml" /><template name="1c8c53da">
-  <view class="_div data-v-268bd113 message-page">
-    <view class="_ul data-v-268bd113 msg-list"><template data="{{...$root[$kk+'0'], $root}}" is="00c48d1a"></template>
-      <view wx:key="index" key="{{index}}" wx:for="{{msg_list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-268bd113"><template data="{{...$root[$kk+'1_'+index], $root}}" is="00c48d1a"></template></view>
-    </view>
-  </view>
-</template>
