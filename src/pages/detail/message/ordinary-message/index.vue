@@ -1,6 +1,10 @@
 <template>
   <div class="ordinary-message">
-    
+     <ul class="msg-box">
+       <li class="msg-item">{{data.name}}</li>
+       <li class="msg-item">{{data.time}}</li>
+       <li class="msg-item">{{data.content}}</li>
+     </ul>
   </div>
 </template>
 
@@ -12,37 +16,24 @@ export default {
         id: -1,
         name: "",
         time: "",
-        msg: ""
-        
+        content: ""
       }
     };
   },
   mounted() {
     this.id = this.$root.$mp.query.id;
-    this.data = {};
-    // console.log(this.id)
-    // wx.request({
-    //   url: "http://62.234.59.173/",
-    //   method: "GET",
-    //   header: {
-    //     "content-type": "application/json"
-    //   },
-    //   success: res => {
-    //     if (res.statusCode == 200) {
-    //       this.msg_list = res.data;
-    //       // console.log(res.data);
-    //     } else {
-    //       this.toast = {
-    //         toastType: "error",
-    //         showToast: true,
-    //         content: "获取数据错误，请重试"
-    //       };
-    //     }
-    //   }
-    // });
+    this.data = {
+      id: this.$root.$mp.query.id,
+      name: "张三",
+      time: "2019-06-01",
+      content: "测试消息"
+    };
   }
 };
 </script>
 
 <style scoped lang="scss">
+.msg-box {
+  text-align: center;
+}
 </style>

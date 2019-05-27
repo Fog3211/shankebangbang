@@ -122,7 +122,7 @@ export default {
           if (res.authSetting["scope.userInfo"]) {
             wx.getUserInfo({
               success: res => {
-                console.log(res.userInfo)
+                console.log(res.userInfo);
                 // 已授权获取头像
                 Vue.set(this.account, "name", res.userInfo.nickName);
                 Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
@@ -147,35 +147,35 @@ export default {
         // console.log("请升级微信版本");
       }
     },
-    test() {
-      wx.login({
-        success: res => {
-          const js_code = res.code;
-          if (js_code) {
-            console.log("获取用户登录凭证：" + js_code);
-            wx.request({
-              url: "http://62.234.59.173:80/api/me/login", //后端接口获取openid和session_key
-              data: { code: js_code, userName: this.account.name },
-              method: "GET",
-              header: {
-                "content-type": "application/json"
-              },
-              success: res => {
-                if (res.statusCode == 200) {
-                  // console.log("获取到的openid为：" + res);
-                  console.log(res);
-                  wx.setStorageSync("openid", res.data.open_id);
-                } else {
-                  console.log(res.errMsg);
-                }
-              }
-            });
-          } else {
-            console.log("获取用户登录失败：" + res.errMsg);
-          }
-        }
-      });
-    },
+    // test() {
+    //   wx.login({
+    //     success: res => {
+    //       const js_code = res.code;
+    //       if (js_code) {
+    //         console.log("获取用户登录凭证：" + js_code);
+    //         wx.request({
+    //           url: "http://62.234.59.173:80/api/me/login", //后端接口获取openid和session_key
+    //           data: { code: js_code, userName: this.account.name },
+    //           method: "GET",
+    //           header: {
+    //             "content-type": "application/json"
+    //           },
+    //           success: res => {
+    //             if (res.statusCode == 200) {
+    //               // console.log("获取到的openid为：" + res);
+    //               console.log(res);
+    //               wx.setStorageSync("open_id", res.data.open_id);
+    //             } else {
+    //               console.log(res.errMsg);
+    //             }
+    //           }
+    //         });
+    //       } else {
+    //         console.log("获取用户登录失败：" + res.errMsg);
+    //       }
+    //     }
+    //   });
+    // },
     bindGetUserInfo(e) {
       // console.log(e.mp.detail.rawData)
       if (e.mp.detail.rawData) {
@@ -186,7 +186,10 @@ export default {
         return;
       }
     },
-    changeAccount() {}
+    changeAccount() {
+      let open_id = wx.getStorageSync("open_id");
+      wx.navigateTo({ url: "/pages/account?open_id=" + open_id });
+    }
   }
 };
 </script>

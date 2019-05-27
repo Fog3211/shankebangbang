@@ -64,8 +64,6 @@
             </block>
         </div>
       </div>
-      所需人数sumOfneed
-      需求类型：isNeed
     </div>
      <button class="push-btn" @click="handlePush">发布</button>
      <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>

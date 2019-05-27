@@ -34,7 +34,7 @@ export default {
         time: "",
         detail: "",
         pay: 0,
-        tag: "",
+        tag: [],
         visit_count: 0
       }
     }

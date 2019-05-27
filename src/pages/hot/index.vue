@@ -5,9 +5,9 @@
       <p class="title">热门话题</p>
       </div>
       <div class="tag-box">
-        <span class="tag">#生活用品</span>
-        <span class="tag">#学习用品</span>
-        <span class="tag">#办公用品</span>
+        <span v-for="(item,index) in tag_list" :key="index" class="tag" @click="handleTagCheck(item)">
+          #{{item}}
+        </span>
       </div>
       <ul class="list-content">
         <li v-for="(item,index) in hot_list" :key="index">
@@ -30,8 +30,14 @@ export default {
         showToast: false,
         content: "获取数据错误，请重试"
       },
+      tag_list: ["生活用品", "学习用品", "办公用品"],
       hot_list: []
     };
+  },
+  methods: {
+    handleTagCheck(item) {
+      console.log("选择了"+item);
+    }
   },
   mounted() {
     wx.request({
@@ -44,7 +50,7 @@ export default {
         if (res.statusCode == 200) {
           res.data.map(item => {
             this.hot_list.push({
-              id:item.itemId,
+              id: item.itemId,
               title: item.itemTitle,
               time: item.toNow,
               detail: item.itemContent,

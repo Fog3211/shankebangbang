@@ -73,8 +73,28 @@ export default {
       active_index: 0,
       inputShowed: false,
       keyword: "",
-      data0: [],
-      data1: [],
+      data0: [
+        {
+          id: 1,
+          title: "标题占位符1",
+          time: "2019-04-01",
+          detail: "啦啦啦啦",
+          pay: 100,
+          tag: ["标签1"],
+          visit_count: 290
+        }
+      ],
+      data1: [
+         {
+          id: 2,
+          title: "标题占位符2",
+          time: "2019-05-01",
+          detail: "啦啦啦啦",
+          pay: 1000,
+          tag: ["标签2"],
+          visit_count: 490
+        }
+      ],
       imgUrls: [
         "/static/images/swiper/1.png",
         "/static/images/swiper/2.png",
