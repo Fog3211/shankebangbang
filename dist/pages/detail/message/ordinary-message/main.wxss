@@ -1,0 +1,5 @@
+@import "../../../../common/vendor.wxss";
+
+.msg-box.data-v-4552e76e {
+  text-align: center;
+}

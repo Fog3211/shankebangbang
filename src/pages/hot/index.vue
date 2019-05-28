@@ -3,22 +3,27 @@
     <div class="header">
       <span class="iconfont icon-huo hot-icon"></span>
       <p class="title">热门话题</p>
-      </div>
-      <div class="tag-box">
-        <span v-for="(item,index) in tag_list" :key="index" class="tag" @click="handleTagCheck(item)">
-          #{{item}}
-        </span>
-      </div>
-      <ul class="list-content">
-        <li v-for="(item,index) in hot_list" :key="index">
-          <demand-item :data="item"></demand-item>
-        </li>
-      </ul>
+    </div>
+    <div class="tag-box">
+      <span v-for="(item,index) in tag_list" :key="index" class="tag" @click="handleTagCheck(item)">
+        #{{item}}
+      </span>
+    </div>
+    <ul class="list-content" v-if="hot_list.length!==0">
+      <li v-for="(item,index) in hot_list" :key="index">
+        <demand-item :data="item"></demand-item>
+      </li>
+    </ul>
+    <div class="empty-box" v-else>
+      <img src="/static/images/other/empty.png" alt="empty" class="empty-pic">
+      <p class="empty-info">糟糕，列表竟然是空的</p>
+    </div>
   </div>
 </template>
 
 <script>
 import DemandItem from "@/components/demand-item";
+import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
     "demand-item": DemandItem
@@ -30,13 +35,13 @@ export default {
         showToast: false,
         content: "获取数据错误，请重试"
       },
-      tag_list: ["生活用品", "学习用品", "办公用品"],
+      tag_list: ["寻物启事", "学习互助", "资源共享"],
       hot_list: []
     };
   },
   methods: {
     handleTagCheck(item) {
-      console.log("选择了"+item);
+      console.log("选择了" + item);
     }
   },
   mounted() {
@@ -52,11 +57,11 @@ export default {
             this.hot_list.push({
               id: item.itemId,
               title: item.itemTitle,
-              time: item.toNow,
+              time: checkDate(item.toNow),
               detail: item.itemContent,
               pay: item.itemPrice,
               tag: item.tags,
-              visit_count: 123,
+              visit_count: item.itemScan,
               is_need: item.itemNeed
             });
           });
@@ -83,6 +88,7 @@ export default {
       font-size: 20px;
       padding: 0 10px;
     }
+
     .title {
       display: inline-block;
       width: 75%;
@@ -96,6 +102,8 @@ export default {
   .tag-box {
     width: 80%;
     margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+
     .tag {
       text-align: center;
       margin: auto 15px;
@@ -103,9 +111,35 @@ export default {
       color: #4dba8c;
     }
   }
+
   .list-content {
     margin-top: 10px;
     border-top: 1px solid #ccc;
+  }
+
+  .empty-box {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    margin: 50px auto;
+
+    .empty-pic {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+    }
+
+    .empty-info {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 10px;
+      color: rgb(182, 179, 179);
+      letter-spacing: 2.5px;
+      text-align: center;
+    }
   }
 }
 </style>

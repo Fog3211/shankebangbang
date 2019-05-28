@@ -1,0 +1,9 @@
+<template name="44b355e2">
+  <view class="_div data-v-4552e76e ordinary-message">
+    <view class="_ul data-v-4552e76e msg-box">
+      <view class="_li data-v-4552e76e msg-item">{{data.name}}</view>
+      <view class="_li data-v-4552e76e msg-item">{{data.time}}</view>
+      <view class="_li data-v-4552e76e msg-item">{{data.content}}</view>
+    </view>
+  </view>
+</template>

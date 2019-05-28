@@ -2,13 +2,13 @@
   <div class="add-page">
     <div ref="addForm">
       <!-- 标题部分 -->
-      <input type="text" placeholder="标题" class="title" v-model="add_form.title"/>
+      <input type="text" placeholder="标题" class="title" v-model="add_form.title" />
       <!-- 文字描述部分 -->
       <div class="weui-cells weui-cells_after-title description-box">
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <textarea placeholder="请添加具体描述（限120字）" v-model="add_form.description"/>
-          </div>
+            <textarea placeholder="请添加具体描述（限120字）" v-model="add_form.description" />
+            </div>
         </div>
       </div>
       <!-- 上传图片部分 -->
@@ -38,18 +38,22 @@
         </div>
       </div>
       <!-- 标签部分 -->
-      <div class="box">
-        <span class="iconfont icon-biaoqian tag-icon"></span>
+      <div class="box tag-box">
+        <div class="icon-box">
+           <span class="iconfont icon-biaoqian tag-icon"></span>
         <label for="tag" class="tag">标签</label>
-        <input type="text" v-model="add_form.tag[0]" placeholder="主标签（限10字）" class="tag-input" maxlength="10">  
-        <input type="text" v-model="add_form.tag[1]" placeholder="副标签1（限7字）" class="tag-input" maxlength="7">  
-        <input type="text" v-model="add_form.tag[2]" placeholder="副标签2（限7字）" class="tag-input" maxlength="7">  
+        </div>
+       
+        <ul class="tag-group">
+          <li v-for="(item,index) in add_form.tag" :key="index" class="tag-item" @click="delTag(index)">{{item}}</li>
+        </ul>
+        <Button class="add-tag-btn" @click="addTag" :disabled="add_form.tag.length>=3">添加标签</Button>
       </div>
       <!-- 联系方式 -->
       <div class="box" style="padding:10px;">
         <span class="iconfont icon-lianxifangshi contact-icon"></span>
         <label for="contact" class="contact">联系方式</label>
-        <mp-input placeholder="请输入联系电话" v-model="add_form.contact" type="number" maxlength="11"></mp-input>
+        <mp-input placeholder="请输入11位手机号" v-model="add_form.contact" type="number" maxlength="11"></mp-input>
       </div>
       <!-- 赏金部分 -->
       <div class="box">
@@ -65,18 +69,23 @@
         </div>
       </div>
     </div>
-     <button class="push-btn" @click="handlePush">发布</button>
+     <Button class="push-btn" @click="handlePush">发布</Button>
+     <!-- 弹窗提示 -->
      <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>
+     <!-- 标签选择 -->
+     <mp-picker ref="mpPicker" @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mp-picker>
   </div>
 </template>
 
 <script>
 import mpInput from "mpvue-weui/src/input";
 import mpToast from "mpvue-weui/src/toast";
+import mpPicker from "mpvue-weui/src/picker";
 export default {
   components: {
     mpToast,
-    mpInput
+    mpInput,
+    mpPicker
   },
   data() {
     return {
@@ -95,7 +104,37 @@ export default {
         toastType: "error",
         showToast: false,
         content: ""
-      }
+      },
+      pickerValueArray: [
+        {
+          label: "寻物启事",
+          value: "寻物启事"
+        },
+        {
+          label: "社交活动",
+          value: "社交活动"
+        },
+        {
+          label: "资源共享",
+          value: "资源共享"
+        },
+        {
+          label: "学习互助",
+          value: "学习互助"
+        },
+        {
+          label: "心得交流",
+          value: "心得交流"
+        },
+        {
+          label: "竞赛组队",
+          value: "竞赛组队"
+        },
+        {
+          label: "其他",
+          value: "其他"
+        }
+      ]
     };
   },
   methods: {
@@ -143,26 +182,22 @@ export default {
     },
     handlePush() {
       if (!this.checkForm()) {
-        this.toast = {
-          toastType: "warn",
-          showToast: true,
-          content: "请完善输入"
-        };
         return;
       }
-      const open_id = wx.getStorageSync("openid");
+      const open_id = wx.getStorageSync("open_id");
       // console.log(open_id)
       wx.request({
-        url: "http://62.234.59.173/pic/uploadImage",
+        url: "http://62.234.59.173/item",
         method: "POST",
         data: {
           title: this.add_form.title,
           content: this.add_form.description,
           price: this.add_form.pay,
           open_id,
-          contact: this.add_form.contact
+          contact: this.add_form.contact,
+          sumOfneed: 1,
+          isNeed: 0
           // multipartFile: "",
-          // itemId: 111
         },
         header: {
           "content-type": "application/json"
@@ -184,24 +219,68 @@ export default {
       });
     },
     checkForm() {
-      this.add_form.tag = this.add_form.tag.filter(s => {
-        return s && s.trim();
-      });
+      const open_id = wx.getStorageSync("open_id");
+      if (!open_id) {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请先登录"
+        };
+        return;
+      }
+
       const { title, description, files, tag, pay, contact } = this.add_form;
-      if (
-        title !== "" &&
-        title.trim() !== "" &&
-        description !== "" &&
-        description.trim() !== "" &&
-        contact !== "" &&
-        contact.trim() !== "" &&
-        files.length !== 0 &&
-        tag.length !== 0 &&
-        this.select_pay_index !== -1
-      ) {
+      if (title === "" || title.trim() === "") {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "标题不能为空"
+        };
+        return false;
+      } else if (description === "" || description.trim() === "") {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "具体描述不能为空"
+        };
+        return false;
+      } else if (tag.length === 0) {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请至少添加一个标签"
+        };
+        return false;
+      } else if (this.select_pay_index === -1) {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请选择合适的报酬"
+        };
+        return false;
+      } else if (!/^1[34578]\d{9}$/.test(contact)) {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请输入正确的手机号"
+        };
+        return false;
+      } else {
         return true;
       }
-      return false;
+    },
+    delTag(index) {
+      this.add_form.tag.splice(index, 1);
+    },
+    addTag() {
+      this.$refs.mpPicker.show();
+    },
+    onConfirm(e) {
+      // console.log(e);
+      if(this.add_form.tag.includes(e.label)){
+        return;
+      }
+      this.add_form.tag.push(e.label);
     }
   }
 };
@@ -258,14 +337,7 @@ export default {
       vertical-align: middle;
       font-weight: bolder;
     }
-    .tag-input {
-      font-size: 16px;
-      width: 45%;
-      margin-left: 20%;
-      border-bottom: 1px solid #ccc;
-      padding-left: 30px;
-      letter-spacing: 3px;
-    }
+
     .tag-icon,
     .contact-icon,
     .pay-icon {
@@ -298,7 +370,28 @@ export default {
       background-color: #e7f7eb;
     }
   }
-
+  .tag-box {
+    padding: 0 10px;
+    text-align: center;
+    .icon-box {
+      text-align: left;
+    }
+    .tag-group {
+      width: 90%;
+      margin: 10px auto 20px;
+      display: flex;
+      justify-content: space-around;
+      .tag-item {
+        padding: 5px 10px;
+        border: 1px solid #4dba8c;
+        border-radius: 10%;
+        color: #4dba8c;
+      }
+    }
+    .add-tag-btn {
+      width: 85%;
+    }
+  }
   /* 发布按钮 */
   .push-btn {
     display: block;

@@ -10,7 +10,9 @@
         <span class="content">{{item.content}}</span>
       </li>
     </ul>
-    <p v-else class="no-msg">当前没有信息</p>
+    <div class="no-msg" v-else>
+      <img src="/static/images/other/no-msg.png" alt="no-msg" class="pic">
+    </div>
     <div class="msg-detail" v-if="show_msg_detail" @click="hiddenMsgDetail">
       <div class="content">
         <p class="title">{{ msg_detail.title }}</p>
@@ -21,6 +23,7 @@
 </template>
 
 <script>
+import { checkDate } from "@/utils/checkTime";
 export default {
   data() {
     return {
@@ -34,7 +37,9 @@ export default {
   },
   methods: {
     showMsgDetail(item, index) {
-      this.msg_detail = { ...item };
+      this.msg_detail = {
+        ...item
+      };
       this.show_msg_detail = true;
       this.msg_list[index].is_new = false;
     },
@@ -51,7 +56,14 @@ export default {
       },
       success: res => {
         if (res.statusCode == 200) {
-          this.msg_list = res.data;
+          const item = res.data;
+
+          this.msg_list.push({
+            id: item.id,
+            title: item.title,
+            time: item.time,
+            content: item.content
+          });
           // console.log(res.data);
         } else {
           // console.log(res.errMsg);
@@ -70,16 +82,20 @@ export default {
 <style scoped lang="scss">
 .official-message {
   padding: 10px 15px;
+
   .msg-box {
     margin: 10px auto;
+
     .msg {
       border-radius: 10px;
       border: 1px solid #ccc;
       margin-top: 10px;
       padding: 5px;
+
       .header {
         position: relative;
         line-height: 30px;
+
         .title {
           text-indent: 1em;
           display: inline-block;
@@ -90,6 +106,7 @@ export default {
           text-overflow: ellipsis;
           margin-top: 5px;
         }
+
         .time {
           position: absolute;
           right: 10px;
@@ -97,12 +114,14 @@ export default {
           font-size: 12px;
           color: #ccc;
         }
+
         .dot-badge {
           position: absolute;
           right: 3px;
           top: 3px;
         }
       }
+
       .content {
         text-indent: 2em;
         border-radius: 5px;
@@ -119,6 +138,16 @@ export default {
       }
     }
   }
+
+  .no-msg {
+    text-align: center;
+    margin-top: 40px;
+    .pic {
+      width: 70%;
+      height: 70vh;
+    }
+  }
+
   .msg-detail {
     width: 95%;
     height: 100%;
@@ -129,6 +158,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .content {
       margin: 0 auto;
       width: 90%;
@@ -139,6 +169,7 @@ export default {
       box-shadow: 0 0 10rem 5rem rgba(0, 0, 0, 0.5);
       font-size: 0.34rem;
       line-height: 0.5rem;
+
       .title {
         text-align: left;
         padding-left: 0.2rem;

@@ -47,7 +47,6 @@ let baseWebpackConfig = {
     alias: {
       'vue': 'mpvue',
       '@': resolve('src'),
-      'axios':'axios/dist/axios'
     },
     symlinks: false,
     aliasFields: ['mpvue', 'weapp', 'browser'],

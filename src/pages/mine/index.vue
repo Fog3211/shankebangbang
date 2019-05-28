@@ -8,8 +8,7 @@
         <span class="iconfont icon-iconfontjiantou2 right-icon" @click="changeAccount" v-if="!login_btn_show"></span>
       </div>
         <button type="primary" open-type="getUserInfo"
-        @getuserinfo="bindGetUserInfo" @click="editionCheck" v-if="login_btn_show" class="login-btn">登录</button>   
-      <!-- <button @click="test">测试</button> -->
+        @getuserinfo="bindGetUserInfo" @click="editionCheck" v-if="login_btn_show" class="login-btn">登录</button>
     </div>
     <div class="weui-tab">
       <div class="weui-navbar">
@@ -23,18 +22,20 @@
       </div>
       <div class="weui-tab__panel">
         <div class="weui-tab__content" :hidden="active_index !== 0">
-            <ul class="list-content">
-              <li v-for="(item,index) in data1" :key="index" >
+            <ul class="list-content" v-if="data_push.length!==0">
+              <li v-for="(item,index) in data_push" :key="index" >
                 <demand-item :data="item"></demand-item>
               </li>
             </ul>
+            <empty-list v-else></empty-list>
         </div>
         <div class="weui-tab__content" :hidden="active_index !== 1">
-            <ul class="list-content">
-              <li v-for="(item,index) in data2" :key="index">
+            <ul class="list-content" v-if="data_help.length!==0">
+              <li v-for="(item,index) in data_help" :key="index">
                 <demand-item :data="item"></demand-item>
               </li>
             </ul>
+            <empty-list v-else></empty-list>
         </div>
       </div>
     </div>
@@ -42,14 +43,15 @@
 </template>
 
 <script>
-import Vue from "vue";
 import DemandItem from "@/components/demand-item";
+import EmptyList from "@/components/empty-list";
+import mpToast from "mpvue-weui/src/toast";
+import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
-    "demand-item": DemandItem
-  },
-  mounted() {
-    this.getSetting();
+    "demand-item": DemandItem,
+    "empty-list": EmptyList,
+    mpToast
   },
   data() {
     return {
@@ -61,50 +63,13 @@ export default {
       },
       tabs: ["已发布", "已帮助"],
       active_index: 0,
-      data1: [
-        {
-          id: 1,
-          title: "已发布标题占位符1",
-          time: "2018-4-2",
-          detail: `例如 bindregionchange 事件直接在 dom&nbsp; 
-            sadashkjdsajk`,
-          pay: 1,
-          tag: ["计算机"],
-          visit_count: 83
-        },
-        {
-          id: 1,
-          title: "已发布标题占位符2",
-          time: "2018-5-2",
-          detail: `例如 bindregionchange 事件直接在 dom&nbsp; 
-            sadashkjdsajk`,
-          pay: 1,
-          tag: ["占位符1", "占位符2"],
-          visit_count: 2
-        },
-        {
-          id: 1,
-          title: "已发布标题占位符3",
-          time: "2019-4-2",
-          detail: `例如 bindregionchange 事件直接在 dom&nbsp; 
-            sadashkjdsajk`,
-          pay: 1,
-          tag: ["占位符3", "占位符33", "占位符32"],
-          visit_count: 192
-        }
-      ],
-      data2: [
-        {
-          id: 1,
-          title: "已帮助标题占位符1",
-          time: "2019-4-21",
-          detail: `例如 bindregionchange 事件直接在 dom&nbsp; 
-            sadashkjdsajk`,
-          pay: 1,
-          tag: ["占位符1", "占位符2"],
-          visit_count: 12
-        }
-      ]
+      data_push: [],
+      data_help: [],
+      toast: {
+        toastType: "error",
+        showToast: false,
+        content: ""
+      }
     };
   },
   computed: {
@@ -122,13 +87,16 @@ export default {
           if (res.authSetting["scope.userInfo"]) {
             wx.getUserInfo({
               success: res => {
-                console.log(res.userInfo);
+                // console.log(res.userInfo);
                 // 已授权获取头像
-                Vue.set(this.account, "name", res.userInfo.nickName);
-                Vue.set(this.account, "avatar", res.userInfo.avatarUrl);
-                Vue.set(this.account, "is_login", "已登录");
+                this.account = {
+                  name: res.userInfo.nickName,
+                  avatar: res.userInfo.avatarUrl,
+                  is_login: "已登录"
+                };
                 // 隐藏登录按钮
                 this.login_btn_show = false;
+                this.getOpenId();
               }
             });
           } else {
@@ -139,43 +107,51 @@ export default {
       });
     },
     editionCheck() {
-      // click事件先触发
-      // 判断小程序的API，回调，参数，组件等是否在当前版本可用。  为false 提醒用户升级微信版本
+      // click事件先触发,检查当前版本可用
       if (wx.canIUse("button.open-type.getUserInfo")) {
         // 用户版本可用
       } else {
-        // console.log("请升级微信版本");
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请升级微信版本"
+        };
       }
     },
-    // test() {
-    //   wx.login({
-    //     success: res => {
-    //       const js_code = res.code;
-    //       if (js_code) {
-    //         console.log("获取用户登录凭证：" + js_code);
-    //         wx.request({
-    //           url: "http://62.234.59.173:80/api/me/login", //后端接口获取openid和session_key
-    //           data: { code: js_code, userName: this.account.name },
-    //           method: "GET",
-    //           header: {
-    //             "content-type": "application/json"
-    //           },
-    //           success: res => {
-    //             if (res.statusCode == 200) {
-    //               // console.log("获取到的openid为：" + res);
-    //               console.log(res);
-    //               wx.setStorageSync("open_id", res.data.open_id);
-    //             } else {
-    //               console.log(res.errMsg);
-    //             }
-    //           }
-    //         });
-    //       } else {
-    //         console.log("获取用户登录失败：" + res.errMsg);
-    //       }
-    //     }
-    //   });
-    // },
+    getOpenId() {
+      wx.login({
+        success: res => {
+          const js_code = res.code;
+          if (js_code) {
+            // console.log("获取用户登录凭证：" + js_code);
+            wx.request({
+              url: "http://62.234.59.173:/api/me/login",
+              data: { code: js_code, userName: this.account.name },
+              method: "GET",
+              header: {
+                "content-type": "application/json"
+              },
+              success: res => {
+                if (res.statusCode == 200) {
+                  // console.log("获取到的openid为：" + res);
+                  wx.setStorageSync("open_id", res.data.open_id);
+                  this.getAllItemList();
+                } else {
+                  // console.log(res.errMsg);
+                }
+              }
+            });
+          } else {
+            // console.log("获取用户登录失败：" + res.errMsg);
+            this.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "登录失败，请重试"
+            };
+          }
+        }
+      });
+    },
     bindGetUserInfo(e) {
       // console.log(e.mp.detail.rawData)
       if (e.mp.detail.rawData) {
@@ -187,8 +163,77 @@ export default {
       }
     },
     changeAccount() {
-      let open_id = wx.getStorageSync("open_id");
+      const open_id = wx.getStorageSync("open_id");
       wx.navigateTo({ url: "/pages/account?open_id=" + open_id });
+    },
+    getAllItemList() {
+      const open_id = wx.getStorageSync("open_id");
+      this.data_push = [];
+      this.data_help = [];
+      this.getItemList(
+        "http://62.234.59.173/myHistory/getHelpedList/" + open_id
+      );
+      this.getItemList(
+        "https://62.234.59.173/myHistory/getReleasedList/" + open_id
+      );
+    },
+    getItemList(url) {
+      wx.request({
+        url: url,
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            // console.log(res.data);
+            // 已发布
+            if (url.includes("getReleasedList")) {
+              res.data.map(item => {
+                this.data_push.push({
+                  id: item.itemId,
+                  title: item.itemTitle,
+                  time: checkDate(item.itemTime),
+                  detail: item.itemContent,
+                  pay: item.itemPrice,
+                  tag: item.tags,
+                  visit_count: item.itemScan,
+                  contact: item.itemContact
+                });
+              });
+            } else {
+              // 已帮助
+              res.data.map(item => {
+                this.data_help.push({
+                  id: item.itemId,
+                  title: item.itemTitle,
+                  time: checkDate(item.itemTime),
+                  detail: item.itemContent,
+                  pay: item.itemPrice,
+                  tag: item.tags,
+                  visit_count: item.itemScan,
+                  contact: item.itemContact
+                });
+              });
+            }
+            // console.log(res.data);
+          } else {
+            // console.log("error");
+            this.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "获取数据错误，请重试"
+            };
+          }
+        }
+      });
+    }
+  },
+  mounted() {
+    this.getSetting();
+    const open_id = wx.getStorageSync("open_id");
+    if (open_id) {
+      this.getAllItemList();
     }
   }
 };
@@ -226,9 +271,9 @@ export default {
     }
     .login-btn {
       background-color: #4dba8c;
-      height: 60px;
-      line-height: 60px;
-      margin-top: 5px;
+      height: 50px;
+      line-height: 50px;
+      margin-top: 10px;
       letter-spacing: 2px;
       &:active {
         background-color: #41a77b;

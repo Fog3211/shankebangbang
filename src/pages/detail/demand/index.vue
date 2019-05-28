@@ -23,44 +23,128 @@
       <span class="time">{{data.time}}</span>
       <span class="visit">浏览·{{data.visit_count}}</span>
     </div>
+     <div class="contact-box">
+       <span class="contact-label">联系方式</span>
+       <span class="contact">{{data.contact||"暂无"}}</span>
+       <button type="primary" @click="copyContact" class="copy-btn" v-if="data.contact">复制</button>
+    </div>
     <div class="btn-box">
       <button class="btn">￥{{data.pay}}</button>
       <button @click="handleApply" class="btn apply-btn">申请</button>
     </div>
+    <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>
   </div>
 </template>
 
 <script>
 import mpToast from "mpvue-weui/src/toast";
+import { checkDate } from "@/utils/checkTime";
 export default {
+  components: {
+    mpToast
+  },
   data() {
     return {
-      id: -1,
       data: {
-        title: "标题占位符0000000",
-        tag: ["计算机", "软件", "物联网", "数媒", "网络"],
-        description:
-          "MinUI 是蘑菇街前端开发团队开发的基于微信小程序自定义组件特性开发而成的一套简洁、易用、高效的组件库，适用场景广，覆盖小程序原生框架，各种小程序组件主流框架等，并且提供了专门的命令行工具。MinUI 是蘑菇街前端开发团队开发的基于微信小程序自定义组件特性开发而成的一套简洁、易用、高效的组件库，适用场景广，覆盖小程序原生框架，各种小程序组件主流框架等，并且提供了专门的命令行工具。",
-        time: "2019-02-22",
-        visit_count: 321,
-        files: ["/static/images/other/1.png", "/static/images/other/1.png"],
-        pay: 30,
-        avatar: "/static/images/avatar/1.jpg",
-        name: "李二狗"
+        id: -1,
+        title: "",
+        tag: [],
+        description: "",
+        time: "",
+        visit_count: 0,
+        files: [],
+        pay: 0,
+        avatar: "",
+        name: "",
+        contact: "",
+        itemNeed: 0
+      },
+      toast: {
+        toastType: "error",
+        showToast: false,
+        content: ""
       }
     };
   },
   methods: {
     handleApply() {
-      console.log("提交申请");
+      const open_id = wx.getStorageSync("open_id");
+      // 未登录
+      if (!open_id) {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请先登录"
+        };
+        return;
+      }
+      if (this.data.itemNeed === 0) {
+        this.apply("https://62.234.59.173/item/applyNeed/");
+      } else {
+        this.apply("https://62.234.59.173/item/applyTalent/");
+      }
+    },
+    apply(url) {
+      const open_id = wx.getStorageSync("open_id");
+      wx.request({
+        url: url + this.data.id + "/" + open_id,
+        method: "PUT",
+        header: {
+          "content-type": "application/json"
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            if (res.data === 1) {
+              this.toast = {
+                toastType: "success",
+                showToast: true,
+                content: "申请成功"
+              };
+              wx.navigateTo({ url: "/pages/index/main" });
+            } else if (res.data === -4) {
+              this.toast = {
+                toastType: "error",
+                showToast: true,
+                content: "不能申请自己的请求"
+              };
+            } else if (res.data === -5) {
+              this.toast = {
+                toastType: "error",
+                showToast: true,
+                content: "您的校园币不足"
+              };
+            } else {
+              this.toast = {
+                toastType: "error",
+                showToast: true,
+                content: "出错了，请重试"
+              };
+            }
+          } else {
+            // console.log("error");
+          }
+        }
+      });
+    },
+    copyContact() {
+      wx.setClipboardData({
+        data: this.data.contact,
+        success(res) {
+          wx.getClipboardData({
+            success(res) {
+              // console.log(res.data);
+            }
+          });
+        }
+      });
     }
   },
   mounted() {
     // 获取页面参数
-    this.id = this.$root.$mp.query.id;
+    const id = this.$root.$mp.query.id;
     // 请求数据
     wx.request({
-      url: "http://62.234.59.173/item/itemlist/" + this.id,
+      url: "http://62.234.59.173/item/itemlist/" + id,
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -69,15 +153,19 @@ export default {
         if (res.statusCode == 200) {
           const item = res.data;
           this.data = {
+            id: item.itemId,
             title: item.itemTitle,
             tag: item.tags,
             description: item.itemContent,
-            time: item.toNow,
-            visit_count: 321,
+            time: checkDate(item.toNow),
+            visit_count: item.itemScan,
             files: ["/static/images/other/1.png", "/static/images/other/1.png"],
+            // files: item.pics,
             pay: item.itemPrice,
             avatar: "/static/images/avatar/1.jpg",
-            name: "李二狗"
+            name: item.usrName,
+            contact: item.itemContact,
+            itemNeed: item.itemNeed
           };
           // console.log(res.data);
         } else {
@@ -163,6 +251,26 @@ export default {
     .visit {
       float: right;
       line-height: 40px;
+    }
+  }
+  .contact-box {
+    position: relative;
+    padding: 15px 15px 5px;
+    font-size: 18px;
+    .contact {
+      margin-left: 10px;
+      width: 150px;
+      display: inline-block;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 5px;
+      margin-left: 15px;
+      display: inline-block;
+      width: 70px;
+      height: 45px;
     }
   }
   .btn-box {

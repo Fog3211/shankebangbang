@@ -1,0 +1,5 @@
+<template name="047a3300">
+  <view class="_div data-v-07c263b9">
+    {{open_id}}
+  </view>
+</template>

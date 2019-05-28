@@ -2,27 +2,21 @@
 function checkDate(t) {
   let ct = new Date();
   if (ct.getFullYear() !== t.getFullYear()) {
-    return t.getFullYear() + '-' + (t.getMonth() + 1);
+    return t.getFullYear() + '-' + formatDate(t.getMonth() + 1) +
+      '-' + formatDate(t.getDate());
   } else if (ct.getMonth() !== t.getMonth()) {
-    return (t.getMonth() + 1) + '-' + t.getDate();
+    return formatDate(t.getMonth() + 1) + '-' + formatDate(t.getDate());
   } else if (ct.getDate() !== t.getDate()) {
-    return (t.getMonth() + 1) + '-' + t.getDate();
+    return formatDate(t.getMonth() + 1) + '-' + formatDate(t.getDate());
   } else {
-    return ct.getHours() + ':' + ct.getMinutes();
+    return formatDate(t.getHours()) + ':' + formatDate(t.getMinutes());
   }
 }
 // 格式化时间
 function formatDate(t) {
-  let year = t.getFullYear();
-  let month = t.getMonth() + 1;
-  let date = t.getDate();
-  let hour = t.getHours();
-  let minute = t.getMinutes();
-  let second = t.getSeconds();
-  return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+  return t.toString().length === 2 ? t : '0' + t;
 }
 
 export {
-  checkDate,
-  formatDate
+  checkDate
 }

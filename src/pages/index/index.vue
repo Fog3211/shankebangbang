@@ -1,71 +1,78 @@
 <template>
   <div class="index-page">
     <!-- 搜索部分 -->
-     <div class="weui-search-bar">
-        <div class="weui-search-bar__form">
-          <div class="weui-search-bar__box">
-            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder="搜索" v-model="keyword" :focus="inputShowed" @input="inputTyping" @confirm="handleSearch"/>
-            <div class="weui-icon-clear" v-show="keyword.length > 0" @click="clearInput">
-              <icon type="clear" size="14"></icon>
-            </div>
+    <div class="weui-search-bar">
+      <div class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" v-model="keyword" :focus="inputShowed"
+            @input="inputTyping" @confirm="handleSearch" />
+          <div class="weui-icon-clear" v-show="keyword.length > 0" @click="clearInput">
+            <icon type="clear" size="14"></icon>
           </div>
-          <label class="weui-search-bar__label" :hidden="inputShowed" @click="showInput">
-            <icon class="weui-icon-search" type="search" size="14"></icon>
-            <div class="weui-search-bar__text">请输入搜索内容</div>
-          </label>
         </div>
-        <div class="weui-search-bar__cancel-btn" :hidden="!inputShowed" @click="hideInput">取消</div>
+        <label class="weui-search-bar__label" :hidden="inputShowed" @click="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <div class="weui-search-bar__text">请输入搜索内容</div>
+        </label>
       </div>
-      <!-- 轮播图部分 -->
-      <swiper indicator-dots="true" autoplay="true" circular="true" class="swiper">
-        <div v-for="(item, index) in imgUrls" :key="index" class="swiper-img">
-          <swiper-item>
-            <image :src="item" class="slide-image" />
-          </swiper-item>
-        </div>
-      </swiper>
-      <!-- 导航栏部分 -->
+      <div class="weui-search-bar__cancel-btn" :hidden="!inputShowed" @click="hideInput">取消</div>
+    </div>
+    <!-- 轮播图部分 -->
+    <swiper indicator-dots="true" autoplay="true" circular="true" class="swiper">
+      <div v-for="(item, index) in imgUrls" :key="index" class="swiper-img">
+        <swiper-item>
+          <image :src="item" class="slide-image" />
+        </swiper-item>
+      </div>
+    </swiper>
+    <!-- 导航栏部分 -->
     <div class="weui-tab">
-        <div class="weui-navbar">
-          <block v-for="(item,index) in tabs" :key="index">
-            <div :id="index" :class="{'weui-bar__item_on':active_index == index}" class="weui-navbar__item" @click="tabClick">
-              <div class="weui-navbar__title">{{item}}</div>
-            </div>
-            <span class="nav-cut" v-show="index===0">|</span>
-          </block>
-          <div class="weui-navbar__slider" :class="navbarSliderClass"></div>
+      <div class="weui-navbar">
+        <block v-for="(item,index) in tabs" :key="index">
+          <div :id="index" :class="{'weui-bar__item_on':active_index == index}" class="weui-navbar__item"
+            @click="tabClick">
+            <div class="weui-navbar__title">{{item}}</div>
+          </div>
+          <span class="nav-cut" v-show="index===0">|</span>
+        </block>
+        <div class="weui-navbar__slider" :class="navbarSliderClass"></div>
+      </div>
+      <div class="weui-tab__panel">
+        <div class="weui-tab__content" :hidden="active_index !== 0">
+          <!-- 渲染子组件需求列表 -->
+          <ul class="list-content" v-if="data_need.length!==0">
+            <li v-for="(item,index) in data_need" :key="index">
+              <demand-item :data="item"></demand-item>
+            </li>
+          </ul>
+          <empty-list v-else></empty-list>
         </div>
-        <div class="weui-tab__panel">
-          <div class="weui-tab__content" :hidden="active_index !== 0">
-            <!-- 渲染子组件需求列表 -->
-              <ul class="list-content">
-                <li v-for="(item,index) in data0" :key="index" >
-                  <demand-item :data="item"></demand-item>
-                </li>
-              </ul>
-          </div>
-          <div class="weui-tab__content" :hidden="active_index !== 1">
-             <ul class="list-content">
-                <li v-for="(item,index) in data1" :key="index">
-                  <demand-item :data="item"></demand-item>
-                </li>
-              </ul>
-          </div>
+        <div class="weui-tab__content" :hidden="active_index !== 1">
+          <ul class="list-content" v-if="data_talent.length!==0">
+            <li v-for="(item,index) in data_talent" :key="index">
+              <demand-item :data="item"></demand-item>
+            </li>
+          </ul>
+           <empty-list v-else></empty-list>
         </div>
       </div>
-      <!-- 添加按钮 -->
-      <image src="/static/images/icon/add.png" alt="add" @click="handleAdd" class="add-btn" />
-      <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>
+    </div>
+    <!-- 添加按钮 -->
+    <image src="/static/images/icon/add.png" alt="add" @click="handleAdd" class="add-btn" />
+    <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>
   </div>
 </template>
 
 <script>
 import DemandItem from "@/components/demand-item";
+import EmptyList from "@/components/empty-list";
 import mpToast from "mpvue-weui/src/toast";
+import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
-    "demand-item": DemandItem
+    "demand-item": DemandItem,
+    "empty-list": EmptyList
   },
   data() {
     return {
@@ -73,28 +80,8 @@ export default {
       active_index: 0,
       inputShowed: false,
       keyword: "",
-      data0: [
-        {
-          id: 1,
-          title: "标题占位符1",
-          time: "2019-04-01",
-          detail: "啦啦啦啦",
-          pay: 100,
-          tag: ["标签1"],
-          visit_count: 290
-        }
-      ],
-      data1: [
-         {
-          id: 2,
-          title: "标题占位符2",
-          time: "2019-05-01",
-          detail: "啦啦啦啦",
-          pay: 1000,
-          tag: ["标签2"],
-          visit_count: 490
-        }
-      ],
+      data_need: [],
+      data_talent: [],
       imgUrls: [
         "/static/images/swiper/1.png",
         "/static/images/swiper/2.png",
@@ -130,11 +117,14 @@ export default {
     },
     // confirm触发回车搜索
     handleSearch() {
+      // console.log(this.keyword);
       if (this.keyword && this.keyword.trim()) {
-        console.log(this.keyword);
+        this.getAllItem(
+          "http://62.234.59.173/search/byKeyWord/" + this.keyword
+        );
         this.keyword = "";
       } else {
-        return false;
+        this.getAllItem("http://62.234.59.173/item/itemlist");
       }
     },
     tabClick(e) {
@@ -142,57 +132,64 @@ export default {
     },
     // 添加需求
     handleAdd() {
-      wx.navigateTo({ url: "/pages/add/main" });
+      wx.navigateTo({
+        url: "/pages/add/main"
+      });
+    },
+    getAllItem(url) {
+      this.data_need = [];
+      this.data_talent = [];
+      wx.request({
+        url,
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            res.data.map(item => {
+              // 需求
+              if (item.itemNeed === 0) {
+                this.data_need.push({
+                  id: item.itemId,
+                  title: item.itemTitle,
+                  time: checkDate(item.toNow),
+                  detail: item.itemContent,
+                  pay: item.itemPrice,
+                  tag: item.tags,
+                  visit_count: item.itemScan,
+                  contact: item.itemContact,
+                  is_need: 0
+                });
+              } else {
+                // 人才
+                this.data_talent.push({
+                  id: item.itemId,
+                  title: item.itemTitle,
+                  time: checkDate(item.toNow),
+                  detail: item.itemContent,
+                  pay: item.itemPrice,
+                  tag: item.tags,
+                  visit_count: item.itemScan,
+                  is_need: 1
+                });
+              }
+            });
+            // console.log(res.data);
+          } else {
+            // console.log(res.errMsg);
+            this.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "获取数据错误，请重试"
+            };
+          }
+        }
+      });
     }
   },
   mounted() {
-    //  请求数据
-    wx.request({
-      url: "http://62.234.59.173:80/item/itemlist",
-      method: "GET",
-      header: {
-        "content-type": "application/json"
-      },
-      success: res => {
-        if (res.statusCode == 200) {
-          res.data.map(item => {
-            // 需求
-            if (item.itemNeed === 0) {
-              this.data0.push({
-                id: item.itemId,
-                title: item.itemTitle,
-                time: item.toNow,
-                detail: item.itemContent,
-                pay: item.itemPrice,
-                tag: item.tags,
-                visit_count: 123,
-                is_need: 0
-              });
-            } else {
-              // 人才
-              this.data1.push({
-                id: item.itemId,
-                title: item.itemTitle,
-                time: item.toNow,
-                detail: item.itemContent,
-                pay: item.itemPrice,
-                tag: item.tags,
-                visit_count: 123,
-                is_need: 1
-              });
-            }
-          });
-          // console.log(res.data);
-        } else {
-          // console.log(res.errMsg);
-          this.toast = {
-            toastType: "error",
-            showToast: true,
-            content: "获取数据错误，请重试"
-          };
-        }
-      }
-    });
+    this.getAllItem("http://62.234.59.173/item/itemlist");
   }
 };
 </script>
@@ -208,14 +205,17 @@ export default {
     bottom: 10px;
     right: 2%;
   }
+
   /* 搜索部分 */
   .searchbar-result {
     margin-top: 0;
     font-size: 14px;
   }
+
   .searchbar-result:before {
     display: none;
   }
+
   .weui-search-bar__cancel-btn {
     font-size: 16px;
   }
@@ -224,28 +224,34 @@ export default {
   .swiper {
     height: 200px;
   }
+
   .slide-image {
     width: 100%;
     height: 100%;
   }
+
   /* 导航栏部分 */
   .weui-tab__content {
     padding-top: 60px;
     text-align: center;
   }
+
   .weui-navbar__slider_0 {
     left: 40px;
     transform: translateX(0);
   }
+
   .weui-navbar__slider_1 {
     left: 40px;
     transform: translateX(192px);
   }
+
   /* nav分割线 */
   .nav-cut {
     color: #4dba8c;
     line-height: 53px;
   }
+
   /* 需求列表 */
   .list-content {
     margin-top: -50px;

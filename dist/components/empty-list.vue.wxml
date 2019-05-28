@@ -1,0 +1,6 @@
+<template name="6b2f7019">
+  <view class="_div data-v-395f960b empty-box">
+    <image src="/static/images/other/empty.png" alt="empty" class="_img data-v-395f960b empty-pic"></image>
+    <view class="_p data-v-395f960b empty-info">糟糕，列表竟然是空的</view>
+  </view>
+</template>

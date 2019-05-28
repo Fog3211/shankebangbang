@@ -11,7 +11,7 @@
 
 <script>
 import MsgItem from "@/components/msg-item";
-
+import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
     "msg-item": MsgItem
@@ -42,27 +42,82 @@ export default {
       ]
     };
   },
-  mounted() {
-    wx.request({
-      url: "http://62.234.59.173/governMsg/governMsg",
-      method: "GET",
-      header: {
-        "content-type": "application/json"
-      },
-      success: res => {
-        if (res.statusCode == 200) {
-          // this.msg_list = res.data;
-          this.off_msg.new_msg_count = res.data.length;
-        } else {
-          // console.log(res.errMsg);
-          this.toast = {
-            toastType: "error",
-            showToast: true,
-            content: "获取数据错误，请重试"
-          };
+  method: {
+    // 获取官方通知
+    getOffMsg() {
+      wx.request({
+        url: "http://62.234.59.173/governMsg/governMsg",
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            // this.msg_list = res.data;
+            this.off_msg.new_msg_count = res.data.length;
+          } else {
+            // console.log(res.errMsg);
+            this.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "获取数据错误，请重试"
+            };
+          }
         }
+      });
+    },
+    getOrdMsg() {
+      const open_id = wx.getStorageSync("open_id");
+      if (!open_id) {
+        return;
       }
-    });
+      // 获取需求消息
+      wx.request({
+        url: "http://62.234.59.173/notice/getNeedNoticeList/" + open_id,
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            // this.msg_list = res.data;
+            this.off_msg.new_msg_count = res.data.length;
+          } else {
+            // console.log(res.errMsg);
+            this.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "获取数据错误，请重试"
+            };
+          }
+        }
+      });
+      // 获取人才消息
+      wx.request({
+        url: "http://62.234.59.173/notice/getTalentNoticeList/" + open_id,
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            // this.msg_list = res.data;
+            this.off_msg.new_msg_count = res.data.length;
+          } else {
+            // console.log(res.errMsg);
+            this.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "获取数据错误，请重试"
+            };
+          }
+        }
+      });
+    }
+  },
+  mounted() {
+    this.getOffMsg();
+    this.getOrdMsg();
   }
 };
 </script>

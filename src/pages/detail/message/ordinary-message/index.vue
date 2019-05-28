@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { checkDate } from "@/utils/checkTime";
 export default {
   data() {
     return {
@@ -16,18 +17,40 @@ export default {
         id: -1,
         name: "",
         time: "",
-        content: ""
+        content: "",
+        isRead: false,
+        other_name: ""
       }
     };
   },
   mounted() {
-    this.id = this.$root.$mp.query.id;
-    this.data = {
-      id: this.$root.$mp.query.id,
-      name: "张三",
-      time: "2019-06-01",
-      content: "测试消息"
-    };
+    const id = this.$root.$mp.query.id;
+    wx.request({
+      url: "http://62.234.59.173/governMsg/governMsg",
+      method: "GET",
+      header: {
+        "content-type": "application/json"
+      },
+      success: res => {
+        const item = res.data;
+        if (res.statusCode == 200) {
+          this.data = {
+            id: item.itemId,
+            name: item.otherUserName,
+            other_name: item.otherUserOpenId,
+            time: checkDate(item.creatTime),
+            isRead
+          };
+        } else {
+          // console.log(res.errMsg);
+          this.toast = {
+            toastType: "error",
+            showToast: true,
+            content: "获取数据错误，请重试"
+          };
+        }
+      }
+    });
   }
 };
 </script>

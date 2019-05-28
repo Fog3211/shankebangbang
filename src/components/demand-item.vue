@@ -17,7 +17,6 @@
             <div class="tag-box">
                <span v-for="(item,index) in data.tag" :key="index" class="tag">#{{item}}</span>
             </div>
-            <span class="iconfont icon-more more"></span>
             <span class="visit">浏览·{{data.visit_count}}</span>
         </li>
     </ul>
@@ -35,6 +34,7 @@ export default {
         detail: "",
         pay: 0,
         tag: [],
+        contact: "暂无",
         visit_count: 0
       }
     }
@@ -145,13 +145,8 @@ export default {
       }
     }
     .visit {
-      margin-top: 5px;
+      margin: 5px 10px 0 0;
       float: right;
-    }
-    .more {
-      float: right;
-      margin-top: 5px;
-      padding: 0 10px 0 20px;
     }
   }
 }

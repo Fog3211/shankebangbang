@@ -1,0 +1,50 @@
+<import src="/components/demand-item.vue.wxml" />
+<import src="/components/empty-list.vue.wxml" /><template name="ec078fb6">
+  <view class="_div data-v-30b09f44 index-page">
+    <view class="_div data-v-30b09f44 weui-search-bar">
+      <view class="_div data-v-30b09f44 weui-search-bar__form">
+        <view class="_div data-v-30b09f44 weui-search-bar__box">
+          <icon class="_icon data-v-30b09f44 weui-icon-search_in-box" type="search" size="14"></icon> <input type="text" class="_input data-v-30b09f44 weui-search-bar__input" placeholder="搜索" value="{{keyword}}" bindinput="handleProxy" focus="{{inputShowed}}" bindconfirm="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+          <view class="_div data-v-30b09f44 weui-icon-clear" hidden="{{!(keyword.length > 0)}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+            <icon type="clear" size="14" class="_icon data-v-30b09f44"></icon>
+          </view>
+        </view> <label class="_label data-v-30b09f44 weui-search-bar__label" hidden="{{inputShowed}}" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+          <icon class="_icon data-v-30b09f44 weui-icon-search" type="search" size="14"></icon>
+          <view class="_div data-v-30b09f44 weui-search-bar__text">请输入搜索内容</view>
+        </label>
+      </view>
+      <view class="_div data-v-30b09f44 weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">取消</view>
+    </view>
+    <swiper indicator-dots="true" autoplay="true" circular="true" class="_swiper data-v-30b09f44 swiper">
+      <view wx:key="index" key="{{index}}" class="_div data-v-30b09f44 swiper-img" wx:for="{{imgUrls}}" wx:for-index="index" wx:for-item="item">
+        <swiper-item class="_swiper-item data-v-30b09f44">
+          <image src="{{item}}" class="_image data-v-30b09f44 slide-image"></image>
+        </swiper-item>
+      </view>
+    </swiper>
+    <view class="_div data-v-30b09f44 weui-tab">
+      <view class="_div data-v-30b09f44 weui-navbar">
+        <block wx:key="index" key="{{index}}" wx:for="{{tabs}}" wx:for-index="index" wx:for-item="item">
+          <view id="{{index}}" class="_div data-v-30b09f44 weui-navbar__item {{[active_index == index ? 'weui-bar__item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'4_'+index}}" data-comkey="{{$k}}">
+            <view class="_div data-v-30b09f44 weui-navbar__title">{{item}}</view>
+          </view> <label class="_span data-v-30b09f44 nav-cut" hidden="{{!(index===0)}}">|</label>
+        </block>
+        <view class="_div data-v-30b09f44 weui-navbar__slider {{navbarSliderClass}}"></view>
+      </view>
+      <view class="_div data-v-30b09f44 weui-tab__panel">
+        <view class="_div data-v-30b09f44 weui-tab__content" hidden="{{active_index !== 0}}">
+          <view class="_ul data-v-30b09f44 list-content" wx:if="{{data_need.length!==0}}">
+            <view wx:key="index" key="{{index}}" wx:for="{{data_need}}" wx:for-index="index" wx:for-item="item" class="_li data-v-30b09f44"><template data="{{...$root[$kk+'1_'+index], $root}}" is="2805232c"></template></view>
+          </view><template wx:else data="{{...$root[$kk+'2'], $root}}" is="6b2f7019"></template>
+        </view>
+        <view class="_div data-v-30b09f44 weui-tab__content" hidden="{{active_index !== 1}}">
+          <view class="_ul data-v-30b09f44 list-content" wx:if="{{data_talent.length!==0}}">
+            <view wx:key="index" key="{{index}}" wx:for="{{data_talent}}" wx:for-index="index" wx:for-item="item" class="_li data-v-30b09f44"><template data="{{...$root[$kk+'3_'+index], $root}}" is="2805232c"></template></view>
+          </view><template wx:else data="{{...$root[$kk+'4'], $root}}" is="6b2f7019"></template>
+        </view>
+      </view>
+    </view>
+    <image src="/static/images/icon/add.png" alt="add" bindtap="handleProxy" class="_image data-v-30b09f44 add-btn" data-eventid="{{'5'}}" data-comkey="{{$k}}"></image>
+    <mp-toast type="{{toast.toastType}}" value="{{toast.showToast}}" bindchange="handleProxy" content="{{toast.content}}" data-eventid="{{'6'}}" data-comkey="{{$k}}" class="_mp-toast data-v-30b09f44"></mp-toast>
+  </view>
+</template>

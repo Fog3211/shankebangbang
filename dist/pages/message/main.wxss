@@ -1,0 +1,63 @@
+@import "../../common/vendor.wxss";
+
+.message-page.data-v-268bd113 {
+  padding-top: 20rpx;
+}
+.msg-list.data-v-c76cf0e8 {
+  border-bottom: 2rpx solid #e0dbdb;
+}
+.msg-list .item-box.data-v-c76cf0e8 {
+  height: 140rpx;
+  position: relative;
+}
+.msg-list .item-box .avatar.data-v-c76cf0e8 {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 20rpx;
+  margin-right: 40rpx;
+}
+.msg-list .item-box .name.data-v-c76cf0e8 {
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 140rpx;
+}
+.msg-list .item-box .text.data-v-c76cf0e8 {
+  font-size: 32rpx;
+  line-height: 140rpx;
+  margin-left: 0.4em;
+}
+.msg-list .item-box .time.data-v-c76cf0e8 {
+  position: absolute;
+  right: 20rpx;
+  top: 10rpx;
+  font-size: 28rpx;
+  color: #ccc;
+}
+.msg-list .item-box .dot-badge.data-v-c76cf0e8 {
+  position: absolute;
+  right: 20rpx;
+  top: 70rpx;
+}
+.msg-list .item-box .tip-icon.data-v-c76cf0e8 {
+  width: 70rpx;
+  height: 70rpx;
+  vertical-align: middle;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+.msg-list .item-box .tip-text.data-v-c76cf0e8 {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.msg-list .item-box .right-icon.data-v-c76cf0e8 {
+  float: right;
+  font-size: 48rpx;
+  margin-right: 30rpx;
+  line-height: 140rpx;
+}
+.msg-list .item-box .msg-badge.data-v-c76cf0e8 {
+  font-size: 32rpx;
+  margin: auto 20rpx;
+}
