@@ -28,25 +28,3 @@
   margin-top: 20rpx;
   border-top: 2rpx solid #ccc;
 }
-.hot-page .empty-box.data-v-52ab4659 {
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  margin: 100rpx auto;
-}
-.hot-page .empty-box .empty-pic.data-v-52ab4659 {
-  position: absolute;
-  top: 40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-}
-.hot-page .empty-box .empty-info.data-v-52ab4659 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20rpx;
-  color: #b6b3b3;
-  letter-spacing: 5rpx;
-  text-align: center;
-}

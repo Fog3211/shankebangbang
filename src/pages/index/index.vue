@@ -49,12 +49,11 @@
           <empty-list v-else></empty-list>
         </div>
         <div class="weui-tab__content" :hidden="active_index !== 1">
-          <ul class="list-content" v-if="data_talent.length!==0">
+          <ul class="list-content">
             <li v-for="(item,index) in data_talent" :key="index">
               <demand-item :data="item"></demand-item>
             </li>
           </ul>
-           <empty-list v-else></empty-list>
         </div>
       </div>
     </div>
@@ -66,13 +65,10 @@
 
 <script>
 import DemandItem from "@/components/demand-item";
-import EmptyList from "@/components/empty-list";
 import mpToast from "mpvue-weui/src/toast";
-import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
-    "demand-item": DemandItem,
-    "empty-list": EmptyList
+    "demand-item": DemandItem
   },
   data() {
     return {
@@ -153,7 +149,7 @@ export default {
                 this.data_need.push({
                   id: item.itemId,
                   title: item.itemTitle,
-                  time: checkDate(item.toNow),
+                  time: item.toNow,
                   detail: item.itemContent,
                   pay: item.itemPrice,
                   tag: item.tags,
@@ -166,7 +162,7 @@ export default {
                 this.data_talent.push({
                   id: item.itemId,
                   title: item.itemTitle,
-                  time: checkDate(item.toNow),
+                  time: item.toNow,
                   detail: item.itemContent,
                   pay: item.itemPrice,
                   tag: item.tags,
@@ -188,8 +184,8 @@ export default {
       });
     }
   },
-  mounted() {
-    this.getAllItem("http://62.234.59.173/item/itemlist");
+  onShow() {
+    this.getAllItem("https://62.234.59.173/item/itemlist");
   }
 };
 </script>

@@ -1,15 +1,15 @@
 require("../../common/manifest.js")
 require("../../common/vendor.js")
-global.webpackJsonpMpvue([6],{
+global.webpackJsonpMpvue([8],{
 
-/***/ 89:
+/***/ 92:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(93);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 90:
+/***/ 93:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_52ab4659_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_52ab4659_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(99);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(91)
+  __webpack_require__(94)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,19 +72,18 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 91:
+/***/ 94:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 92:
+/***/ 95:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_demand_item__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_checkTime__ = __webpack_require__(2);
 //
 //
 //
@@ -104,11 +103,6 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -132,7 +126,7 @@ if (false) {(function () {
       console.log("选择了" + item);
     }
   },
-  mounted: function mounted() {
+  onShow: function onShow() {
     var _this = this;
 
     wx.request({
@@ -147,7 +141,7 @@ if (false) {(function () {
             _this.hot_list.push({
               id: item.itemId,
               title: item.itemTitle,
-              time: Object(__WEBPACK_IMPORTED_MODULE_1__utils_checkTime__["a" /* checkDate */])(item.toNow),
+              time: item.toNow,
               detail: item.itemContent,
               pay: item.itemPrice,
               tag: item.tags,
@@ -171,7 +165,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 96:
+/***/ 99:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -199,7 +193,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._v("\n      #" + _vm._s(item) + "\n    ")])
-  })), _vm._v(" "), (_vm.hot_list.length !== 0) ? _c('ul', {
+  })), _vm._v(" "), _c('ul', {
     staticClass: "list-content"
   }, _vm._l((_vm.hot_list), function(item, index) {
     return _c('li', {
@@ -210,17 +204,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "mpcomid": '0_' + index
       }
     })], 1)
-  })) : _c('div', {
-    staticClass: "empty-box"
-  }, [_c('img', {
-    staticClass: "empty-pic",
-    attrs: {
-      "src": "/static/images/other/empty.png",
-      "alt": "empty"
-    }
-  }), _vm._v(" "), _c('p', {
-    staticClass: "empty-info"
-  }, [_vm._v("糟糕，列表竟然是空的")])], 1)], 1)
+  }))], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -235,4 +219,4 @@ if (false) {
 
 /***/ })
 
-},[89]);
+},[92]);

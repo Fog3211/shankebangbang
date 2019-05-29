@@ -115,7 +115,7 @@ export default {
       });
     }
   },
-  mounted() {
+  onShow() {
     this.getOffMsg();
     this.getOrdMsg();
   }

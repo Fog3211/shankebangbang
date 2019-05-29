@@ -9,21 +9,16 @@
         #{{item}}
       </span>
     </div>
-    <ul class="list-content" v-if="hot_list.length!==0">
+    <ul class="list-content">
       <li v-for="(item,index) in hot_list" :key="index">
         <demand-item :data="item"></demand-item>
       </li>
     </ul>
-    <div class="empty-box" v-else>
-      <img src="/static/images/other/empty.png" alt="empty" class="empty-pic">
-      <p class="empty-info">糟糕，列表竟然是空的</p>
-    </div>
   </div>
 </template>
 
 <script>
 import DemandItem from "@/components/demand-item";
-import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
     "demand-item": DemandItem
@@ -44,7 +39,7 @@ export default {
       console.log("选择了" + item);
     }
   },
-  mounted() {
+  onShow() {
     wx.request({
       url: "http://62.234.59.173/item/itemHotlist",
       method: "GET",
@@ -57,7 +52,7 @@ export default {
             this.hot_list.push({
               id: item.itemId,
               title: item.itemTitle,
-              time: checkDate(item.toNow),
+              time: item.toNow,
               detail: item.itemContent,
               pay: item.itemPrice,
               tag: item.tags,
@@ -115,31 +110,6 @@ export default {
   .list-content {
     margin-top: 10px;
     border-top: 1px solid #ccc;
-  }
-
-  .empty-box {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    margin: 50px auto;
-
-    .empty-pic {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50%;
-    }
-
-    .empty-info {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 10px;
-      color: rgb(182, 179, 179);
-      letter-spacing: 2.5px;
-      text-align: center;
-    }
   }
 }
 </style>

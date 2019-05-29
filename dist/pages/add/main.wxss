@@ -43,6 +43,7 @@
   margin-top: 40rpx;
 }
 .add-page .box .tag.data-v-2a28d1ad,
+.add-page .box .type.data-v-2a28d1ad,
 .add-page .box .pay.data-v-2a28d1ad,
 .add-page .box .contact.data-v-2a28d1ad {
   color: #4dba8c;
@@ -52,6 +53,7 @@
   font-weight: bolder;
 }
 .add-page .box .tag-icon.data-v-2a28d1ad,
+.add-page .box .type-icon.data-v-2a28d1ad,
 .add-page .box .contact-icon.data-v-2a28d1ad,
 .add-page .box .pay-icon.data-v-2a28d1ad {
   margin-left: 20rpx;
@@ -102,6 +104,23 @@
 }
 .add-page .tag-box .add-tag-btn.data-v-2a28d1ad {
   width: 85%;
+}
+.add-page .type-box .type-icon.data-v-2a28d1ad {
+  color: #4dba8c;
+}
+.add-page .type-box .type-info-box.data-v-2a28d1ad {
+  width: 80%;
+  margin: 20rpx auto;
+  position: relative;
+}
+.add-page .type-box .type-info-box .type-info.data-v-2a28d1ad {
+  font-size: 40rpx;
+  color: #5f5d5d;
+}
+.add-page .type-box .type-info-box .switch-box.data-v-2a28d1ad {
+  display: inline-block;
+  position: absolute;
+  right: 20rpx;
 }
 .add-page .push-btn.data-v-2a28d1ad {
   display: block;

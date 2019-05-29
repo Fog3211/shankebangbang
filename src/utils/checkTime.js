@@ -1,5 +1,6 @@
 // 检查时间
 function checkDate(t) {
+  t = new Date(t);
   let ct = new Date();
   if (ct.getFullYear() !== t.getFullYear()) {
     return t.getFullYear() + '-' + formatDate(t.getMonth() + 1) +

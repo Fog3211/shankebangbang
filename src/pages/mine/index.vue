@@ -10,61 +10,46 @@
         <button type="primary" open-type="getUserInfo"
         @getuserinfo="bindGetUserInfo" @click="editionCheck" v-if="login_btn_show" class="login-btn">登录</button>
     </div>
-    <div class="weui-tab">
-      <div class="weui-navbar">
-        <block v-for="(item,index) in tabs" :key="index">
-          <div :id="index" :class="{'weui-bar__item_on':active_index == index}" class="weui-navbar__item" @click="tabClick">
-            <div class="weui-navbar__title nav-title">{{item}}</div>
-          </div>
-          <span class="nav-cut" v-show="index===0">|</span>
-        </block>
-        <div class="weui-navbar__slider" :class="navbarSliderClass"></div>
-      </div>
-      <div class="weui-tab__panel">
-        <div class="weui-tab__content" :hidden="active_index !== 0">
-            <ul class="list-content" v-if="data_push.length!==0">
-              <li v-for="(item,index) in data_push" :key="index" >
-                <demand-item :data="item"></demand-item>
-              </li>
-            </ul>
-            <empty-list v-else></empty-list>
-        </div>
-        <div class="weui-tab__content" :hidden="active_index !== 1">
-            <ul class="list-content" v-if="data_help.length!==0">
-              <li v-for="(item,index) in data_help" :key="index">
-                <demand-item :data="item"></demand-item>
-              </li>
-            </ul>
-            <empty-list v-else></empty-list>
-        </div>
-      </div>
-    </div>
+    <ul class="mine-list">
+      <li class="mine-item" @click="handleItemList('push')">
+           <span class="iconfont icon-fabu"></span>
+        我的发布
+        </li>
+      <li class="mine-item" @click="handleItemList('help')">
+         <span class="iconfont icon-shou"></span>
+        帮助过我
+        </li>
+      <li class="mine-item" @click="handleAbout">
+         <span class="iconfont icon-about"></span>
+        关于
+        </li>
+      <li class="mine-item" @click="handleLogout" v-if="logout_btn_show">
+         <span class="iconfont icon-tuichu"></span>
+        注销登录
+        </li>
+    </ul>
+    <mp-modal ref="mpModal" title="" content="确认注销登录？" :showCancel="true" @confirm="loginOut"></mp-modal>
   </div>
 </template>
 
 <script>
-import DemandItem from "@/components/demand-item";
-import EmptyList from "@/components/empty-list";
+import mpModal from "mpvue-weui/src/modal";
 import mpToast from "mpvue-weui/src/toast";
-import { checkDate } from "@/utils/checkTime";
+
 export default {
   components: {
-    "demand-item": DemandItem,
-    "empty-list": EmptyList,
-    mpToast
+    mpToast,
+    mpModal
   },
   data() {
     return {
       login_btn_show: true,
+      logout_btn_show: false,
       account: {
         name: "未登录",
-        avatar: "/static/images/avatar/1.jpg",
+        avatar: "/static/images/avatar/default.jpg",
         is_login: "请先授权登录"
       },
-      tabs: ["已发布", "已帮助"],
-      active_index: 0,
-      data_push: [],
-      data_help: [],
       toast: {
         toastType: "error",
         showToast: false,
@@ -72,15 +57,7 @@ export default {
       }
     };
   },
-  computed: {
-    navbarSliderClass() {
-      return "weui-navbar__slider_" + this.active_index;
-    }
-  },
   methods: {
-    tabClick(e) {
-      this.active_index = Number(e.currentTarget.id);
-    },
     getSetting() {
       wx.getSetting({
         success: res => {
@@ -126,16 +103,19 @@ export default {
             // console.log("获取用户登录凭证：" + js_code);
             wx.request({
               url: "http://62.234.59.173:/api/me/login",
-              data: { code: js_code, userName: this.account.name },
+              data: {
+                code: js_code,
+                userName: this.account.name,
+                userHead: this.account.avatar
+              },
               method: "GET",
               header: {
                 "content-type": "application/json"
               },
               success: res => {
                 if (res.statusCode == 200) {
-                  // console.log("获取到的openid为：" + res);
+                  this.logout_btn_show = true;
                   wx.setStorageSync("open_id", res.data.open_id);
-                  this.getAllItemList();
                 } else {
                   // console.log(res.errMsg);
                 }
@@ -166,75 +146,48 @@ export default {
       const open_id = wx.getStorageSync("open_id");
       wx.navigateTo({ url: "/pages/account?open_id=" + open_id });
     },
-    getAllItemList() {
-      const open_id = wx.getStorageSync("open_id");
-      this.data_push = [];
-      this.data_help = [];
-      this.getItemList(
-        "http://62.234.59.173/myHistory/getHelpedList/" + open_id
-      );
-      this.getItemList(
-        "https://62.234.59.173/myHistory/getReleasedList/" + open_id
-      );
+    handleLogout() {
+      this.$refs.mpModal.show();
     },
-    getItemList(url) {
-      wx.request({
-        url: url,
-        method: "GET",
-        header: {
-          "content-type": "application/json"
-        },
-        success: res => {
-          if (res.statusCode == 200) {
-            // console.log(res.data);
-            // 已发布
-            if (url.includes("getReleasedList")) {
-              res.data.map(item => {
-                this.data_push.push({
-                  id: item.itemId,
-                  title: item.itemTitle,
-                  time: checkDate(item.itemTime),
-                  detail: item.itemContent,
-                  pay: item.itemPrice,
-                  tag: item.tags,
-                  visit_count: item.itemScan,
-                  contact: item.itemContact
-                });
-              });
-            } else {
-              // 已帮助
-              res.data.map(item => {
-                this.data_help.push({
-                  id: item.itemId,
-                  title: item.itemTitle,
-                  time: checkDate(item.itemTime),
-                  detail: item.itemContent,
-                  pay: item.itemPrice,
-                  tag: item.tags,
-                  visit_count: item.itemScan,
-                  contact: item.itemContact
-                });
-              });
-            }
-            // console.log(res.data);
-          } else {
-            // console.log("error");
-            this.toast = {
-              toastType: "error",
-              showToast: true,
-              content: "获取数据错误，请重试"
-            };
-          }
-        }
+    loginOut() {
+      wx.removeStorage({
+        key: "open_id"
       });
+      this.account = {
+        name: "未登录",
+        avatar: "/static/images/avatar/default.jpg",
+        is_login: "请先授权登录"
+      };
+      this.login_btn_show = true;
+      this.logout_btn_show = false;
+      this.toast = {
+        toastType: "success",
+        showToast: true,
+        content: "已成功退出"
+      };
+    },
+    handleItemList(str) {
+      const open_id = wx.getStorageSync("open_id");
+      if (!open_id) {
+        this.toast = {
+          toastType: "error",
+          showToast: true,
+          content: "请先登录"
+        };
+        return;
+      }
+      if (str === "push") {
+        wx.navigateTo({ url: "/pages/list/push/main" });
+      } else {
+        wx.navigateTo({ url: "/pages/list/help/main" });
+      }
+    },
+    handleAbout() {
+      wx.navigateTo({ url: "/pages/about/main" });
     }
   },
-  mounted() {
+  onShow() {
     this.getSetting();
-    const open_id = wx.getStorageSync("open_id");
-    if (open_id) {
-      this.getAllItemList();
-    }
   }
 };
 </script>
@@ -265,8 +218,12 @@ export default {
       .right-icon {
         position: absolute;
         right: 10px;
-        top: 35px;
-        font-size: 20px;
+        top: 30px;
+        font-size: 22px;
+        padding: 5px;
+        &:active {
+          background-color: #e6e1e1;
+        }
       }
     }
     .login-btn {
@@ -280,28 +237,37 @@ export default {
       }
     }
   }
-  .weui-tab {
-    .nav-title {
-      font-size: 18px;
-    }
-    .weui-tab__content {
-      padding-top: 60px;
-      text-align: center;
-    }
-    .weui-navbar__slider_0 {
-      left: 40px;
-      transform: translateX(0);
-    }
-    .weui-navbar__slider_1 {
-      left: 40px;
-      transform: translateX(192px);
-    }
-    .nav-cut {
-      color: #4dba8c;
-      line-height: 53px;
-    }
-    .list-content {
-      margin-top: -50px;
+  .mine-list {
+    width: 100%;
+
+    .mine-item {
+      margin-top: 10px;
+      background-color: rgb(238, 240, 243);
+      height: 80px;
+      line-height: 80px;
+      padding-left: 40px;
+      font-weight: bold;
+      border-radius: 5%;
+      letter-spacing: 4px;
+      &:active {
+        background-color: rgb(224, 227, 231);
+      }
+      .iconfont {
+        font-size: 26px;
+        margin-right: 10px;
+      }
+      .icon-fabu {
+        color: rgb(168, 118, 67);
+      }
+      .icon-shou {
+        color: #41a77b;
+      }
+      .icon-about {
+        color: rgb(114, 78, 236);
+      }
+      .icon-tuichu {
+        color: #c43e57;
+      }
     }
   }
 }

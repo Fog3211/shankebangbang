@@ -41,13 +41,25 @@
       <div class="box tag-box">
         <div class="icon-box">
            <span class="iconfont icon-biaoqian tag-icon"></span>
-        <label for="tag" class="tag">标签</label>
+           <label for="tag" class="tag">标签</label>
         </div>
        
         <ul class="tag-group">
           <li v-for="(item,index) in add_form.tag" :key="index" class="tag-item" @click="delTag(index)">{{item}}</li>
         </ul>
         <Button class="add-tag-btn" @click="addTag" :disabled="add_form.tag.length>=3">添加标签</Button>
+      </div>
+      <!-- 发布类型 -->
+      <div class="box type-box">
+        <div class="icon-box">
+           <span class="iconfont icon-leixing type-icon"></span>
+           <label for="type" class="type">类型</label>
+        </div>
+        <div class="type-info-box"><span class="type-info">{{add_form.switchValue===false?"我需要帮助":"我是牛人"}}</span>
+        <div class="switch-box"><mp-switch @change="switchChange"></mp-switch></div>
+        
+        </div>
+          
       </div>
       <!-- 联系方式 -->
       <div class="box" style="padding:10px;">
@@ -81,11 +93,13 @@
 import mpInput from "mpvue-weui/src/input";
 import mpToast from "mpvue-weui/src/toast";
 import mpPicker from "mpvue-weui/src/picker";
+import mpSwitch from "mpvue-weui/src/switch";
 export default {
   components: {
     mpToast,
     mpInput,
-    mpPicker
+    mpPicker,
+    mpSwitch
   },
   data() {
     return {
@@ -98,7 +112,7 @@ export default {
         files: [],
         tag: [],
         contact: "",
-        pay: 0
+        switchValue: false
       },
       toast: {
         toastType: "error",
@@ -180,36 +194,55 @@ export default {
     handleSelectPay(index) {
       this.select_pay_index = index;
     },
+    switchChange() {
+      this.add_form.switchValue = !this.add_form.switchValue;
+    },
     handlePush() {
       if (!this.checkForm()) {
         return;
       }
       const open_id = wx.getStorageSync("open_id");
-      // console.log(open_id)
       wx.request({
-        url: "http://62.234.59.173/item",
+        url: "https://wx.api.fog3211.com/item",
         method: "POST",
         data: {
           title: this.add_form.title,
           content: this.add_form.description,
-          price: this.add_form.pay,
+          price: this.pay_arr[this.select_pay_index],
           open_id,
           contact: this.add_form.contact,
           sumOfneed: 1,
-          isNeed: 0
+          isNeed: this.add_form.switchValue === false ? 0 : 1,
           // multipartFile: "",
+          tag1: this.add_form.tag[0],
+          tag2: this.add_form.tag[1] || "",
+          tag3: this.add_form.tag[2] || ""
         },
         header: {
-          "content-type": "application/json"
+          "content-type": "application/x-www-form-urlencoded"
         },
         success: res => {
           if (res.statusCode == 200) {
-            if (res.data.msg === "ok") {
+            if (res.data.err === "ok") {
               this.toast = {
                 toastType: "success",
                 showToast: true,
                 content: "添加成功"
               };
+              // 清空表单
+              this.select_pay_index = -1;
+              this.add_form = {
+                title: "",
+                description: "",
+                files: [],
+                tag: [],
+                contact: ""
+              };
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                });
+              }, 1000);
             }
             // console.log(res);
           } else {
@@ -229,7 +262,7 @@ export default {
         return;
       }
 
-      const { title, description, files, tag, pay, contact } = this.add_form;
+      const { title, description, files, tag, contact } = this.add_form;
       if (title === "" || title.trim() === "") {
         this.toast = {
           toastType: "error",
@@ -277,7 +310,7 @@ export default {
     },
     onConfirm(e) {
       // console.log(e);
-      if(this.add_form.tag.includes(e.label)){
+      if (this.add_form.tag.includes(e.label)) {
         return;
       }
       this.add_form.tag.push(e.label);
@@ -329,6 +362,7 @@ export default {
   .box {
     margin-top: 20px;
     .tag,
+    .type,
     .pay,
     .contact {
       color: #4dba8c;
@@ -339,6 +373,7 @@ export default {
     }
 
     .tag-icon,
+    .type-icon,
     .contact-icon,
     .pay-icon {
       margin-left: 10px;
@@ -390,6 +425,26 @@ export default {
     }
     .add-tag-btn {
       width: 85%;
+    }
+  }
+  .type-box {
+    .type-icon {
+      color: #4dba8c;
+    }
+    .type-info-box {
+      width: 80%;
+      margin: 10px auto;
+      position: relative;
+
+      .type-info {
+        font-size: 20px;
+        color: rgb(95, 93, 93);
+      }
+      .switch-box {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+      }
     }
   }
   /* 发布按钮 */

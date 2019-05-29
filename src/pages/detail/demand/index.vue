@@ -38,7 +38,6 @@
 
 <script>
 import mpToast from "mpvue-weui/src/toast";
-import { checkDate } from "@/utils/checkTime";
 export default {
   components: {
     mpToast
@@ -87,7 +86,7 @@ export default {
     apply(url) {
       const open_id = wx.getStorageSync("open_id");
       wx.request({
-        url: url + this.data.id + "/" + open_id,
+        url: url + open_id + "/" + this.data.id,
         method: "PUT",
         header: {
           "content-type": "application/json"
@@ -100,7 +99,11 @@ export default {
                 showToast: true,
                 content: "申请成功"
               };
-              wx.navigateTo({ url: "/pages/index/main" });
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                });
+              }, 1000);
             } else if (res.data === -4) {
               this.toast = {
                 toastType: "error",
@@ -139,12 +142,12 @@ export default {
       });
     }
   },
-  mounted() {
+  onShow() {
     // 获取页面参数
     const id = this.$root.$mp.query.id;
     // 请求数据
     wx.request({
-      url: "http://62.234.59.173/item/itemlist/" + id,
+      url: "https://62.234.59.173/item/itemlist/" + id,
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -157,12 +160,12 @@ export default {
             title: item.itemTitle,
             tag: item.tags,
             description: item.itemContent,
-            time: checkDate(item.toNow),
+            time: item.toNow,
             visit_count: item.itemScan,
             files: ["/static/images/other/1.png", "/static/images/other/1.png"],
             // files: item.pics,
             pay: item.itemPrice,
-            avatar: "/static/images/avatar/1.jpg",
+            avatar: "/static/images/avatar/2.jpg",
             name: item.usrName,
             contact: item.itemContact,
             itemNeed: item.itemNeed

@@ -1,5 +1,4 @@
-<import src="/components/demand-item.vue.wxml" />
-<import src="/components/empty-list.vue.wxml" /><template name="ec078fb6">
+<import src="/components/demand-item.vue.wxml" /><template name="ec078fb6">
   <view class="_div data-v-30b09f44 index-page">
     <view class="_div data-v-30b09f44 weui-search-bar">
       <view class="_div data-v-30b09f44 weui-search-bar__form">
@@ -35,12 +34,13 @@
         <view class="_div data-v-30b09f44 weui-tab__content" hidden="{{active_index !== 0}}">
           <view class="_ul data-v-30b09f44 list-content" wx:if="{{data_need.length!==0}}">
             <view wx:key="index" key="{{index}}" wx:for="{{data_need}}" wx:for-index="index" wx:for-item="item" class="_li data-v-30b09f44"><template data="{{...$root[$kk+'1_'+index], $root}}" is="2805232c"></template></view>
-          </view><template wx:else data="{{...$root[$kk+'2'], $root}}" is="6b2f7019"></template>
+          </view>
+          <empty-list wx:else class="_empty-list data-v-30b09f44"></empty-list>
         </view>
         <view class="_div data-v-30b09f44 weui-tab__content" hidden="{{active_index !== 1}}">
-          <view class="_ul data-v-30b09f44 list-content" wx:if="{{data_talent.length!==0}}">
+          <view class="_ul data-v-30b09f44 list-content">
             <view wx:key="index" key="{{index}}" wx:for="{{data_talent}}" wx:for-index="index" wx:for-item="item" class="_li data-v-30b09f44"><template data="{{...$root[$kk+'3_'+index], $root}}" is="2805232c"></template></view>
-          </view><template wx:else data="{{...$root[$kk+'4'], $root}}" is="6b2f7019"></template>
+          </view>
         </view>
       </view>
     </view>

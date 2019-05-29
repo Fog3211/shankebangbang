@@ -5,12 +5,8 @@
     </view>
     <view class="_div data-v-52ab4659 tag-box"><label wx:key="index" key="{{index}}" class="_span data-v-52ab4659 tag" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" wx:for="{{tag_list}}" wx:for-index="index" wx:for-item="item"> #{{item}}
       </label></view>
-    <view class="_ul data-v-52ab4659 list-content" wx:if="{{hot_list.length!==0}}">
+    <view class="_ul data-v-52ab4659 list-content">
       <view wx:key="index" key="{{index}}" wx:for="{{hot_list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-52ab4659"><template data="{{...$root[$kk+'0_'+index], $root}}" is="2805232c"></template></view>
-    </view>
-    <view class="_div data-v-52ab4659 empty-box" wx:else>
-      <image src="/static/images/other/empty.png" alt="empty" class="_img data-v-52ab4659 empty-pic"></image>
-      <view class="_p data-v-52ab4659 empty-info">糟糕，列表竟然是空的</view>
     </view>
   </view>
 </template>
