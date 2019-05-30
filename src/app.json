@@ -6,6 +6,7 @@
     "pages/message/main",
     "pages/add/main",
     "pages/account/main",
+    "pages/about/main",
     "pages/detail/demand/main",
     "pages/list/push/main",
     "pages/list/help/main",

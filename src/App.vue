@@ -1,9 +1,5 @@
 <script>
-export default {
-  mounted() {
-    console.log("开始页面");
-  },
-}
+export default {};
 </script>
 
 <style lang="scss">

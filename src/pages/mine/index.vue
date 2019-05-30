@@ -89,7 +89,7 @@ export default {
         // 用户版本可用
       } else {
         this.toast = {
-          toastType: "error",
+          toastType: "warn",
           showToast: true,
           content: "请升级微信版本"
         };
@@ -102,7 +102,7 @@ export default {
           if (js_code) {
             // console.log("获取用户登录凭证：" + js_code);
             wx.request({
-              url: "http://62.234.59.173:/api/me/login",
+              url: "http://62.234.59.173/api/me/login",
               data: {
                 code: js_code,
                 userName: this.account.name,
@@ -144,7 +144,9 @@ export default {
     },
     changeAccount() {
       const open_id = wx.getStorageSync("open_id");
-      wx.navigateTo({ url: "/pages/account?open_id=" + open_id });
+      if (open_id) {
+        wx.navigateTo({ url: "/pages/account/main" });
+      }
     },
     handleLogout() {
       this.$refs.mpModal.show();
@@ -194,6 +196,7 @@ export default {
 
 <style scoped lang="scss">
 .mine-page {
+  padding-top: 10px;
   .header {
     position: relative;
     padding: 10px;
@@ -205,11 +208,13 @@ export default {
       border-radius: 50%;
       margin: 0 10px;
       vertical-align: middle;
+      border: 1px solid #34ca40;
     }
     .account-box {
       padding-top: 15px;
+      margin-left: 5px;
       .name {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
       }
       .is-login {
@@ -242,7 +247,7 @@ export default {
 
     .mine-item {
       margin-top: 10px;
-      background-color: rgb(238, 240, 243);
+      background-color: rgb(243, 244, 245);
       height: 80px;
       line-height: 80px;
       padding-left: 40px;

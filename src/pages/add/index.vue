@@ -43,7 +43,6 @@
            <span class="iconfont icon-biaoqian tag-icon"></span>
            <label for="tag" class="tag">标签</label>
         </div>
-       
         <ul class="tag-group">
           <li v-for="(item,index) in add_form.tag" :key="index" class="tag-item" @click="delTag(index)">{{item}}</li>
         </ul>
@@ -55,11 +54,12 @@
            <span class="iconfont icon-leixing type-icon"></span>
            <label for="type" class="type">类型</label>
         </div>
-        <div class="type-info-box"><span class="type-info">{{add_form.switchValue===false?"我需要帮助":"我是牛人"}}</span>
-        <div class="switch-box"><mp-switch @change="switchChange"></mp-switch></div>
-        
+        <div class="type-info-box">
+          <span class="type-info">{{add_form.switchValue===false?"我需要帮助":"我是牛人"}}</span>
+          <div class="switch-box">
+            <mp-switch @change="switchChange"></mp-switch>
+          </div>
         </div>
-          
       </div>
       <!-- 联系方式 -->
       <div class="box" style="padding:10px;">

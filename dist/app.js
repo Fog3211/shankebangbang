@@ -106,11 +106,7 @@ if (false) {(function () {
 
 "use strict";
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  mounted: function mounted() {
-    console.log("开始页面");
-  }
-});
+/* harmony default export */ __webpack_exports__["a"] = ({});
 
 /***/ }),
 /* 20 */

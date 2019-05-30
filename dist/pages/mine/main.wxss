@@ -1,5 +1,8 @@
 @import "../../common/vendor.wxss";
 
+.mine-page.data-v-e2f442c6 {
+  padding-top: 20rpx;
+}
 .mine-page .header.data-v-e2f442c6 {
   position: relative;
   padding: 20rpx;
@@ -12,12 +15,14 @@
   border-radius: 50%;
   margin: 0 20rpx;
   vertical-align: middle;
+  border: 2rpx solid #34ca40;
 }
 .mine-page .header .account-box.data-v-e2f442c6 {
   padding-top: 30rpx;
+  margin-left: 10rpx;
 }
 .mine-page .header .account-box .name.data-v-e2f442c6 {
-  font-size: 32rpx;
+  font-size: 36rpx;
   font-weight: bold;
 }
 .mine-page .header .account-box .is-login.data-v-e2f442c6 {
@@ -48,7 +53,7 @@
 }
 .mine-page .mine-list .mine-item.data-v-e2f442c6 {
   margin-top: 20rpx;
-  background-color: #eef0f3;
+  background-color: #f3f4f5;
   height: 160rpx;
   line-height: 160rpx;
   padding-left: 80rpx;
