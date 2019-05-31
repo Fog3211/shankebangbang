@@ -286,6 +286,20 @@ if (false) {(function () {
         return;
       }
       var open_id = wx.getStorageSync("open_id");
+      // console.log(this.add_form.files);
+      wx.uploadFile({
+        url: "https://wx.api.fog3211.com/pic/uploadImage?itemId=122",
+        filePath: this.add_form.files[0],
+        name: "uploadFile", // 文件对应的 key ,(后台接口规定的关于图片的请求参数)
+        header: {
+          "content-type": "multipart/form-data"
+        }, // 设置请求的 header
+        formData: {}, // HTTP 请求中其他额外的参数
+        success: function success(res) {
+          console.log("success");
+        },
+        fail: function fail(res) {}
+      });
       wx.request({
         url: "https://wx.api.fog3211.com/item",
         method: "POST",
@@ -297,7 +311,6 @@ if (false) {(function () {
           contact: this.add_form.contact,
           sumOfneed: 1,
           isNeed: this.add_form.switchValue === false ? 0 : 1,
-          // multipartFile: "",
           tag1: this.add_form.tag[0],
           tag2: this.add_form.tag[1] || "",
           tag3: this.add_form.tag[2] || ""

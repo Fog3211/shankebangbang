@@ -89,6 +89,9 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({});
 
@@ -99,7 +102,13 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', {
+    staticClass: "about-page"
+  }, [_c('div', {
+    staticClass: "info"
+  }, [_vm._v("\n         山科帮帮是一款面向校园学生群体的小程序，主要为了解决在校学生间互相帮助问题，该小程序可以为附近地区的同学提供免费的信息共享服务功能。\n    ")]), _vm._v(" "), _c('p', {
+    staticClass: "copyright"
+  }, [_vm._v("Copyright 2019 by sdust")])], 1)
 }
 var staticRenderFns = []
 render._withStripped = true

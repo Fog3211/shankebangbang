@@ -1,6 +1,6 @@
 <template name="00c48d1a">
   <view class="_div data-v-c76cf0e8 msg-list">
-    <view hover-class="weui-cell_active" wx:if="{{msg_data.msg_type!=='official'}}" class="_div data-v-c76cf0e8 item-box" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+    <view hover-class="weui-cell_active" wx:if="{{msg_data.msg_type!=='official'}}" class="_div data-v-c76cf0e8 item-box">
       <image src="{{msg_data.avatar}}" alt="avatar" class="_img data-v-c76cf0e8 avatar"></image> <label class="_span data-v-c76cf0e8 name">{{msg_data.name}}</label> <label class="_span data-v-c76cf0e8 text">{{msg_data.msg_type==='apply'?'申请了我的求助':'接受了我的帮助'}}</label> <label class="_span data-v-c76cf0e8 time">{{msg_data.time}}</label>
       <view class="_div data-v-c76cf0e8 weui-badge weui-badge_dot dot-badge" hidden="{{!(msg_data.new_msg_count>0)}}"></view>
     </view>

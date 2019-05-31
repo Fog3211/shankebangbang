@@ -116,11 +116,11 @@ export default {
       // console.log(this.keyword);
       if (this.keyword && this.keyword.trim()) {
         this.getAllItem(
-          "http://62.234.59.173/search/byKeyWord/" + this.keyword
+          "https://wx.api.fog3211.com/search/byKeyWord/" + this.keyword
         );
         this.keyword = "";
       } else {
-        this.getAllItem("http://62.234.59.173/item/itemlist");
+        this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
       }
     },
     tabClick(e) {
@@ -185,7 +185,7 @@ export default {
     }
   },
   onShow() {
-    this.getAllItem("https://62.234.59.173/item/itemlist");
+    this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
   }
 };
 </script>
@@ -242,6 +242,11 @@ export default {
     transform: translateX(192px);
   }
 
+  .weui-navbar__title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
   /* nav分割线 */
   .nav-cut {
     color: #4dba8c;

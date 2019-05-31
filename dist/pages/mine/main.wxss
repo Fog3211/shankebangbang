@@ -66,7 +66,7 @@
 }
 .mine-page .mine-list .mine-item .iconfont.data-v-e2f442c6 {
   font-size: 52rpx;
-  margin-right: 20rpx;
+  margin-right: 10rpx;
 }
 .mine-page .mine-list .mine-item .icon-fabu.data-v-e2f442c6 {
   color: #a87643;

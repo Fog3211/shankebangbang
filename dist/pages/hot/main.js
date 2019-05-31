@@ -46,14 +46,22 @@ global.webpackJsonpMpvue([8],{
 
   methods: {
     handleTagCheck: function handleTagCheck(item) {
-      console.log("选择了" + item);
+      var _this = this;
+
+      this.hot_list.map(function (el, index) {
+        if (!el.tag.includes(item)) {
+          _this.hot_list[index].show = false;
+        } else {
+          _this.hot_list[index].show = true;
+        }
+      });
     }
   },
   onShow: function onShow() {
-    var _this = this;
+    var _this2 = this;
 
     wx.request({
-      url: "http://62.234.59.173/item/itemHotlist",
+      url: "https://wx.api.fog3211.com/item/itemHotlist",
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -61,7 +69,7 @@ global.webpackJsonpMpvue([8],{
       success: function success(res) {
         if (res.statusCode == 200) {
           res.data.map(function (item) {
-            _this.hot_list.push({
+            _this2.hot_list.push({
               id: item.itemId,
               title: item.itemTitle,
               time: item.toNow,
@@ -69,13 +77,14 @@ global.webpackJsonpMpvue([8],{
               pay: item.itemPrice,
               tag: item.tags,
               visit_count: item.itemScan,
-              is_need: item.itemNeed
+              is_need: item.itemNeed,
+              show: true
             });
           });
           // console.log(res.data);
         } else {
           // console.log(res.errMsg);
-          _this.toast = {
+          _this2.toast = {
             toastType: "error",
             showToast: true,
             content: "获取数据错误，请重试"
@@ -120,6 +129,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "list-content"
   }, _vm._l((_vm.hot_list), function(item, index) {
     return _c('li', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (item.show),
+        expression: "item.show"
+      }],
       key: index
     }, [_c('demand-item', {
       attrs: {

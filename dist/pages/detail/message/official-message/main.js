@@ -139,20 +139,20 @@ if (false) {(function () {
     var _this = this;
 
     wx.request({
-      url: "http://62.234.59.173/governMsg/governMsg",
+      url: "https://wx.api.fog3211.com/governMsg/governMsg",
       method: "GET",
       header: {
         "content-type": "application/json"
       },
       success: function success(res) {
         if (res.statusCode == 200) {
-          var item = res.data;
-
-          _this.msg_list.push({
-            id: item.id,
-            title: item.title,
-            time: item.time,
-            content: item.content
+          res.data.map(function (item) {
+            _this.msg_list.push({
+              id: item.id,
+              title: item.title,
+              time: item.time,
+              content: item.content
+            });
           });
           // console.log(res.data);
         } else {

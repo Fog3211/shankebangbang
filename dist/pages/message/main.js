@@ -96,6 +96,8 @@ if (false) {(function () {
 //
 //
 //
+//
+//
 
 
 
@@ -109,38 +111,24 @@ if (false) {(function () {
         msg_type: "official",
         new_msg_count: 0
       },
-      msg_list: [{
-        id: "11",
-        name: "李二狗",
-        avatar: "/static/images/avatar/1.jpg",
-        msg_type: "accept",
-        new_msg_count: 1,
-        time: "2019-2-2"
-      }, {
-        id: "22",
-        name: "赵铁柱",
-        avatar: "/static/images/avatar/2.jpg",
-        msg_type: "apply",
-        new_msg_count: 0,
-        time: "2019-4-2"
-      }]
+      msg_list: []
     };
   },
 
-  method: {
+  methods: {
     // 获取官方通知
     getOffMsg: function getOffMsg() {
       var _this = this;
 
       wx.request({
-        url: "http://62.234.59.173/governMsg/governMsg",
+        url: "https://wx.api.fog3211.com/governMsg/governMsg",
         method: "GET",
         header: {
           "content-type": "application/json"
         },
         success: function success(res) {
           if (res.statusCode == 200) {
-            // this.msg_list = res.data;
+            // this.msg_list = res.data
             _this.off_msg.new_msg_count = res.data.length;
           } else {
             // console.log(res.errMsg);
@@ -162,15 +150,23 @@ if (false) {(function () {
       }
       // 获取需求消息
       wx.request({
-        url: "http://62.234.59.173/notice/getNeedNoticeList/" + open_id,
+        url: "https://wx.api.fog3211.com/notice/getNeedNoticeList/" + open_id,
         method: "GET",
         header: {
           "content-type": "application/json"
         },
         success: function success(res) {
           if (res.statusCode == 200) {
-            // this.msg_list = res.data;
-            _this2.off_msg.new_msg_count = res.data.length;
+            // console.log(res.data);
+            res.data.map(function (item) {
+              _this2.msg_list.push({
+                id: item.userItemId,
+                name: item.otherUserName,
+                avatar: "/static/images/avatar/default.jpg",
+                msg_type: "apply",
+                time: Object(__WEBPACK_IMPORTED_MODULE_1__utils_checkTime__["a" /* checkDate */])(item.creatTime)
+              });
+            });
           } else {
             // console.log(res.errMsg);
             _this2.toast = {
@@ -183,15 +179,22 @@ if (false) {(function () {
       });
       // 获取人才消息
       wx.request({
-        url: "http://62.234.59.173/notice/getTalentNoticeList/" + open_id,
+        url: "https://wx.api.fog3211.com/notice/getTalentNoticeList/" + open_id,
         method: "GET",
         header: {
           "content-type": "application/json"
         },
         success: function success(res) {
           if (res.statusCode == 200) {
-            // this.msg_list = res.data;
-            _this2.off_msg.new_msg_count = res.data.length;
+            res.data.map(function (item) {
+              _this2.msg_list.push({
+                id: item.userItemId,
+                name: item.otherUserName,
+                avatar: "/static/images/avatar/default.jpg",
+                msg_type: "accept",
+                time: Object(__WEBPACK_IMPORTED_MODULE_1__utils_checkTime__["a" /* checkDate */])(item.creatTime)
+              });
+            });
           } else {
             // console.log(res.errMsg);
             _this2.toast = {
@@ -301,7 +304,7 @@ if (false) {(function () {
     msg_data: {
       type: Object,
       default: {
-        itemId: 0,
+        id: 0,
         name: "",
         avatar: "",
         msg_type: "",
@@ -310,11 +313,6 @@ if (false) {(function () {
     }
   },
   methods: {
-    handleMsgDeatil: function handleMsgDeatil() {
-      wx.navigateTo({
-        url: "/pages/detail/message/ordinary-message/main?id=" + this.msg_data.id
-      });
-    },
     handleOffMsgDeatil: function handleOffMsgDeatil() {
       wx.navigateTo({ url: "/pages/detail/message/official-message/main" });
     }
@@ -333,11 +331,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [(_vm.msg_data.msg_type !== 'official') ? _c('div', {
     staticClass: "item-box",
     attrs: {
-      "hover-class": "weui-cell_active",
-      "eventid": '1'
-    },
-    on: {
-      "click": _vm.handleMsgDeatil
+      "hover-class": "weui-cell_active"
     }
   }, [_c('img', {
     staticClass: "avatar",

@@ -1,6 +1,6 @@
 <template>
     <div class="msg-list">
-        <div hover-class="weui-cell_active" v-if="msg_data.msg_type!=='official'" class="item-box" @click="handleMsgDeatil">
+        <div hover-class="weui-cell_active" v-if="msg_data.msg_type!=='official'" class="item-box">
             <img :src="msg_data.avatar" alt="avatar" class="avatar">
             <span class="name">{{msg_data.name}}</span>
             <span class="text">{{msg_data.msg_type==='apply'?'申请了我的求助':'接受了我的帮助'}}</span>
@@ -22,7 +22,7 @@ export default {
     msg_data: {
       type: Object,
       default: {
-        itemId: 0,
+        id: 0,
         name: "",
         avatar: "",
         msg_type: "",
@@ -31,12 +31,6 @@ export default {
     }
   },
   methods: {
-    handleMsgDeatil() {
-      wx.navigateTo({
-        url:
-          "/pages/detail/message/ordinary-message/main?id=" + this.msg_data.id
-      });
-    },
     handleOffMsgDeatil() {
       wx.navigateTo({ url: "/pages/detail/message/official-message/main" });
     }

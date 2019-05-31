@@ -165,9 +165,9 @@ if (false) {(function () {
         return;
       }
       if (this.data.itemNeed === 0) {
-        this.apply("https://62.234.59.173/item/applyNeed/");
+        this.apply("https://wx.api.fog3211.com/item/applyNeed/");
       } else {
-        this.apply("https://62.234.59.173/item/applyTalent/");
+        this.apply("https://wx.api.fog3211.com/item/applyTalent/");
       }
     },
     apply: function apply(url) {
@@ -229,49 +229,75 @@ if (false) {(function () {
           });
         }
       });
+    },
+    getItem: function getItem() {
+      var _this2 = this;
+
+      // 获取页面参数
+      var id = this.$root.$mp.query.id;
+      // 请求数据
+      wx.request({
+        url: "https://wx.api.fog3211.com/item/itemlist/" + id,
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: function success(res) {
+          if (res.statusCode == 200) {
+            var item = res.data;
+            _this2.data = {
+              id: item.itemId,
+              title: item.itemTitle,
+              tag: item.tags,
+              description: item.itemContent,
+              time: item.toNow,
+              visit_count: item.itemScan,
+              files: [],
+              pay: item.itemPrice,
+              avatar: "/static/images/avatar/2.jpg",
+              name: item.usrName,
+              contact: item.itemContact,
+              itemNeed: item.itemNeed
+            };
+            _this2.getPic(item.itemId);
+            // console.log(res.data);
+          } else {
+            // console.log(res.errMsg);
+            _this2.toast = {
+              toastType: "error",
+              showToast: true,
+              content: "获取数据错误，请重试"
+            };
+          }
+        }
+      });
+    },
+
+    // 处理图片
+    getPic: function getPic(itemId) {
+      var _this3 = this;
+
+      wx.request({
+        url: "https://wx.api.fog3211.com/pic/getPic?itemId=" + itemId,
+        method: "GET",
+        header: {
+          "content-type": "application/json"
+        },
+        success: function success(res) {
+          if (res.statusCode == 200) {
+            res.data.map(function (el) {
+              _this3.data.files.push("https://wx.api.fog3211.com/uploads/" + el.itemPic);
+            });
+            // console.log(this.data.files);
+          } else {
+              // console.log(res.errMsg);
+            }
+        }
+      });
     }
   },
   onShow: function onShow() {
-    var _this2 = this;
-
-    // 获取页面参数
-    var id = this.$root.$mp.query.id;
-    // 请求数据
-    wx.request({
-      url: "https://62.234.59.173/item/itemlist/" + id,
-      method: "GET",
-      header: {
-        "content-type": "application/json"
-      },
-      success: function success(res) {
-        if (res.statusCode == 200) {
-          var item = res.data;
-          _this2.data = {
-            id: item.itemId,
-            title: item.itemTitle,
-            tag: item.tags,
-            description: item.itemContent,
-            time: item.toNow,
-            visit_count: item.itemScan,
-            files: ["/static/images/other/1.png", "/static/images/other/1.png"],
-            // files: item.pics,
-            pay: item.itemPrice,
-            avatar: "/static/images/avatar/2.jpg",
-            name: item.usrName,
-            contact: item.itemContact,
-            itemNeed: item.itemNeed
-          };
-          // console.log(res.data);
-        } else {
-          // console.log(res.errMsg);
-          _this2.toast = {
-            toastType: "error",
-            showToast: true,
-            content: "获取数据错误，请重试"
-          };
-        }
-      }
-    });
+    this.getItem();
   }
 });
 

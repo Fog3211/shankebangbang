@@ -1,1 +1,21 @@
 @import "../../common/vendor.wxss";
+
+.about-page .info.data-v-2ce0854e {
+  margin: 40rpx;
+  padding: 20rpx;
+  letter-spacing: 4rpx;
+  color: #262626;
+  text-indent: 2em;
+  border-radius: 10rpx;
+  background-color: #f5f2f2;
+  height: 80vh;
+}
+.about-page .copyright.data-v-2ce0854e {
+  position: fixed;
+  left: 50%;
+  bottom: 40rpx;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #888;
+  font-size: 28rpx;
+}

@@ -38,6 +38,10 @@
   left: 80rpx;
   transform: translateX(384rpx);
 }
+.index-page .weui-navbar__title.data-v-30b09f44 {
+  font-weight: bold;
+  font-size: 32rpx;
+}
 .index-page .nav-cut.data-v-30b09f44 {
   color: #4dba8c;
   line-height: 106rpx;

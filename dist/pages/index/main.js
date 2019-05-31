@@ -206,10 +206,10 @@ if (false) {(function () {
     handleSearch: function handleSearch() {
       // console.log(this.keyword);
       if (this.keyword && this.keyword.trim()) {
-        this.getAllItem("http://62.234.59.173/search/byKeyWord/" + this.keyword);
+        this.getAllItem("https://wx.api.fog3211.com/search/byKeyWord/" + this.keyword);
         this.keyword = "";
       } else {
-        this.getAllItem("http://62.234.59.173/item/itemlist");
+        this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
       }
     },
     tabClick: function tabClick(e) {
@@ -277,7 +277,7 @@ if (false) {(function () {
     }
   },
   onShow: function onShow() {
-    this.getAllItem("https://62.234.59.173/item/itemlist");
+    this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
   }
 });
 

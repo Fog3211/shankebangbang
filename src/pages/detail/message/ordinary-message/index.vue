@@ -18,7 +18,6 @@ export default {
         name: "",
         time: "",
         content: "",
-        isRead: false,
         other_name: ""
       }
     };
@@ -26,7 +25,7 @@ export default {
   mounted() {
     const id = this.$root.$mp.query.id;
     wx.request({
-      url: "http://62.234.59.173/governMsg/governMsg",
+      url: "https://wx.api.fog3211.com/governMsg/governMsg",
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -38,8 +37,7 @@ export default {
             id: item.itemId,
             name: item.otherUserName,
             other_name: item.otherUserOpenId,
-            time: checkDate(item.creatTime),
-            isRead
+            time: checkDate(item.creatTime)
           };
         } else {
           // console.log(res.errMsg);

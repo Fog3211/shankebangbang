@@ -104,7 +104,6 @@ if (false) {(function () {
         name: "",
         time: "",
         content: "",
-        isRead: false,
         other_name: ""
       }
     };
@@ -114,7 +113,7 @@ if (false) {(function () {
 
     var id = this.$root.$mp.query.id;
     wx.request({
-      url: "http://62.234.59.173/governMsg/governMsg",
+      url: "https://wx.api.fog3211.com/governMsg/governMsg",
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -126,8 +125,7 @@ if (false) {(function () {
             id: item.itemId,
             name: item.otherUserName,
             other_name: item.otherUserOpenId,
-            time: Object(__WEBPACK_IMPORTED_MODULE_0__utils_checkTime__["a" /* checkDate */])(item.creatTime),
-            isRead: isRead
+            time: Object(__WEBPACK_IMPORTED_MODULE_0__utils_checkTime__["a" /* checkDate */])(item.creatTime)
           };
         } else {
           // console.log(res.errMsg);

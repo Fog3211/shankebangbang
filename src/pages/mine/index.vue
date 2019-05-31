@@ -102,7 +102,7 @@ export default {
           if (js_code) {
             // console.log("获取用户登录凭证：" + js_code);
             wx.request({
-              url: "http://62.234.59.173/api/me/login",
+              url: "https://wx.api.fog3211.com/api/me/login",
               data: {
                 code: js_code,
                 userName: this.account.name,
@@ -188,7 +188,7 @@ export default {
       wx.navigateTo({ url: "/pages/about/main" });
     }
   },
-  onShow() {
+  mounted() {
     this.getSetting();
   }
 };
@@ -259,7 +259,7 @@ export default {
       }
       .iconfont {
         font-size: 26px;
-        margin-right: 10px;
+        margin-right: 5px;
       }
       .icon-fabu {
         color: rgb(168, 118, 67);

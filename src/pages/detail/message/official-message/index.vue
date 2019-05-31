@@ -49,20 +49,20 @@ export default {
   },
   mounted() {
     wx.request({
-      url: "http://62.234.59.173/governMsg/governMsg",
+      url: "https://wx.api.fog3211.com/governMsg/governMsg",
       method: "GET",
       header: {
         "content-type": "application/json"
       },
       success: res => {
         if (res.statusCode == 200) {
-          const item = res.data;
-
-          this.msg_list.push({
-            id: item.id,
-            title: item.title,
-            time: item.time,
-            content: item.content
+          res.data.map(item => {
+            this.msg_list.push({
+              id: item.id,
+              title: item.title,
+              time: item.time,
+              content: item.content
+            });
           });
           // console.log(res.data);
         } else {

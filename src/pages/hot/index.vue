@@ -10,7 +10,7 @@
       </span>
     </div>
     <ul class="list-content">
-      <li v-for="(item,index) in hot_list" :key="index">
+      <li v-for="(item,index) in hot_list" :key="index" v-show="item.show">
         <demand-item :data="item"></demand-item>
       </li>
     </ul>
@@ -36,12 +36,18 @@ export default {
   },
   methods: {
     handleTagCheck(item) {
-      console.log("选择了" + item);
+      this.hot_list.map((el, index) => {
+        if (!el.tag.includes(item)) {
+          this.hot_list[index].show = false;
+        } else {
+          this.hot_list[index].show = true;
+        }
+      });
     }
   },
   onShow() {
     wx.request({
-      url: "http://62.234.59.173/item/itemHotlist",
+      url: "https://wx.api.fog3211.com/item/itemHotlist",
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -57,7 +63,8 @@ export default {
               pay: item.itemPrice,
               tag: item.tags,
               visit_count: item.itemScan,
-              is_need: item.itemNeed
+              is_need: item.itemNeed,
+              show: true
             });
           });
           // console.log(res.data);

@@ -10,7 +10,6 @@
     "pages/detail/demand/main",
     "pages/list/push/main",
     "pages/list/help/main",
-    "pages/detail/message/ordinary-message/main",
     "pages/detail/message/official-message/main"
   ],
   "window": {

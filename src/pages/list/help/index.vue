@@ -27,7 +27,7 @@ export default {
     getData() {
       const open_id = wx.getStorageSync("open_id");
       wx.request({
-        url: "https://62.234.59.173/myHistory/getHelpedList/" + open_id,
+        url: "https://wx.api.fog3211.com/myHistory/getHelpedList/" + open_id,
         method: "GET",
         header: {
           "content-type": "application/json"
