@@ -55,7 +55,7 @@
            <label for="type" class="type">类型</label>
         </div>
         <div class="type-info-box">
-          <span class="type-info">{{add_form.switchValue===false?"我需要帮助":"我是牛人"}}</span>
+          <span class="type-info">{{add_form.switchValue===false?"我能帮人":"找人帮我"}}</span>
           <div class="switch-box">
             <mp-switch @change="switchChange"></mp-switch>
           </div>
@@ -110,6 +110,7 @@ export default {
         title: "",
         description: "",
         files: [],
+        pics: [],
         tag: [],
         contact: "",
         switchValue: false
@@ -155,7 +156,7 @@ export default {
     chooseImage(e) {
       let _this = this;
       wx.chooseImage({
-        count: 1, // 默认9
+        count: 3, // 默认9
         sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
         success(res) {
@@ -202,20 +203,9 @@ export default {
         return;
       }
       const open_id = wx.getStorageSync("open_id");
-      // console.log(this.add_form.files);
-      wx.uploadFile({
-        url: "https://wx.api.fog3211.com/pic/uploadImage?itemId=122",
-        filePath: this.add_form.files[0],
-        name: "uploadFile", // 文件对应的 key ,(后台接口规定的关于图片的请求参数)
-        header: {
-          "content-type": "multipart/form-data"
-        }, // 设置请求的 header
-        formData: {}, // HTTP 请求中其他额外的参数
-        success: res => {
-          console.log("success");
-        },
-        fail: res => {}
-      });
+
+      this.upLoadImg();
+
       wx.request({
         url: "https://wx.api.fog3211.com/item",
         method: "POST",
@@ -229,7 +219,8 @@ export default {
           isNeed: this.add_form.switchValue === false ? 0 : 1,
           tag1: this.add_form.tag[0],
           tag2: this.add_form.tag[1] || "",
-          tag3: this.add_form.tag[2] || ""
+          tag3: this.add_form.tag[2] || "",
+          pics:this.add_form.pics
         },
         header: {
           "content-type": "application/x-www-form-urlencoded"
@@ -242,6 +233,7 @@ export default {
                 showToast: true,
                 content: "添加成功"
               };
+
               // 清空表单
               this.select_pay_index = -1;
               this.add_form = {
@@ -263,6 +255,22 @@ export default {
           }
         }
       });
+    },
+    upLoadImg() {
+      for (let i = 0; i < this.add_form.files.length; i++) {
+        wx.uploadFile({
+          url: "https://sm.ms/api/upload",
+          filePath: this.add_form.files[i],
+          name: "smfile",
+          success: res => {
+                console.log("图片上传成功！")
+            this.add_form.pics.push(JSON.parse(res.data).data.url);
+          },
+          complete(){
+              console.log("图片上传！")
+          }
+        });
+      }
     },
     checkForm() {
       const open_id = wx.getStorageSync("open_id");

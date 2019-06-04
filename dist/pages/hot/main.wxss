@@ -10,19 +10,22 @@
   width: 75%;
   margin: 0 auto;
   font-weight: bold;
-  font-size: 28rpx;
-  border-bottom: 2rpx solid #ccc;
+  font-size: 32rpx;
 }
 .hot-page .tag-box.data-v-52ab4659 {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+  border-top: 2rpx solid #ccc;
   border-bottom: 2rpx solid #ccc;
 }
 .hot-page .tag-box .tag.data-v-52ab4659 {
   text-align: center;
   margin: auto 30rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #4dba8c;
+}
+.hot-page .tag-box .tag.data-v-52ab4659:active {
+  color: #1f684a;
 }
 .hot-page .list-content.data-v-52ab4659 {
   margin-top: 20rpx;

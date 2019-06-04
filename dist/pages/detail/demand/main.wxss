@@ -46,6 +46,7 @@
 .detail-demand .img-box.data-v-731e6395 {
   margin: 20rpx auto;
   padding: 20rpx 40rpx;
+  min-height: 400rpx;
 }
 .detail-demand .footer.data-v-731e6395 {
   padding: 0 40rpx;
@@ -75,6 +76,7 @@
   position: relative;
   padding: 30rpx 30rpx 10rpx;
   font-size: 36rpx;
+  color: #838282;
 }
 .detail-demand .contact-box .contact.data-v-731e6395 {
   margin-left: 20rpx;
@@ -90,6 +92,7 @@
   display: inline-block;
   width: 140rpx;
   height: 90rpx;
+  background-color: #4dba8c;
 }
 .detail-demand .btn-box.data-v-731e6395 {
   width: 70%;

@@ -19,11 +19,8 @@
 .account-page .account-item ._p .icon-xingming.data-v-07c263b9 {
   color: #bd2929;
 }
-.account-page .account-item ._p .icon-diqu.data-v-07c263b9 {
-  color: #3bb47c;
-}
 .account-page .account-item ._p .icon-qian.data-v-07c263b9 {
-  color: #bd6c29;
+  color: #3bb47c;
 }
 .account-page .account-item ._p .icon-shouji.data-v-07c263b9 {
   color: #bd299d;

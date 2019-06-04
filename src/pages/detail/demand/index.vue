@@ -161,14 +161,13 @@ export default {
               description: item.itemContent,
               time: item.toNow,
               visit_count: item.itemScan,
-              files: [],
+              files: pics,
               pay: item.itemPrice,
-              avatar: "/static/images/avatar/2.jpg",
-              name: item.usrName,
+              avatar: item.user.touxiang || "/static/images/avatar/default.jpg",
+              name: item.user.userName,
               contact: item.itemContact,
               itemNeed: item.itemNeed
             };
-            this.getPic(item.itemId);
             // console.log(res.data);
           } else {
             // console.log(res.errMsg);
@@ -182,27 +181,27 @@ export default {
       });
     },
     // 处理图片
-    getPic(itemId) {
-      wx.request({
-        url: "https://wx.api.fog3211.com/pic/getPic?itemId=" + itemId,
-        method: "GET",
-        header: {
-          "content-type": "application/json"
-        },
-        success: res => {
-          if (res.statusCode == 200) {
-            res.data.map(el => {
-              this.data.files.push(
-                "https://wx.api.fog3211.com/uploads/" + el.itemPic
-              );
-            });
-            // console.log(this.data.files);
-          } else {
-            // console.log(res.errMsg);
-          }
-        }
-      });
-    }
+    // getPic(itemId) {
+    //   wx.request({
+    //     url: "https://wx.api.fog3211.com/pic/getPic?itemId=" + itemId,
+    //     method: "GET",
+    //     header: {
+    //       "content-type": "application/json"
+    //     },
+    //     success: res => {
+    //       if (res.statusCode == 200) {
+    //         res.data.map(el => {
+    //           this.data.files.push(
+    //             "https://wx.api.fog3211.com/uploads/" + el.itemPic
+    //           );
+    //         });
+    //         // console.log(this.data.files);
+    //       } else {
+    //         // console.log(res.errMsg);
+    //       }
+    //     }
+    //   });
+    // }
   },
   onShow() {
     this.getItem();
@@ -256,6 +255,7 @@ export default {
   .img-box {
     margin: 10px auto;
     padding: 10px 20px;
+    min-height: 200px;
   }
   .footer {
     padding: 0 20px;
@@ -285,6 +285,7 @@ export default {
     position: relative;
     padding: 15px 15px 5px;
     font-size: 18px;
+    color: #838282;
     .contact {
       margin-left: 10px;
       width: 150px;
@@ -299,6 +300,7 @@ export default {
       display: inline-block;
       width: 70px;
       height: 45px;
+      background-color: #4dba8c;
     }
   }
   .btn-box {

@@ -14,14 +14,17 @@
         <demand-item :data="item"></demand-item>
       </li>
     </ul>
+        <mp-loading :showLoading="isShowLoading" loadingText="数据加载中..."></mp-loading>
   </div>
 </template>
 
 <script>
 import DemandItem from "@/components/demand-item";
+import mpLoading from "mpvue-weui/src/loading";
 export default {
   components: {
-    "demand-item": DemandItem
+    "demand-item": DemandItem,
+    mpLoading
   },
   data() {
     return {
@@ -31,7 +34,8 @@ export default {
         content: "获取数据错误，请重试"
       },
       tag_list: ["寻物启事", "学习互助", "资源共享"],
-      hot_list: []
+      hot_list: [],
+      isShowLoading: true
     };
   },
   methods: {
@@ -46,6 +50,7 @@ export default {
     }
   },
   onShow() {
+    this.hot_list = [];
     wx.request({
       url: "https://wx.api.fog3211.com/item/itemHotlist",
       method: "GET",
@@ -54,6 +59,9 @@ export default {
       },
       success: res => {
         if (res.statusCode == 200) {
+          setTimeout(() => {
+            this.isShowLoading = false;
+          }, 1000);
           res.data.map(item => {
             this.hot_list.push({
               id: item.itemId,
@@ -96,21 +104,24 @@ export default {
       width: 75%;
       margin: 0 auto;
       font-weight: bold;
-      font-size: 14px;
-      border-bottom: 1px solid #ccc;
+      font-size: 16px;
     }
   }
 
   .tag-box {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
     .tag {
       text-align: center;
       margin: auto 15px;
-      font-size: 14px;
+      font-size: 16px;
       color: #4dba8c;
+      &:active {
+        color: #1f684a;
+      }
     }
   }
 

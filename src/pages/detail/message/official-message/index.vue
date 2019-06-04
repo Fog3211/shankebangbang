@@ -48,6 +48,7 @@ export default {
     }
   },
   mounted() {
+    this.msg_list = [];
     wx.request({
       url: "https://wx.api.fog3211.com/governMsg/governMsg",
       method: "GET",
@@ -60,7 +61,7 @@ export default {
             this.msg_list.push({
               id: item.id,
               title: item.title,
-              time: item.time,
+              time: "2019-5-31",
               content: item.content
             });
           });

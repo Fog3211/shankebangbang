@@ -2,14 +2,14 @@ require("../../common/manifest.js")
 require("../../common/vendor.js")
 global.webpackJsonpMpvue([12],{
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(30);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 29:
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_07c263b9_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_07c263b9_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(36);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(30)
+  __webpack_require__(31)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,24 +72,20 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 30:
+/***/ 31:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 31:
+/***/ 32:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mpvue_weui_src_toast__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
-//
-//
-//
-//
 //
 //
 //
@@ -126,7 +122,6 @@ if (false) {(function () {
     return {
       account: {
         userName: "",
-        address: "",
         money: 0,
         phone: "",
         qq: ""
@@ -173,40 +168,69 @@ if (false) {(function () {
       });
     },
     handleSubmit: function handleSubmit() {
+      var _this2 = this;
+
       if (this.checkInput()) {
-        console.log("账户信息修改");
+        var open_id = wx.getStorageSync("open_id");
+        wx.request({
+          url: "https://wx.api.fog3211.com/api/changePhone/" + open_id + "/" + this.account.phone,
+          method: "PUT",
+          header: {
+            "content-type": "application/json"
+          },
+          success: function success(res) {
+            if (res.statusCode == 200) {
+              if (res.data === 1) {
+                _this2.toast = {
+                  toastType: "success",
+                  showToast: true,
+                  content: "修改成功"
+                };
+                _this2.getAccount();
+              } else {
+                _this2.toast = {
+                  toastType: "error",
+                  showToast: true,
+                  content: "修改错误，请重试"
+                };
+              }
+              // console.log(res.data);
+            } else {
+              // console.log(res.errMsg);
+              _this2.toast = {
+                toastType: "error",
+                showToast: true,
+                content: "修改错误，请重试"
+              };
+            }
+          }
+        });
       }
     },
     checkInput: function checkInput() {
       var _account = this.account,
-          address = _account.address,
           phone = _account.phone,
           qq = _account.qq;
 
-      if (address === "" || address.trim() === "") {
-        this.toast = {
-          toastType: "error",
-          showToast: true,
-          content: "请检查输入的地址"
-        };
-        return false;
-      } else if (!/^1[34578]\d{9}$/.test(phone)) {
+      if (!/^1[34578]\d{9}$/.test(phone)) {
         this.toast = {
           toastType: "error",
           showToast: true,
           content: "请检查输入的手机号"
         };
         return false;
-      } else if (qq === "" || qq.trim() === "" || qq.trim().length < 4) {
-        this.toast = {
-          toastType: "error",
-          showToast: true,
-          content: "请检查输入的QQ号"
-        };
-        return false;
-      } else {
-        return true;
       }
+      // else if (qq && qq.length < 4) {
+      //   this.toast = {
+      //     toastType: "error",
+      //     showToast: true,
+      //     content: "请检查输入的QQ号"
+      //   };
+      //   return false;
+      // }
+      else {
+          return true;
+        }
     }
   },
   onShow: function onShow() {
@@ -219,7 +243,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 35:
+/***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -253,30 +277,6 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   })], 1), _vm._v(" "), _c('li', {
     staticClass: "account-item"
   }, [_c('p', [_c('span', {
-    staticClass: "iconfont icon-diqu"
-  }), _vm._v("所在地区")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.account.address),
-      expression: "account.address"
-    }],
-    attrs: {
-      "placeholder": "请输入所在地区",
-      "eventid": '1'
-    },
-    domProps: {
-      "value": (_vm.account.address)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.account.address = $event.target.value
-      }
-    }
-  })], 1), _vm._v(" "), _c('li', {
-    staticClass: "account-item"
-  }, [_c('p', [_c('span', {
     staticClass: "iconfont icon-qian"
   }), _vm._v("校园币")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -287,7 +287,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }],
     attrs: {
       "disabled": "true",
-      "eventid": '2'
+      "eventid": '1'
     },
     domProps: {
       "value": (_vm.account.money)
@@ -313,7 +313,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "placeholder": "请输入手机号",
       "type": "number",
       "maxlength": "11",
-      "eventid": '3'
+      "eventid": '2'
     },
     domProps: {
       "value": (_vm.account.phone)
@@ -325,37 +325,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })], 1), _vm._v(" "), _c('li', {
-    staticClass: "account-item"
-  }, [_c('p', [_c('span', {
-    staticClass: "iconfont icon-qq"
-  }), _vm._v("QQ号")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.account.qq),
-      expression: "account.qq"
-    }],
-    attrs: {
-      "placeholder": "请输入QQ号",
-      "type": "number",
-      "maxlength": "11",
-      "eventid": '4'
-    },
-    domProps: {
-      "value": (_vm.account.qq)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.account.qq = $event.target.value
-      }
-    }
-  })], 1), _vm._v(" "), _c('li', {
     staticClass: "btn-box"
   }, [_c('Button', {
     attrs: {
       "type": "primary",
-      "eventid": '5',
+      "eventid": '3',
       "mpcomid": '0'
     },
     on: {
@@ -365,7 +339,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": _vm.toast.toastType,
       "content": _vm.toast.content,
-      "eventid": '6',
+      "eventid": '4',
       "mpcomid": '1'
     },
     model: {
@@ -390,4 +364,4 @@ if (false) {
 
 /***/ })
 
-},[28]);
+},[29]);

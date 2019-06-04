@@ -5,7 +5,7 @@
       <div class="weui-search-bar__form">
         <div class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="搜索" v-model="keyword" :focus="inputShowed"
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" v-model="keyword"
             @input="inputTyping" @confirm="handleSearch" />
           <div class="weui-icon-clear" v-show="keyword.length > 0" @click="clearInput">
             <icon type="clear" size="14"></icon>
@@ -60,15 +60,18 @@
     <!-- 添加按钮 -->
     <image src="/static/images/icon/add.png" alt="add" @click="handleAdd" class="add-btn" />
     <mp-toast :type="toast.toastType" v-model="toast.showToast" :content="toast.content"></mp-toast>
+    <mp-loading :showLoading="isShowLoading" loadingText="数据加载中..."></mp-loading>
   </div>
 </template>
 
 <script>
 import DemandItem from "@/components/demand-item";
+import mpLoading from "mpvue-weui/src/loading";
 import mpToast from "mpvue-weui/src/toast";
 export default {
   components: {
-    "demand-item": DemandItem
+    "demand-item": DemandItem,
+    mpLoading
   },
   data() {
     return {
@@ -88,7 +91,8 @@ export default {
         toastType: "error",
         showToast: false,
         content: "获取数据错误，请重试"
-      }
+      },
+      isShowLoading: false
     };
   },
   computed: {
@@ -143,6 +147,10 @@ export default {
         },
         success: res => {
           if (res.statusCode == 200) {
+            setTimeout(() => {
+              this.isShowLoading = false;
+            }, 1000);
+
             res.data.map(item => {
               // 需求
               if (item.itemNeed === 0) {
@@ -199,7 +207,8 @@ export default {
     position: fixed;
     z-index: 100;
     bottom: 10px;
-    right: 2%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   /* 搜索部分 */
@@ -246,7 +255,7 @@ export default {
     font-weight: bold;
     font-size: 16px;
   }
-  
+
   /* nav分割线 */
   .nav-cut {
     color: #4dba8c;

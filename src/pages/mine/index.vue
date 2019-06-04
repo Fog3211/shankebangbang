@@ -73,12 +73,14 @@ export default {
                 };
                 // 隐藏登录按钮
                 this.login_btn_show = false;
+                this.logout_btn_show = true;
                 this.getOpenId();
               }
             });
           } else {
             // 未授权
             this.login_btn_show = true;
+            this.logout_btn_show = false;
           }
         }
       });

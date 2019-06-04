@@ -1,9 +1,10 @@
-<import src="/components/demand-item.vue.wxml" /><template name="ec078fb6">
+<import src="/components/demand-item.vue.wxml" />
+<import src="/modules/mpvue-weui/src/loading/index.vue.wxml" /><template name="ec078fb6">
   <view class="_div data-v-30b09f44 index-page">
     <view class="_div data-v-30b09f44 weui-search-bar">
       <view class="_div data-v-30b09f44 weui-search-bar__form">
         <view class="_div data-v-30b09f44 weui-search-bar__box">
-          <icon class="_icon data-v-30b09f44 weui-icon-search_in-box" type="search" size="14"></icon> <input type="text" class="_input data-v-30b09f44 weui-search-bar__input" placeholder="搜索" value="{{keyword}}" bindinput="handleProxy" focus="{{inputShowed}}" bindconfirm="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+          <icon class="_icon data-v-30b09f44 weui-icon-search_in-box" type="search" size="14"></icon> <input type="text" class="_input data-v-30b09f44 weui-search-bar__input" placeholder="搜索" value="{{keyword}}" bindinput="handleProxy" bindconfirm="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
           <view class="_div data-v-30b09f44 weui-icon-clear" hidden="{{!(keyword.length > 0)}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
             <icon type="clear" size="14" class="_icon data-v-30b09f44"></icon>
           </view>
@@ -45,6 +46,6 @@
       </view>
     </view>
     <image src="/static/images/icon/add.png" alt="add" bindtap="handleProxy" class="_image data-v-30b09f44 add-btn" data-eventid="{{'5'}}" data-comkey="{{$k}}"></image>
-    <mp-toast type="{{toast.toastType}}" value="{{toast.showToast}}" bindchange="handleProxy" content="{{toast.content}}" data-eventid="{{'6'}}" data-comkey="{{$k}}" class="_mp-toast data-v-30b09f44"></mp-toast>
+    <mp-toast type="{{toast.toastType}}" value="{{toast.showToast}}" bindchange="handleProxy" content="{{toast.content}}" data-eventid="{{'6'}}" data-comkey="{{$k}}" class="_mp-toast data-v-30b09f44"></mp-toast> <template loadingText="数据加载中..." data="{{...$root[$kk+'5'], $root}}" is="74f1af89"></template>
   </view>
 </template>

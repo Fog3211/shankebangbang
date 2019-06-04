@@ -65,12 +65,12 @@ export default {
         },
         success: res => {
           if (res.statusCode == 200) {
-            // console.log(res.data);
             res.data.map(item => {
               this.msg_list.push({
                 id: item.userItemId,
                 name: item.otherUserName,
-                avatar: "/static/images/avatar/default.jpg",
+                avatar:
+                  item.otherUserTouxiang || "/static/images/avatar/default.jpg",
                 msg_type: "apply",
                 time: checkDate(item.creatTime)
               });
@@ -98,7 +98,8 @@ export default {
               this.msg_list.push({
                 id: item.userItemId,
                 name: item.otherUserName,
-                avatar: "/static/images/avatar/default.jpg",
+                avatar:
+                  item.otherUserTouxiang || "/static/images/avatar/default.jpg",
                 msg_type: "accept",
                 time: checkDate(item.creatTime)
               });
@@ -116,6 +117,7 @@ export default {
     }
   },
   onShow() {
+    this.msg_list = [];
     this.getOffMsg();
     this.getOrdMsg();
   }

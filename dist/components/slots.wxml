@@ -1,5 +1,6 @@
-<import src="/components/demand-item.vue.wxml" />
 <import src="/components/msg-item.vue.wxml" />
+<import src="/components/demand-item.vue.wxml" />
+<import src="/modules/mpvue-weui/src/loading/index.vue.wxml" />
 <import src="/modules/mpvue-weui/src/toast/index.vue.wxml" />
 <import src="/modules/mpvue-weui/src/modal/index.vue.wxml" />
 <import src="/modules/mpvue-weui/src/switch/index.vue.wxml" />

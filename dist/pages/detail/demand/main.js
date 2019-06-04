@@ -2,14 +2,14 @@ require("../../../common/manifest.js")
 require("../../../common/vendor.js")
 global.webpackJsonpMpvue([11],{
 
-/***/ 53:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(55);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 54:
+/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_731e6395_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_731e6395_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(58);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(55)
+  __webpack_require__(56)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,14 +72,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 55:
+/***/ 56:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -252,14 +252,13 @@ if (false) {(function () {
               description: item.itemContent,
               time: item.toNow,
               visit_count: item.itemScan,
-              files: [],
+              files: pics,
               pay: item.itemPrice,
-              avatar: "/static/images/avatar/2.jpg",
-              name: item.usrName,
+              avatar: item.user.touxiang || "/static/images/avatar/default.jpg",
+              name: item.user.userName,
               contact: item.itemContact,
               itemNeed: item.itemNeed
             };
-            _this2.getPic(item.itemId);
             // console.log(res.data);
           } else {
             // console.log(res.errMsg);
@@ -271,29 +270,6 @@ if (false) {(function () {
           }
         }
       });
-    },
-
-    // 处理图片
-    getPic: function getPic(itemId) {
-      var _this3 = this;
-
-      wx.request({
-        url: "https://wx.api.fog3211.com/pic/getPic?itemId=" + itemId,
-        method: "GET",
-        header: {
-          "content-type": "application/json"
-        },
-        success: function success(res) {
-          if (res.statusCode == 200) {
-            res.data.map(function (el) {
-              _this3.data.files.push("https://wx.api.fog3211.com/uploads/" + el.itemPic);
-            });
-            // console.log(this.data.files);
-          } else {
-              // console.log(res.errMsg);
-            }
-        }
-      });
     }
   },
   onShow: function onShow() {
@@ -303,7 +279,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -408,4 +384,4 @@ if (false) {
 
 /***/ })
 
-},[53]);
+},[54]);

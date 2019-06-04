@@ -3,15 +3,18 @@
       <li v-for="(item,index) in list" :key="index">
         <demand-item :data="item"></demand-item>
       </li>
+          <mp-loading :showLoading="isShowLoading" loadingText="数据加载中..."></mp-loading>
     </ul>
 </template>
 
 <script>
 import DemandItem from "@/components/demand-item";
 import { checkDate } from "@/utils/checkTime";
+import mpLoading from "mpvue-weui/src/loading";
 export default {
   components: {
-    "demand-item": DemandItem
+    "demand-item": DemandItem,
+    mpLoading
   },
   data() {
     return {
@@ -20,7 +23,8 @@ export default {
         showToast: false,
         content: "获取数据错误，请重试"
       },
-      list: []
+      list: [],
+      isShowLoading: true
     };
   },
   methods: {
@@ -34,6 +38,9 @@ export default {
         },
         success: res => {
           if (res.statusCode == 200) {
+            setTimeout(() => {
+              this.isShowLoading = false;
+            }, 1000);
             res.data.map(item => {
               this.list.push({
                 id: item.itemId,
@@ -60,6 +67,7 @@ export default {
     }
   },
   onShow() {
+    this.list = [];
     const open_id = wx.getStorageSync("open_id");
     if (open_id) {
       this.getData();

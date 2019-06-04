@@ -3,10 +3,18 @@ require("../../common/vendor.js")
 global.webpackJsonpMpvue([8],{
 
 /***/ 100:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 101:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_demand_item__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mpvue_weui_src_loading__ = __webpack_require__(5);
 //
 //
 //
@@ -26,11 +34,14 @@ global.webpackJsonpMpvue([8],{
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: {
-    "demand-item": __WEBPACK_IMPORTED_MODULE_0__components_demand_item__["a" /* default */]
+    "demand-item": __WEBPACK_IMPORTED_MODULE_0__components_demand_item__["a" /* default */],
+    mpLoading: __WEBPACK_IMPORTED_MODULE_1_mpvue_weui_src_loading__["a" /* default */]
   },
   data: function data() {
     return {
@@ -40,7 +51,8 @@ global.webpackJsonpMpvue([8],{
         content: "获取数据错误，请重试"
       },
       tag_list: ["寻物启事", "学习互助", "资源共享"],
-      hot_list: []
+      hot_list: [],
+      isShowLoading: true
     };
   },
 
@@ -60,6 +72,7 @@ global.webpackJsonpMpvue([8],{
   onShow: function onShow() {
     var _this2 = this;
 
+    this.hot_list = [];
     wx.request({
       url: "https://wx.api.fog3211.com/item/itemHotlist",
       method: "GET",
@@ -68,6 +81,9 @@ global.webpackJsonpMpvue([8],{
       },
       success: function success(res) {
         if (res.statusCode == 200) {
+          setTimeout(function () {
+            _this2.isShowLoading = false;
+          }, 1000);
           res.data.map(function (item) {
             _this2.hot_list.push({
               id: item.itemId,
@@ -97,7 +113,7 @@ global.webpackJsonpMpvue([8],{
 
 /***/ }),
 
-/***/ 104:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -142,7 +158,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "mpcomid": '0_' + index
       }
     })], 1)
-  }))], 1)
+  })), _vm._v(" "), _c('mp-loading', {
+    attrs: {
+      "showLoading": _vm.isShowLoading,
+      "loadingText": "数据加载中...",
+      "mpcomid": '1'
+    }
+  })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -157,14 +179,14 @@ if (false) {
 
 /***/ }),
 
-/***/ 97:
+/***/ 98:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(99);
 
 
 
@@ -173,16 +195,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 98:
+/***/ 99:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_52ab4659_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_52ab4659_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(108);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(99)
+  __webpack_require__(100)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -225,13 +247,6 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["a"] = (Component.exports);
 
 
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[97]);
+},[98]);

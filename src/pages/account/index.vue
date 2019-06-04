@@ -5,10 +5,6 @@
       <input v-model="account.userName" disabled="true" />
     </li>
     <li class="account-item">
-      <p><span class="iconfont icon-diqu"></span>所在地区</p>
-      <input placeholder="请输入所在地区" v-model="account.address" />
-    </li>
-    <li class="account-item">
       <p><span class="iconfont icon-qian"></span>校园币</p>
          <input v-model="account.money" disabled="true" />
     </li>
@@ -16,10 +12,10 @@
       <p><span class="iconfont icon-shouji"></span>手机号</p>
       <input placeholder="请输入手机号" v-model="account.phone" type="number" maxlength="11" />
     </li>
-    <li class="account-item">
+    <!-- <li class="account-item">
       <p><span class="iconfont icon-qq"></span>QQ号</p>
       <input placeholder="请输入QQ号" v-model="account.qq" type="number" maxlength="11" />
-    </li>
+    </li> -->
     <li class="btn-box">
       <Button type="primary" @click="handleSubmit">修改账户信息</Button>
     </li>
@@ -38,7 +34,6 @@ export default {
     return {
       account: {
         userName: "",
-        address: "",
         money: 0,
         phone: "",
         qq: ""
@@ -83,33 +78,65 @@ export default {
     },
     handleSubmit() {
       if (this.checkInput()) {
-        console.log("账户信息修改");
+        const open_id = wx.getStorageSync("open_id");
+        wx.request({
+          url:
+            "https://wx.api.fog3211.com/api/changePhone/" +
+            open_id +
+            "/" +
+            this.account.phone,
+          method: "PUT",
+          header: {
+            "content-type": "application/json"
+          },
+          success: res => {
+            if (res.statusCode == 200) {
+              if (res.data === 1) {
+                this.toast = {
+                  toastType: "success",
+                  showToast: true,
+                  content: "修改成功"
+                };
+                this.getAccount();
+              } else {
+                this.toast = {
+                  toastType: "error",
+                  showToast: true,
+                  content: "修改错误，请重试"
+                };
+              }
+              // console.log(res.data);
+            } else {
+              // console.log(res.errMsg);
+              this.toast = {
+                toastType: "error",
+                showToast: true,
+                content: "修改错误，请重试"
+              };
+            }
+          }
+        });
       }
     },
     checkInput() {
-      const { address, phone, qq } = this.account;
-      if (address === "" || address.trim() === "") {
-        this.toast = {
-          toastType: "error",
-          showToast: true,
-          content: "请检查输入的地址"
-        };
-        return false;
-      } else if (!/^1[34578]\d{9}$/.test(phone)) {
+      const { phone, qq } = this.account;
+      if (!/^1[34578]\d{9}$/.test(phone)) {
         this.toast = {
           toastType: "error",
           showToast: true,
           content: "请检查输入的手机号"
         };
         return false;
-      } else if (qq === "" || qq.trim() === "" || qq.trim().length < 4) {
-        this.toast = {
-          toastType: "error",
-          showToast: true,
-          content: "请检查输入的QQ号"
-        };
-        return false;
-      } else {
+      }
+      // else if (qq && qq.length < 4) {
+      //   this.toast = {
+      //     toastType: "error",
+      //     showToast: true,
+      //     content: "请检查输入的QQ号"
+      //   };
+      //   return false;
+      // }
+      else {
         return true;
       }
     }
@@ -140,11 +167,8 @@ export default {
       .icon-xingming {
         color: rgb(189, 41, 41);
       }
-      .icon-diqu {
-        color: rgb(59, 180, 124);
-      }
       .icon-qian {
-        color: rgb(189, 108, 41);
+        color: rgb(59, 180, 124);
       }
       .icon-shouji {
         color: rgb(189, 41, 157);
