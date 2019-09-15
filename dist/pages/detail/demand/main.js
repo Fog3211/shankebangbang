@@ -252,14 +252,14 @@ if (false) {(function () {
               description: item.itemContent,
               time: item.toNow,
               visit_count: item.itemScan,
-              files: pics,
+              // files: item.pics,
               pay: item.itemPrice,
               avatar: item.user.touxiang || "/static/images/avatar/default.jpg",
               name: item.user.userName,
               contact: item.itemContact,
               itemNeed: item.itemNeed
             };
-            // console.log(res.data);
+            console.log(res.data);
           } else {
             // console.log(res.errMsg);
             _this2.toast = {
@@ -301,20 +301,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_vm._v("\n     # " + _vm._s(item) + "\n    ")])
   })), _vm._v(" "), _c('div', {
     staticClass: "description"
-  }, [_vm._v("\n    " + _vm._s(_vm.data.description) + "\n  ")]), _vm._v(" "), _c('ul', {
-    staticClass: "img-box"
-  }, _vm._l((_vm.data.files), function(item, index) {
-    return _c('li', {
-      key: index,
-      staticClass: "img-item"
-    }, [_c('img', {
-      staticClass: "img",
-      attrs: {
-        "src": item,
-        "alt": "img"
-      }
-    })])
-  })), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n    " + _vm._s(_vm.data.description) + "\n  ")]), _vm._v(" "), _c('div', {
     staticClass: "footer"
   }, [_c('img', {
     staticClass: "avatar",

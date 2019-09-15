@@ -12,11 +12,11 @@
     <div class="description">
       {{data.description}}
     </div>
-    <ul class="img-box">
+    <!-- <ul class="img-box">
         <li v-for="(item,index) in data.files" :key="index" class="img-item">
           <img :src="item" alt="img" class="img">
         </li>
-    </ul>
+    </ul> -->
     <div class="footer">
       <img :src="data.avatar" alt="avatar" class="avatar">
       <span class="name">{{data.name}}</span>
@@ -161,14 +161,14 @@ export default {
               description: item.itemContent,
               time: item.toNow,
               visit_count: item.itemScan,
-              files: pics,
+              // files: item.pics,
               pay: item.itemPrice,
               avatar: item.user.touxiang || "/static/images/avatar/default.jpg",
               name: item.user.userName,
               contact: item.itemContact,
               itemNeed: item.itemNeed
             };
-            // console.log(res.data);
+            console.log(res.data);
           } else {
             // console.log(res.errMsg);
             this.toast = {

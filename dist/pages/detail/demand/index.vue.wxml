@@ -8,11 +8,6 @@
     <view class="_div data-v-445892be description">
       {{data.description}}
     </view>
-    <view class="_ul data-v-445892be img-box">
-      <view wx:key="index" key="{{index}}" class="_li data-v-445892be img-item" wx:for="{{data.files}}" wx:for-index="index" wx:for-item="item">
-        <image src="{{item}}" alt="img" class="_img data-v-445892be img"></image>
-      </view>
-    </view>
     <view class="_div data-v-445892be footer">
       <image src="{{data.avatar}}" alt="avatar" class="_img data-v-445892be avatar"></image> <label class="_span data-v-445892be name">{{data.name}}</label> <label class="_span data-v-445892be time">{{data.time}}</label> <label class="_span data-v-445892be visit">浏览·{{data.visit_count}}</label>
     </view>
