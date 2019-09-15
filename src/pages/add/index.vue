@@ -207,7 +207,7 @@ export default {
       this.upLoadImg();
 
       wx.request({
-        url: "https://wx.api.fog3211.com/item",
+        url: "http://62.234.59.173/item",
         method: "POST",
         data: {
           title: this.add_form.title,
@@ -220,7 +220,7 @@ export default {
           tag1: this.add_form.tag[0],
           tag2: this.add_form.tag[1] || "",
           tag3: this.add_form.tag[2] || "",
-          pics:this.add_form.pics
+          pics: this.add_form.pics
         },
         header: {
           "content-type": "application/x-www-form-urlencoded"
@@ -263,11 +263,11 @@ export default {
           filePath: this.add_form.files[i],
           name: "smfile",
           success: res => {
-                console.log("图片上传成功！")
+            console.log("图片上传成功！");
             this.add_form.pics.push(JSON.parse(res.data).data.url);
           },
-          complete(){
-              console.log("图片上传！")
+          complete() {
+            console.log("图片上传！");
           }
         });
       }

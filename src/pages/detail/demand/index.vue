@@ -78,9 +78,9 @@ export default {
         return;
       }
       if (this.data.itemNeed === 0) {
-        this.apply("https://wx.api.fog3211.com/item/applyNeed/");
+        this.apply("http://62.234.59.173/item/applyNeed/");
       } else {
-        this.apply("https://wx.api.fog3211.com/item/applyTalent/");
+        this.apply("http://62.234.59.173/item/applyTalent/");
       }
     },
     apply(url) {
@@ -146,7 +146,7 @@ export default {
       const id = this.$root.$mp.query.id;
       // 请求数据
       wx.request({
-        url: "https://wx.api.fog3211.com/item/itemlist/" + id,
+        url: "http://62.234.59.173/item/itemlist/" + id,
         method: "GET",
         header: {
           "content-type": "application/json"
@@ -183,7 +183,7 @@ export default {
     // 处理图片
     // getPic(itemId) {
     //   wx.request({
-    //     url: "https://wx.api.fog3211.com/pic/getPic?itemId=" + itemId,
+    //     url: "http://62.234.59.173/pic/getPic?itemId=" + itemId,
     //     method: "GET",
     //     header: {
     //       "content-type": "application/json"
@@ -192,7 +192,7 @@ export default {
     //       if (res.statusCode == 200) {
     //         res.data.map(el => {
     //           this.data.files.push(
-    //             "https://wx.api.fog3211.com/uploads/" + el.itemPic
+    //             "http://62.234.59.173/uploads/" + el.itemPic
     //           );
     //         });
     //         // console.log(this.data.files);

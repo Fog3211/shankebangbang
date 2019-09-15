@@ -1,9 +1,9 @@
-<template name="74f1af89">
-  <view class="_div data-v-6785bf55 weui-loading-content" wx:if="{{showLoading}}">
-    <view class="_div data-v-6785bf55 weui-loading-mask" wx:if="{{mask}}"></view>
-    <view class="_div data-v-6785bf55 weui-loading-detail">
-      <view class="_div data-v-6785bf55 weui-loading"></view>
-      <view class="_div data-v-6785bf55 weui-loading-text">{{loadingText}}</view>
+<template name="558f4e73">
+  <view class="_div data-v-13fae061 weui-loading-content" wx:if="{{showLoading}}">
+    <view class="_div data-v-13fae061 weui-loading-mask" wx:if="{{mask}}"></view>
+    <view class="_div data-v-13fae061 weui-loading-detail">
+      <view class="_div data-v-13fae061 weui-loading"></view>
+      <view class="_div data-v-13fae061 weui-loading-text">{{loadingText}}</view>
     </view>
   </view>
 </template>

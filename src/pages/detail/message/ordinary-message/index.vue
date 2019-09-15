@@ -25,7 +25,7 @@ export default {
   mounted() {
     const id = this.$root.$mp.query.id;
     wx.request({
-      url: "https://wx.api.fog3211.com/governMsg/governMsg",
+      url: "http://62.234.59.173/governMsg/governMsg",
       method: "GET",
       header: {
         "content-type": "application/json"

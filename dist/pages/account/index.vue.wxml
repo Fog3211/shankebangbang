@@ -1,14 +1,14 @@
-<import src="/modules/mpvue-weui/src/toast/index.vue.wxml" /><template name="047a3300">
-  <view class="_ul data-v-07c263b9 account-page">
-    <view class="_li data-v-07c263b9 account-item">
-      <view class="_p data-v-07c263b9"><label class="_span data-v-07c263b9 iconfont icon-xingming"></label>用户名</view> <input value="{{account.userName}}" bindinput="handleProxy" disabled="true" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-07c263b9" />
+<import src="/modules/mpvue-weui/src/toast/index.vue.wxml" /><template name="5d434bea">
+  <view class="_ul data-v-a4f42076 account-page">
+    <view class="_li data-v-a4f42076 account-item">
+      <view class="_p data-v-a4f42076"><label class="_span data-v-a4f42076 iconfont icon-xingming"></label>用户名</view> <input value="{{account.userName}}" bindinput="handleProxy" disabled="true" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-a4f42076" />
     </view>
-    <view class="_li data-v-07c263b9 account-item">
-      <view class="_p data-v-07c263b9"><label class="_span data-v-07c263b9 iconfont icon-qian"></label>校园币</view> <input value="{{account.money}}" bindinput="handleProxy" disabled="true" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_input data-v-07c263b9" />
+    <view class="_li data-v-a4f42076 account-item">
+      <view class="_p data-v-a4f42076"><label class="_span data-v-a4f42076 iconfont icon-qian"></label>校园币</view> <input value="{{account.money}}" bindinput="handleProxy" disabled="true" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_input data-v-a4f42076" />
     </view>
-    <view class="_li data-v-07c263b9 account-item">
-      <view class="_p data-v-07c263b9"><label class="_span data-v-07c263b9 iconfont icon-shouji"></label>手机号</view> <input placeholder="请输入手机号" value="{{account.phone}}" bindinput="handleProxy" type="number" maxlength="11" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_input data-v-07c263b9" />
+    <view class="_li data-v-a4f42076 account-item">
+      <view class="_p data-v-a4f42076"><label class="_span data-v-a4f42076 iconfont icon-shouji"></label>手机号</view> <input placeholder="请输入手机号" value="{{account.phone}}" bindinput="handleProxy" type="number" maxlength="11" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_input data-v-a4f42076" />
     </view>
-    <view class="_li data-v-07c263b9 btn-box"><button type="primary" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_button data-v-07c263b9">修改账户信息</button></view> <template value="{{toast.showToast}}" bindchange="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'1'], $root}}" is="49cd4318"></template>
+    <view class="_li data-v-a4f42076 btn-box"><button type="primary" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_button data-v-a4f42076">修改账户信息</button></view> <template value="{{toast.showToast}}" bindchange="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'1'], $root}}" is="b4f4a044"></template>
   </view>
 </template>

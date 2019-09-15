@@ -31,7 +31,7 @@ export default {
     // 获取官方通知
     getOffMsg() {
       wx.request({
-        url: "https://wx.api.fog3211.com/governMsg/governMsg",
+        url: "http://62.234.59.173/governMsg/governMsg",
         method: "GET",
         header: {
           "content-type": "application/json"
@@ -58,13 +58,14 @@ export default {
       }
       // 获取需求消息
       wx.request({
-        url: "https://wx.api.fog3211.com/notice/getNeedNoticeList/" + open_id,
+        url: "http://62.234.59.173/notice/getNeedNoticeList/" + open_id,
         method: "GET",
         header: {
           "content-type": "application/json"
         },
         success: res => {
           if (res.statusCode == 200) {
+            if (!res.data) return;
             res.data.map(item => {
               this.msg_list.push({
                 id: item.userItemId,
@@ -87,13 +88,14 @@ export default {
       });
       // 获取人才消息
       wx.request({
-        url: "https://wx.api.fog3211.com/notice/getTalentNoticeList/" + open_id,
+        url: "http://62.234.59.173/notice/getTalentNoticeList/" + open_id,
         method: "GET",
         header: {
           "content-type": "application/json"
         },
         success: res => {
           if (res.statusCode == 200) {
+            if (!res.data) return;
             res.data.map(item => {
               this.msg_list.push({
                 id: item.userItemId,

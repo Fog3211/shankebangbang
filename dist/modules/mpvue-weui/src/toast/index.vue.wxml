@@ -1,12 +1,12 @@
-<template name="49cd4318">
-  <view class="_div data-v-5472f200 weui-toast-content" hidden="{{!(showToast)}}">
-    <view class="_div data-v-5472f200 weui-toast-detail {{type === 'default' ? '' : 'weui-toast-detail-icon'}}">
-      <view class="_div data-v-5472f200 toast-icon" wx:if="{{type!='default'}}">
-        <icon type="success" size="40" wx:if="{{type==='success'}}" class="_icon data-v-5472f200"></icon>
-        <icon type="warn" size="40" color="#FFBE00" wx:if="{{type==='warn'}}" class="_icon data-v-5472f200"></icon>
-        <icon type="cancel" size="40" wx:if="{{type==='error'}}" class="_icon data-v-5472f200"></icon>
+<template name="b4f4a044">
+  <view class="_div data-v-7cd633e8 weui-toast-content" hidden="{{!(showToast)}}">
+    <view class="_div data-v-7cd633e8 weui-toast-detail {{type === 'default' ? '' : 'weui-toast-detail-icon'}}">
+      <view class="_div data-v-7cd633e8 toast-icon" wx:if="{{type!='default'}}">
+        <icon type="success" size="40" wx:if="{{type==='success'}}" class="_icon data-v-7cd633e8"></icon>
+        <icon type="warn" size="40" color="#FFBE00" wx:if="{{type==='warn'}}" class="_icon data-v-7cd633e8"></icon>
+        <icon type="cancel" size="40" wx:if="{{type==='error'}}" class="_icon data-v-7cd633e8"></icon>
       </view>
-      <view class="_div data-v-5472f200 toast-text">{{content}}</view>
+      <view class="_div data-v-7cd633e8 toast-text">{{content}}</view>
     </view>
   </view>
 </template>

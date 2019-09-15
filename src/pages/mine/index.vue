@@ -104,7 +104,7 @@ export default {
           if (js_code) {
             // console.log("获取用户登录凭证：" + js_code);
             wx.request({
-              url: "https://wx.api.fog3211.com/api/me/login",
+              url: "http://62.234.59.173/api/me/login",
               data: {
                 code: js_code,
                 userName: this.account.name,

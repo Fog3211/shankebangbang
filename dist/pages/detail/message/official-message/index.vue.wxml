@@ -1,19 +1,19 @@
-<template name="6d084ad8">
-  <view class="_div data-v-56964592 official-message">
-    <view class="_ul data-v-56964592 msg-box" wx:if="{{msg_list.length>0}}">
-      <view wx:key="index" key="{{index}}" class="_li data-v-56964592 msg" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" wx:for="{{msg_list}}" wx:for-index="index" wx:for-item="item">
-        <view class="_div data-v-56964592 header"><label class="_span data-v-56964592 title">{{item.title}}</label> <label class="_span data-v-56964592 time">{{item.time}}</label>
-          <view class="_div data-v-56964592 weui-badge weui-badge_dot dot-badge" wx:if="{{item.is_new}}"></view>
-        </view> <label class="_span data-v-56964592 content">{{item.content}}</label>
+<template name="16e99242">
+  <view class="_div data-v-844ff57a official-message">
+    <view class="_ul data-v-844ff57a msg-box" wx:if="{{msg_list.length>0}}">
+      <view wx:key="index" key="{{index}}" class="_li data-v-844ff57a msg" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" wx:for="{{msg_list}}" wx:for-index="index" wx:for-item="item">
+        <view class="_div data-v-844ff57a header"><label class="_span data-v-844ff57a title">{{item.title}}</label> <label class="_span data-v-844ff57a time">{{item.time}}</label>
+          <view class="_div data-v-844ff57a weui-badge weui-badge_dot dot-badge" wx:if="{{item.is_new}}"></view>
+        </view> <label class="_span data-v-844ff57a content">{{item.content}}</label>
       </view>
     </view>
-    <view class="_div data-v-56964592 no-msg" wx:else>
-      <image src="/static/images/other/no-msg.png" alt="no-msg" class="_img data-v-56964592 pic"></image>
+    <view class="_div data-v-844ff57a no-msg" wx:else>
+      <image src="/static/images/other/no-msg.png" alt="no-msg" class="_img data-v-844ff57a pic"></image>
     </view>
-    <view class="_div data-v-56964592 msg-detail" wx:if="{{show_msg_detail}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
-      <view class="_div data-v-56964592 content">
-        <view class="_p data-v-56964592 title">{{ msg_detail.title }}</view>
-        <view class="_p data-v-56964592">{{ msg_detail.content }}</view>
+    <view class="_div data-v-844ff57a msg-detail" wx:if="{{show_msg_detail}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+      <view class="_div data-v-844ff57a content">
+        <view class="_p data-v-844ff57a title">{{ msg_detail.title }}</view>
+        <view class="_p data-v-844ff57a">{{ msg_detail.content }}</view>
       </view>
     </view>
   </view>

@@ -31,7 +31,7 @@ export default {
     getData() {
       const open_id = wx.getStorageSync("open_id");
       wx.request({
-        url: "https://wx.api.fog3211.com/myHistory/getReleasedList/" + open_id,
+        url: "http://62.234.59.173/myHistory/getReleasedList/" + open_id,
         method: "GET",
         header: {
           "content-type": "application/json"
@@ -41,6 +41,7 @@ export default {
             setTimeout(() => {
               this.isShowLoading = false;
             }, 1000);
+              if (!res.data) return;
             res.data.map(item => {
               this.list.push({
                 id: item.itemId,

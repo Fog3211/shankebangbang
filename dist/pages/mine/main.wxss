@@ -1,15 +1,15 @@
 @import "../../common/vendor.wxss";
 
-.mine-page.data-v-e2f442c6 {
+.mine-page.data-v-6ad0ae11 {
   padding-top: 20rpx;
 }
-.mine-page .header.data-v-e2f442c6 {
+.mine-page .header.data-v-6ad0ae11 {
   position: relative;
   padding: 20rpx;
   border: 2rpx solid #d9d9d9;
   display: flex;
 }
-.mine-page .header .avatar.data-v-e2f442c6 {
+.mine-page .header .avatar.data-v-6ad0ae11 {
   width: 140rpx;
   height: 140rpx;
   border-radius: 50%;
@@ -17,41 +17,41 @@
   vertical-align: middle;
   border: 2rpx solid #34ca40;
 }
-.mine-page .header .account-box.data-v-e2f442c6 {
+.mine-page .header .account-box.data-v-6ad0ae11 {
   padding-top: 30rpx;
   margin-left: 10rpx;
 }
-.mine-page .header .account-box .name.data-v-e2f442c6 {
+.mine-page .header .account-box .name.data-v-6ad0ae11 {
   font-size: 36rpx;
   font-weight: bold;
 }
-.mine-page .header .account-box .is-login.data-v-e2f442c6 {
+.mine-page .header .account-box .is-login.data-v-6ad0ae11 {
   font-size: 28rpx;
 }
-.mine-page .header .account-box .right-icon.data-v-e2f442c6 {
+.mine-page .header .account-box .right-icon.data-v-6ad0ae11 {
   position: absolute;
   right: 20rpx;
   top: 60rpx;
   font-size: 44rpx;
   padding: 10rpx;
 }
-.mine-page .header .account-box .right-icon.data-v-e2f442c6:active {
+.mine-page .header .account-box .right-icon.data-v-6ad0ae11:active {
   background-color: #e6e1e1;
 }
-.mine-page .header .login-btn.data-v-e2f442c6 {
+.mine-page .header .login-btn.data-v-6ad0ae11 {
   background-color: #4dba8c;
   height: 100rpx;
   line-height: 100rpx;
   margin-top: 20rpx;
   letter-spacing: 4rpx;
 }
-.mine-page .header .login-btn.data-v-e2f442c6:active {
+.mine-page .header .login-btn.data-v-6ad0ae11:active {
   background-color: #41a77b;
 }
-.mine-page .mine-list.data-v-e2f442c6 {
+.mine-page .mine-list.data-v-6ad0ae11 {
   width: 100%;
 }
-.mine-page .mine-list .mine-item.data-v-e2f442c6 {
+.mine-page .mine-list .mine-item.data-v-6ad0ae11 {
   margin-top: 20rpx;
   background-color: #f3f4f5;
   height: 160rpx;
@@ -61,22 +61,22 @@
   border-radius: 5%;
   letter-spacing: 8rpx;
 }
-.mine-page .mine-list .mine-item.data-v-e2f442c6:active {
+.mine-page .mine-list .mine-item.data-v-6ad0ae11:active {
   background-color: #e0e3e7;
 }
-.mine-page .mine-list .mine-item .iconfont.data-v-e2f442c6 {
+.mine-page .mine-list .mine-item .iconfont.data-v-6ad0ae11 {
   font-size: 52rpx;
   margin-right: 10rpx;
 }
-.mine-page .mine-list .mine-item .icon-fabu.data-v-e2f442c6 {
+.mine-page .mine-list .mine-item .icon-fabu.data-v-6ad0ae11 {
   color: #a87643;
 }
-.mine-page .mine-list .mine-item .icon-shou.data-v-e2f442c6 {
+.mine-page .mine-list .mine-item .icon-shou.data-v-6ad0ae11 {
   color: #41a77b;
 }
-.mine-page .mine-list .mine-item .icon-about.data-v-e2f442c6 {
+.mine-page .mine-list .mine-item .icon-about.data-v-6ad0ae11 {
   color: #724eec;
 }
-.mine-page .mine-list .mine-item .icon-tuichu.data-v-e2f442c6 {
+.mine-page .mine-list .mine-item .icon-tuichu.data-v-6ad0ae11 {
   color: #c43e57;
 }

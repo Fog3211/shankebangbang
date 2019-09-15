@@ -30,7 +30,7 @@ app.$mount();
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_30b09f44_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_d692612c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(113);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -44,12 +44,12 @@ var normalizeComponent = __webpack_require__(0)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-30b09f44"
+var __vue_scopeId__ = "data-v-d692612c"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_30b09f44_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_d692612c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
@@ -65,9 +65,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-30b09f44", Component.options)
+    hotAPI.createRecord("data-v-d692612c", Component.options)
   } else {
-    hotAPI.reload("data-v-30b09f44", Component.options)
+    hotAPI.reload("data-v-d692612c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -211,10 +211,10 @@ if (false) {(function () {
     handleSearch: function handleSearch() {
       // console.log(this.keyword);
       if (this.keyword && this.keyword.trim()) {
-        this.getAllItem("https://wx.api.fog3211.com/search/byKeyWord/" + this.keyword);
+        this.getAllItem("http://62.234.59.173/search/byKeyWord/" + this.keyword);
         this.keyword = "";
       } else {
-        this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
+        this.getAllItem("http://62.234.59.173/item/itemlist");
       }
     },
     tabClick: function tabClick(e) {
@@ -243,7 +243,8 @@ if (false) {(function () {
             setTimeout(function () {
               _this.isShowLoading = false;
             }, 1000);
-
+            if (!res.data) return;
+            // console.log(res.data);
             res.data.map(function (item) {
               // 需求
               if (item.itemNeed === 0) {
@@ -286,7 +287,7 @@ if (false) {(function () {
     }
   },
   onShow: function onShow() {
-    this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
+    this.getAllItem("http://62.234.59.173/item/itemlist");
   }
 });
 
@@ -510,7 +511,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-30b09f44", esExports)
+     require("vue-hot-reload-api").rerender("data-v-d692612c", esExports)
   }
 }
 

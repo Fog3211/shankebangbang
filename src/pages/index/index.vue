@@ -119,12 +119,10 @@ export default {
     handleSearch() {
       // console.log(this.keyword);
       if (this.keyword && this.keyword.trim()) {
-        this.getAllItem(
-          "https://wx.api.fog3211.com/search/byKeyWord/" + this.keyword
-        );
+        this.getAllItem("http://62.234.59.173/search/byKeyWord/" + this.keyword);
         this.keyword = "";
       } else {
-        this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
+        this.getAllItem("http://62.234.59.173/item/itemlist");
       }
     },
     tabClick(e) {
@@ -150,7 +148,8 @@ export default {
             setTimeout(() => {
               this.isShowLoading = false;
             }, 1000);
-
+            if (!res.data) return;
+            // console.log(res.data);
             res.data.map(item => {
               // 需求
               if (item.itemNeed === 0) {
@@ -193,7 +192,7 @@ export default {
     }
   },
   onShow() {
-    this.getAllItem("https://wx.api.fog3211.com/item/itemlist");
+    this.getAllItem("http://62.234.59.173/item/itemlist");
   }
 };
 </script>

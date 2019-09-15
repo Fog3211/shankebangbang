@@ -1,25 +1,25 @@
 @import "../../common/vendor.wxss";
 
 @charset "UTF-8";
-.add-page.data-v-2a28d1ad {
+.add-page.data-v-524c43b9 {
   padding-top: 40rpx;
 }
-.add-page .title.data-v-2a28d1ad {
+.add-page .title.data-v-524c43b9 {
   text-indent: 1em;
   width: 70%;
   margin: 0 auto;
   border-bottom: 2rpx solid #ccc;
 }
-.add-page .description-box.data-v-2a28d1ad {
+.add-page .description-box.data-v-524c43b9 {
   margin: 30rpx auto 0;
 }
-.add-page .weui-uploader__file.data-v-2a28d1ad {
+.add-page .weui-uploader__file.data-v-524c43b9 {
   position: relative;
 }
-.add-page .weui-uploader__bd.data-v-2a28d1ad {
+.add-page .weui-uploader__bd.data-v-524c43b9 {
   overflow: visible;
 }
-.add-page .delete-icon.data-v-2a28d1ad {
+.add-page .delete-icon.data-v-524c43b9 {
   position: absolute;
   width: 40rpx;
   height: 40rpx;
@@ -29,7 +29,7 @@
   border-radius: 40rpx;
   z-index: 5;
 }
-.add-page .delete-icon.data-v-2a28d1ad::before {
+.add-page .delete-icon.data-v-524c43b9::before {
   position: absolute;
   content: "";
   width: 26rpx;
@@ -39,90 +39,90 @@
   transform: translate(-50%, -50%);
   background: #fff;
 }
-.add-page .box.data-v-2a28d1ad {
+.add-page .box.data-v-524c43b9 {
   margin-top: 40rpx;
 }
-.add-page .box .tag.data-v-2a28d1ad,
-.add-page .box .type.data-v-2a28d1ad,
-.add-page .box .pay.data-v-2a28d1ad,
-.add-page .box .contact.data-v-2a28d1ad {
+.add-page .box .tag.data-v-524c43b9,
+.add-page .box .type.data-v-524c43b9,
+.add-page .box .pay.data-v-524c43b9,
+.add-page .box .contact.data-v-524c43b9 {
   color: #4dba8c;
   font-size: 36rpx;
   margin-left: 10rpx;
   vertical-align: middle;
   font-weight: bolder;
 }
-.add-page .box .tag-icon.data-v-2a28d1ad,
-.add-page .box .type-icon.data-v-2a28d1ad,
-.add-page .box .contact-icon.data-v-2a28d1ad,
-.add-page .box .pay-icon.data-v-2a28d1ad {
+.add-page .box .tag-icon.data-v-524c43b9,
+.add-page .box .type-icon.data-v-524c43b9,
+.add-page .box .contact-icon.data-v-524c43b9,
+.add-page .box .pay-icon.data-v-524c43b9 {
   margin-left: 20rpx;
   font-size: 48rpx;
   vertical-align: middle;
   color: #4dba8c;
 }
-.add-page .box .contact-icon.data-v-2a28d1ad {
+.add-page .box .contact-icon.data-v-524c43b9 {
   margin-left: 0;
   margin-right: 20rpx;
 }
-.add-page .box .pay-icon.data-v-2a28d1ad {
+.add-page .box .pay-icon.data-v-524c43b9 {
   color: #fce148;
 }
-.add-page .box .pay-title.data-v-2a28d1ad {
+.add-page .box .pay-title.data-v-524c43b9 {
   color: #f43530;
   font-size: 48rpx;
 }
-.add-page .box .pay-box.data-v-2a28d1ad {
+.add-page .box .pay-box.data-v-524c43b9 {
   margin-top: 30rpx;
 }
-.add-page .box .pay-text.data-v-2a28d1ad {
+.add-page .box .pay-text.data-v-524c43b9 {
   font-size: 28rpx;
   text-align: center;
   color: #ccc;
 }
-.add-page .box .pay_selected.data-v-2a28d1ad {
+.add-page .box .pay_selected.data-v-524c43b9 {
   background-color: #e7f7eb;
 }
-.add-page .tag-box.data-v-2a28d1ad {
+.add-page .tag-box.data-v-524c43b9 {
   padding: 0 20rpx;
   text-align: center;
 }
-.add-page .tag-box .icon-box.data-v-2a28d1ad {
+.add-page .tag-box .icon-box.data-v-524c43b9 {
   text-align: left;
 }
-.add-page .tag-box .tag-group.data-v-2a28d1ad {
+.add-page .tag-box .tag-group.data-v-524c43b9 {
   width: 90%;
   margin: 20rpx auto 40rpx;
   display: flex;
   justify-content: space-around;
 }
-.add-page .tag-box .tag-group .tag-item.data-v-2a28d1ad {
+.add-page .tag-box .tag-group .tag-item.data-v-524c43b9 {
   padding: 10rpx 20rpx;
   border: 2rpx solid #4dba8c;
   border-radius: 10%;
   color: #4dba8c;
 }
-.add-page .tag-box .add-tag-btn.data-v-2a28d1ad {
+.add-page .tag-box .add-tag-btn.data-v-524c43b9 {
   width: 85%;
 }
-.add-page .type-box .type-icon.data-v-2a28d1ad {
+.add-page .type-box .type-icon.data-v-524c43b9 {
   color: #4dba8c;
 }
-.add-page .type-box .type-info-box.data-v-2a28d1ad {
+.add-page .type-box .type-info-box.data-v-524c43b9 {
   width: 80%;
   margin: 20rpx auto;
   position: relative;
 }
-.add-page .type-box .type-info-box .type-info.data-v-2a28d1ad {
+.add-page .type-box .type-info-box .type-info.data-v-524c43b9 {
   font-size: 40rpx;
   color: #5f5d5d;
 }
-.add-page .type-box .type-info-box .switch-box.data-v-2a28d1ad {
+.add-page .type-box .type-info-box .switch-box.data-v-524c43b9 {
   display: inline-block;
   position: absolute;
   right: 20rpx;
 }
-.add-page .push-btn.data-v-2a28d1ad {
+.add-page .push-btn.data-v-524c43b9 {
   display: block;
   width: 300rpx;
   margin: 100rpx auto;

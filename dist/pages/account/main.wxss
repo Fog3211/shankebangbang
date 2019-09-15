@@ -1,37 +1,37 @@
 @import "../../common/vendor.wxss";
 
-.account-page.data-v-07c263b9 {
+.account-page.data-v-a4f42076 {
   padding: 40rpx 60rpx;
 }
-.account-page .account-item.data-v-07c263b9 {
+.account-page .account-item.data-v-a4f42076 {
   border-bottom: 2rpx solid #ccc;
   margin-bottom: 10rpx;
   letter-spacing: 6rpx;
 }
-.account-page .account-item ._p.data-v-07c263b9 {
+.account-page .account-item ._p.data-v-a4f42076 {
   letter-spacing: 2rpx;
   font-weight: bold;
 }
-.account-page .account-item ._p ._span.data-v-07c263b9 {
+.account-page .account-item ._p ._span.data-v-a4f42076 {
   margin: 10rpx;
   font-size: 48rpx;
 }
-.account-page .account-item ._p .icon-xingming.data-v-07c263b9 {
+.account-page .account-item ._p .icon-xingming.data-v-a4f42076 {
   color: #bd2929;
 }
-.account-page .account-item ._p .icon-qian.data-v-07c263b9 {
+.account-page .account-item ._p .icon-qian.data-v-a4f42076 {
   color: #3bb47c;
 }
-.account-page .account-item ._p .icon-shouji.data-v-07c263b9 {
+.account-page .account-item ._p .icon-shouji.data-v-a4f42076 {
   color: #bd299d;
 }
-.account-page .account-item ._p .icon-qq.data-v-07c263b9 {
+.account-page .account-item ._p .icon-qq.data-v-a4f42076 {
   color: #4094df;
 }
-.account-page .account-item ._input.data-v-07c263b9 {
+.account-page .account-item ._input.data-v-a4f42076 {
   margin: 20rpx 40rpx;
 }
-.account-page .btn-box.data-v-07c263b9 {
+.account-page .btn-box.data-v-a4f42076 {
   width: 80%;
   margin: 140rpx auto;
   letter-spacing: 6rpx;

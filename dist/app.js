@@ -83,9 +83,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-37a37f56", Component.options)
+    hotAPI.createRecord("data-v-ae79373e", Component.options)
   } else {
-    hotAPI.reload("data-v-37a37f56", Component.options)
+    hotAPI.reload("data-v-ae79373e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

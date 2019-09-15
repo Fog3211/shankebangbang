@@ -1,13 +1,13 @@
 <import src="/components/demand-item.vue.wxml" />
-<import src="/modules/mpvue-weui/src/loading/index.vue.wxml" /><template name="40911320">
-  <view class="_div data-v-52ab4659 hot-page">
-    <view class="_div data-v-52ab4659 header"><label class="_span data-v-52ab4659 iconfont icon-huo hot-icon"></label>
-      <view class="_p data-v-52ab4659 title">热门话题</view>
+<import src="/modules/mpvue-weui/src/loading/index.vue.wxml" /><template name="c3be84ec">
+  <view class="_div data-v-7aceb865 hot-page">
+    <view class="_div data-v-7aceb865 header"><label class="_span data-v-7aceb865 iconfont icon-huo hot-icon"></label>
+      <view class="_p data-v-7aceb865 title">热门话题</view>
     </view>
-    <view class="_div data-v-52ab4659 tag-box"><label wx:key="index" key="{{index}}" class="_span data-v-52ab4659 tag" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" wx:for="{{tag_list}}" wx:for-index="index" wx:for-item="item"> #{{item}}
+    <view class="_div data-v-7aceb865 tag-box"><label wx:key="index" key="{{index}}" class="_span data-v-7aceb865 tag" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" wx:for="{{tag_list}}" wx:for-index="index" wx:for-item="item"> #{{item}}
       </label></view>
-    <view class="_ul data-v-52ab4659 list-content">
-      <view wx:key="index" key="{{index}}" hidden="{{!(item.show)}}" wx:for="{{hot_list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-52ab4659"><template data="{{...$root[$kk+'0_'+index], $root}}" is="2805232c"></template></view>
-    </view> <template loadingText="数据加载中..." data="{{...$root[$kk+'1'], $root}}" is="74f1af89"></template>
+    <view class="_ul data-v-7aceb865 list-content">
+      <view wx:key="index" key="{{index}}" hidden="{{!(item.show)}}" wx:for="{{hot_list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-7aceb865"><template data="{{...$root[$kk+'0_'+index], $root}}" is="ead1ce80"></template></view>
+    </view> <template loadingText="数据加载中..." data="{{...$root[$kk+'1'], $root}}" is="558f4e73"></template>
   </view>
 </template>

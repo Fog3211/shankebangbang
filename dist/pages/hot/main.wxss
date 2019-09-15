@@ -1,33 +1,33 @@
 @import "../../common/vendor.wxss";
 
-.hot-page .header .hot-icon.data-v-52ab4659 {
+.hot-page .header .hot-icon.data-v-7aceb865 {
   color: #d4237a;
   font-size: 40rpx;
   padding: 0 20rpx;
 }
-.hot-page .header .title.data-v-52ab4659 {
+.hot-page .header .title.data-v-7aceb865 {
   display: inline-block;
   width: 75%;
   margin: 0 auto;
   font-weight: bold;
   font-size: 32rpx;
 }
-.hot-page .tag-box.data-v-52ab4659 {
+.hot-page .tag-box.data-v-7aceb865 {
   width: 90%;
   margin: 0 auto;
   border-top: 2rpx solid #ccc;
   border-bottom: 2rpx solid #ccc;
 }
-.hot-page .tag-box .tag.data-v-52ab4659 {
+.hot-page .tag-box .tag.data-v-7aceb865 {
   text-align: center;
   margin: auto 30rpx;
   font-size: 32rpx;
   color: #4dba8c;
 }
-.hot-page .tag-box .tag.data-v-52ab4659:active {
+.hot-page .tag-box .tag.data-v-7aceb865:active {
   color: #1f684a;
 }
-.hot-page .list-content.data-v-52ab4659 {
+.hot-page .list-content.data-v-7aceb865 {
   margin-top: 20rpx;
   border-top: 2rpx solid #ccc;
 }

@@ -52,7 +52,7 @@ export default {
   onShow() {
     this.hot_list = [];
     wx.request({
-      url: "https://wx.api.fog3211.com/item/itemHotlist",
+      url: "http://62.234.59.173/item/itemHotlist",
       method: "GET",
       header: {
         "content-type": "application/json"
@@ -62,6 +62,7 @@ export default {
           setTimeout(() => {
             this.isShowLoading = false;
           }, 1000);
+          if (!res.data) return;
           res.data.map(item => {
             this.hot_list.push({
               id: item.itemId,

@@ -1,17 +1,17 @@
-<import src="/modules/mpvue-weui/src/modal/index.vue.wxml" /><template name="220f213c">
-  <view class="_div data-v-e2f442c6 mine-page">
-    <view class="_div data-v-e2f442c6 header">
-      <image src="{{account.avatar}}" alt="avatar" class="_img data-v-e2f442c6 avatar"></image>
-      <view class="_div data-v-e2f442c6 account-box">
-        <view class="_p data-v-e2f442c6 name">{{account.name}}</view>
-        <view class="_p data-v-e2f442c6 is-login">{{account.is_login}}</view> <label class="_span data-v-e2f442c6 iconfont icon-iconfontjiantou2 right-icon" bindtap="handleProxy" wx:if="{{!login_btn_show}}" data-eventid="{{'0'}}" data-comkey="{{$k}}"></label>
-      </view> <button type="primary" open-type="getUserInfo" bindgetuserinfo="handleProxy" bindtap="handleProxy" wx:if="{{login_btn_show}}" class="_button data-v-e2f442c6 login-btn" data-eventid="{{'1'}}" data-comkey="{{$k}}">登录</button>
+<import src="/modules/mpvue-weui/src/modal/index.vue.wxml" /><template name="7674c412">
+  <view class="_div data-v-6ad0ae11 mine-page">
+    <view class="_div data-v-6ad0ae11 header">
+      <image src="{{account.avatar}}" alt="avatar" class="_img data-v-6ad0ae11 avatar"></image>
+      <view class="_div data-v-6ad0ae11 account-box">
+        <view class="_p data-v-6ad0ae11 name">{{account.name}}</view>
+        <view class="_p data-v-6ad0ae11 is-login">{{account.is_login}}</view> <label class="_span data-v-6ad0ae11 iconfont icon-iconfontjiantou2 right-icon" bindtap="handleProxy" wx:if="{{!login_btn_show}}" data-eventid="{{'0'}}" data-comkey="{{$k}}"></label>
+      </view> <button type="primary" open-type="getUserInfo" bindgetuserinfo="handleProxy" bindtap="handleProxy" wx:if="{{login_btn_show}}" class="_button data-v-6ad0ae11 login-btn" data-eventid="{{'1'}}" data-comkey="{{$k}}">登录</button>
     </view>
-    <view class="_ul data-v-e2f442c6 mine-list">
-      <view class="_li data-v-e2f442c6 mine-item" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}"><label class="_span data-v-e2f442c6 iconfont icon-fabu"></label> 我的发布 </view>
-      <view class="_li data-v-e2f442c6 mine-item" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}"><label class="_span data-v-e2f442c6 iconfont icon-shou"></label> 帮助过我 </view>
-      <view class="_li data-v-e2f442c6 mine-item" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}"><label class="_span data-v-e2f442c6 iconfont icon-about"></label> 关于 </view>
-      <view class="_li data-v-e2f442c6 mine-item" bindtap="handleProxy" wx:if="{{logout_btn_show}}" data-eventid="{{'5'}}" data-comkey="{{$k}}"><label class="_span data-v-e2f442c6 iconfont icon-tuichu"></label> 注销登录 </view>
-    </view> <template ref="mpModal" title content="确认注销登录？" bindconfirm="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root}}" is="0001590c"></template>
+    <view class="_ul data-v-6ad0ae11 mine-list">
+      <view class="_li data-v-6ad0ae11 mine-item" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}"><label class="_span data-v-6ad0ae11 iconfont icon-fabu"></label> 我的发布 </view>
+      <view class="_li data-v-6ad0ae11 mine-item" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}"><label class="_span data-v-6ad0ae11 iconfont icon-shou"></label> 帮助过我 </view>
+      <view class="_li data-v-6ad0ae11 mine-item" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}"><label class="_span data-v-6ad0ae11 iconfont icon-about"></label> 关于 </view>
+      <view class="_li data-v-6ad0ae11 mine-item" bindtap="handleProxy" wx:if="{{logout_btn_show}}" data-eventid="{{'5'}}" data-comkey="{{$k}}"><label class="_span data-v-6ad0ae11 iconfont icon-tuichu"></label> 注销登录 </view>
+    </view> <template ref="mpModal" title content="确认注销登录？" bindconfirm="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root}}" is="6b28b638"></template>
   </view>
 </template>

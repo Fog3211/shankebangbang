@@ -1,6 +1,6 @@
 <import src="/components/demand-item.vue.wxml" />
-<import src="/modules/mpvue-weui/src/loading/index.vue.wxml" /><template name="1fab48eb">
-  <view class="_ul data-v-457fddb7 list-content">
-    <view wx:key="index" key="{{index}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-457fddb7"><template data="{{...$root[$kk+'0_'+index], $root}}" is="2805232c"></template></view> <template loadingText="数据加载中..." data="{{...$root[$kk+'1'], $root}}" is="74f1af89"></template>
+<import src="/modules/mpvue-weui/src/loading/index.vue.wxml" /><template name="beb00856">
+  <view class="_ul data-v-eeded27a list-content">
+    <view wx:key="index" key="{{index}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" class="_li data-v-eeded27a"><template data="{{...$root[$kk+'0_'+index], $root}}" is="ead1ce80"></template></view> <template loadingText="数据加载中..." data="{{...$root[$kk+'1'], $root}}" is="558f4e73"></template>
   </view>
 </template>

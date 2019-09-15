@@ -1,6 +1,6 @@
 @import "../../common/vendor.wxss";
 
-.about-page .info.data-v-2ce0854e {
+.about-page .info.data-v-d2c24736 {
   margin: 40rpx;
   padding: 20rpx;
   letter-spacing: 4rpx;
@@ -10,7 +10,7 @@
   background-color: #f5f2f2;
   height: 80vh;
 }
-.about-page .copyright.data-v-2ce0854e {
+.about-page .copyright.data-v-d2c24736 {
   position: fixed;
   left: 50%;
   bottom: 40rpx;

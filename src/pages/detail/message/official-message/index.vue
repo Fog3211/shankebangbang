@@ -50,13 +50,14 @@ export default {
   mounted() {
     this.msg_list = [];
     wx.request({
-      url: "https://wx.api.fog3211.com/governMsg/governMsg",
+      url: "http://62.234.59.173/governMsg/governMsg",
       method: "GET",
       header: {
         "content-type": "application/json"
       },
       success: res => {
         if (res.statusCode == 200) {
+            if (!res.data) return;
           res.data.map(item => {
             this.msg_list.push({
               id: item.id,
